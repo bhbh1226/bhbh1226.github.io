@@ -3,11 +3,8 @@ import Background from './components/Background';
 
 function App() {
   return (
-    <div id="app" className="full-screen">
+    <div id="app">
       <Background />
-      {/* <h1>
-        박평진
-      </h1> */}
     </div>
   );
 }

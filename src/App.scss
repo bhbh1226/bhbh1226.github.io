@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import './styles/global.scss';
 
 #app {
+  @extend .full-screen;
+
   display: flex;
   flex-direction: column;
   position: relative;
-
+  
   // h1 {
   //   position: absolute;
   //   display: flex;
@@ -18,14 +21,9 @@
   //   align-items: center;
   //   justify-content: center;
   //   color: white;
-  //   font-size: 30em;
+  //   font-size: 10em;
+  //   font-family: 'Noto Sans KR', sans-serif;
   //   text-shadow: rgba(50, 50, 93, 0.1) 0px 13px 27px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
   //   z-index: 255;
   // }
-}
-  
-.full-screen {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
 }

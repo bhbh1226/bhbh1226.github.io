@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-@import '../App.scss';
+@import './global.scss';
 
 $background-top-color: rgb(255, 134, 177);
 $background-bottom-color: rgb(254, 254, 226);
 
 #background {
-  @extend .full-screen;
-  position: relative;
+  position: absolute;
+  width: 200vw;
+  height: 100vh;
   
   .sky {
     position: relative;
@@ -18,7 +19,7 @@ $background-bottom-color: rgb(254, 254, 226);
       position: absolute;
       bottom: 8em;
 
-      left: 45%;
+      left: 55em;
       top: 32em;
 
       width: 15em;
@@ -215,9 +216,9 @@ $background-bottom-color: rgb(254, 254, 226);
       }
 
       &:nth-of-type(2) {
-        width: 110em;
+        width: 160em;
         height: 4em;
-        left: 20em;
+        left: 0;
         top: 3em;
       }
 
