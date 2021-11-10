@@ -1,0 +1,46 @@
+
+  .tree {
+    position: relative;
+
+    .leaf {
+      position: absolute;
+      // left: 50%;
+      // transform: translateX(-50%);
+
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          .leaf-inside {
+            width: #{2 * $i + 8}em;
+            height: #{2 * $i + 3}em;
+            
+            top: #{2 * $i}em;
+            
+            &::before {
+              width: #{2 * $i + 8}em;
+              height: #{2 * $i + 8}em;
+              
+              border-radius: #{2 * $i + 8 / 2}em;
+            }
+          }
+        }
+      }
+
+      .leaf-inside {
+        display: flex;
+        
+        overflow: hidden;
+        
+        // transform: translate(-50%, -50%);
+        transform-origin: center;
+      // transform: rotate(235deg);
+                
+        &::before {
+          content: '';
+          
+          background-image: linear-gradient(transparent 50%, white 50%);
+          
+          transform: rotate(70deg);
+        }
+      }
+    }
+  }
