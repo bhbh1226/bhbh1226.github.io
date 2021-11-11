@@ -159,6 +159,42 @@ $max-background-size: 600vw;
           width: 18em;
           height: 18em;
         }
+
+        .cloud:nth-of-type(6) {
+          left: 140em;
+          width: 24em;
+          height: 22em;
+        }
+
+        .cloud:nth-of-type(7) {
+          left: 155em;
+          width: 20em;
+          height: 18em;
+        }
+
+        .cloud:nth-of-type(8) {
+          left: 180em;
+          width: 26em;
+          height: 20em;
+        }
+
+        .cloud:nth-of-type(9) {
+          left: 200em;
+          width: 24em;
+          height: 24em;
+        }
+
+        .cloud:nth-of-type(10) {
+          left: 200em;
+          width: 18em;
+          height: 18em;
+        }
+
+        .cloud:nth-of-type(11) {
+          left: 250em;
+          width: 18em;
+          height: 18em;
+        }
       }
 
       &.pink {
@@ -197,7 +233,37 @@ $max-background-size: 600vw;
         }
 
         .cloud:nth-of-type(6) {
-          left: 98em;
+          left: 94em;
+          width: 28em;
+          height: 28em;
+        }
+
+        .cloud:nth-of-type(7) {
+          left: 135em;
+          width: 28em;
+          height: 28em;
+        }
+
+        .cloud:nth-of-type(8) {
+          left: 150em;
+          width: 30em;
+          height: 26em;
+        }
+
+        .cloud:nth-of-type(9) {
+          left: 175em;
+          width: 26em;
+          height: 22em;
+        }
+
+        .cloud:nth-of-type(10) {
+          left: 210em;
+          width: 20em;
+          height: 20em;
+        }
+
+        .cloud:nth-of-type(11) {
+          left: 230em;
           width: 28em;
           height: 28em;
         }
@@ -208,9 +274,30 @@ $max-background-size: 600vw;
 
         .cloud:nth-of-type(1) {
           bottom: 8em;
-          left: 70em;
+          left: 20em;
           width: 20em;
           height: 18em;
+        }
+
+        .cloud:nth-of-type(2) {
+          bottom: 8em;
+          left: 70em;
+          width: 23em;
+          height: 21em;
+        }
+
+        .cloud:nth-of-type(3) {
+          bottom: 8em;
+          left: 150em;
+          width: 24em;
+          height: 20em;
+        }
+
+        .cloud:nth-of-type(4) {
+          bottom: 8em;
+          left: 195em;
+          width: 18em;
+          height: 16em;
         }
       }
 

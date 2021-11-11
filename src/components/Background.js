@@ -2,17 +2,27 @@ import { createRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/Background.scss'
 
+const screen_count = 6
+const screen_size = window.innerWidth
+const max_screen_size = screen_size * (screen_count - 1)
+const max_star_light_size = max_screen_size / 14
+const max_star_dark_size = max_screen_size / 10
+const max_line_light_size = max_screen_size / 12
+const max_line_dark_size = max_screen_size / 8
+
 const Star = ({ type }) => {
-  const [left] = useState(Math.random() * 100 + '%')
+  const [left, setLeft] = useState(Math.random() * 100 + '%')
   const [top] = useState(Math.random() * 40 + '%')
   const [size, setSize] = useState('0')
 
   useEffect(() => {
     switch (type) {
       case 'light':
+        setLeft(Math.random() * (screen_size + max_star_light_size) + 'px')
         setSize(Math.ceil(Math.random() * 30) + 1 + 'px')
         break
       case 'dark':
+        setLeft(Math.random() * (screen_size + max_star_dark_size) + 'px')
         setSize(Math.ceil(Math.random() * 14) + 1 + 'px')
         break
       default:
@@ -47,14 +57,14 @@ const Line = ({ type }) => {
       case 'light':
         setHeight(Math.random() * (15 - 10) + 10 + 'px')
         setWidth(Math.random() * (800 - 400) + 400 + 'px')
-        setLeft(Math.random() * 100 + '%')
-        setTop(Math.random() * 30 + '%')
+        setLeft(Math.random() * (screen_size + max_line_light_size) + 'px')
+        setTop(Math.random() * 40 + '%')
         break
       case 'dark':
         setHeight(Math.random() * (40 - 28) + 10 + 'px')
         setWidth(Math.random() * (800 - 400) + 400 + 'px')
-        setLeft(Math.random() * 100 + '%')
-        setTop(Math.random() * (70 - 30) + 30 + '%')
+        setLeft(Math.random() * (screen_size + max_line_dark_size) + 'px')
+        setTop(Math.random() * (70 - 40) + 40 + '%')
         break
       default:
     }
@@ -110,8 +120,7 @@ const Background = () => {
   const [lineDarkLeft, setLineDarkLeft] = useState(0)
   const [starLightLeft, setStarLightLeft] = useState(0)
   const [starDarkLeft, setStarDarkLeft] = useState(0)
-  const screen_count = 6
-  const max_screen_size = window.innerWidth * (screen_count - 1)
+
   const containerRef = createRef()
 
   const arrayMaker = (length) => {
@@ -119,13 +128,13 @@ const Background = () => {
   }
 
   useEffect(() => {
+    setStarLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_star_light_size]) + 'px')
+    setStarDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_star_dark_size]) + 'px')
+    setLineLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_line_light_size]) + 'px')
+    setLineDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_line_dark_size]) + 'px')
     setCloudWhiteLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 3.5)]) + 'px')
-    setCloudPinkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 4.5)]) + 'px')
-    setCloudIvoryLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 5.5)]) + 'px')
-    setLineLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 11)]) + 'px')
-    setLineDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 8)]) + 'px')
-    setStarLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 13)]) + 'px')
-    setStarDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 10)]) + 'px')
+    setCloudPinkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 5)]) + 'px')
+    setCloudIvoryLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 6.5)]) + 'px')
   }, [globalLeft])
 
   useEffect(() => {
@@ -160,19 +169,25 @@ const Background = () => {
         </motion.div>
         <motion.div className="lines light" animate={{ x: lineLightLeft }}>
           {
-            arrayMaker(3).map((item) => {
+            arrayMaker(5).map((item) => {
               return <Line type='light' />
             })
           }
         </motion.div>
         <motion.div className="lines dark" animate={{ x: lineDarkLeft }}>
           {
-            arrayMaker(5).map((item) => {
+            arrayMaker(8).map((item) => {
               return <Line type='dark' />
             })
           }
         </motion.div>
         <motion.div className="clouds white" animate={{ x: cloudWhiteLeft }}>
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
           <div className="cloud white" />
           <div className="cloud white" />
           <div className="cloud white" />
@@ -186,8 +201,16 @@ const Background = () => {
           <div className="cloud pink" />
           <div className="cloud pink" />
           <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
         </motion.div>
         <motion.div className="clouds ivory" animate={{ x: cloudIvoryLeft }}>
+          <div className="cloud ivory" />
+          <div className="cloud ivory" />
+          <div className="cloud ivory" />
           <div className="cloud ivory" />
         </motion.div>
       </div>
