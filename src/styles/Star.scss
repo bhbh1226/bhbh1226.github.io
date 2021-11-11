@@ -1,0 +1,33 @@
+.star {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+
+  &.light {
+    color: rgb(255, 183, 232);
+    
+    &::before {
+      content: "\2726";
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 28%;
+      top: 50%;
+      width: 20%;
+      height: 20%;
+      transform: rotate(-45deg);
+      background-color: rgb(249, 255, 222);
+    }
+  }
+
+  &.dark { 
+    background-color: rgb(255, 203, 177);
+    transform: rotate(45deg);
+  }
+}

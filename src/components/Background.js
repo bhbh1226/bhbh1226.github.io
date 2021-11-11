@@ -1,95 +1,11 @@
 import { createRef, useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/Background.scss'
-import { screen_size, max_screen_size, getParallax, HomeContext, max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size, } from '../pages/Home'
-
-const Star = ({ type }) => {
-  const [left, setLeft] = useState(Math.random() * 100 + '%')
-  const [top] = useState(Math.random() * 40 + '%')
-  const [size, setSize] = useState('0')
-
-  useEffect(() => {
-    switch (type) {
-      case 'light':
-        setLeft(Math.random() * (screen_size + max_star_light_size) + 'px')
-        setSize(Math.ceil(Math.random() * 30) + 1 + 'px')
-        break
-      case 'dark':
-        setLeft(Math.random() * (screen_size + max_star_dark_size) + 'px')
-        setSize(Math.ceil(Math.random() * 14) + 1 + 'px')
-        break
-      default:
-        setSize(Math.ceil(Math.random() * 30) + 1 + 'px')
-    }
-  }, [type])
-
-  switch (type) {
-    case 'light':
-      return (
-        <div className="star light" style={{ width: size, height: size, fontSize: size, left, top }} />
-      )
-    case 'dark': 
-      return (
-        <div className="star dark" style={{ width: size, height: size, left, top }} />
-      )
-    default:
-      return (
-        <div className="star dark" style={{ width: size, height: size, left, top }} />
-      )
-  }
-}
-
-const Line = ({ type }) => {
-  const [height, setHeight] = useState('0')
-  const [width, setWidth] = useState('0')
-  const [left, setLeft] = useState('0')
-  const [top, setTop] = useState('0')
-
-  useEffect(() => {
-    switch (type) {
-      case 'light':
-        setHeight(Math.random() * (15 - 10) + 10 + 'px')
-        setWidth(Math.random() * (800 - 400) + 400 + 'px')
-        setLeft(Math.random() * (screen_size + max_line_light_size) + 'px')
-        setTop(Math.random() * 40 + '%')
-        break
-      case 'dark':
-        setHeight(Math.random() * (40 - 28) + 10 + 'px')
-        setWidth(Math.random() * (800 - 400) + 400 + 'px')
-        setLeft(Math.random() * (screen_size + max_line_dark_size) + 'px')
-        setTop(Math.random() * (70 - 40) + 40 + '%')
-        break
-      default:
-    }
-  }, [type])
-
-  switch (type) {
-    case 'light':
-      return (
-        <div className="line light" style={{ width, height, left, top }} />
-      )
-    case 'dark':
-      return (
-        <div className="line dark" style={{ width, height, left, top }} />
-      )
-    default:
-      return (
-        <div className="line light" style={{ width, height, left, top }} />
-      )
-  }
-}
-
-const Sea = ({ left, duration }) => {
-  return (
-    <motion.div className="sea" animate={{ 
-      left: [null, left, 0], 
-      transition: { 
-        ease: ['easeIn', 'easeInOut'], 
-        duration,
-        repeat: Infinity } 
-      }} />
-  )
-}
+import '../styles/Clouds.scss'
+import { max_screen_size, getParallax, HomeContext, max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size, } from '../pages/Home'
+import Star from './Star'
+import Line from './Line'
+import Sea from './Sea'
 
 const Background = () => {
   const [backgroundLeft, setBackgroundLeft] = useState(0)

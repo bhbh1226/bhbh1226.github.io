@@ -1,0 +1,21 @@
+.line {
+  position: absolute;
+  top: 10em;
+  left: 50%;
+
+  height: 10px;
+  width: 400px;
+  
+  transform: translate(-50%, -50%) rotate(-22deg);
+
+  // background-image: linear-gradient(90deg, transparent 1%, rgb(252, 191, 172) 5%, rgb(252, 191, 172) 95%, transparent 99%);
+  border-radius: 5px;
+
+  &.light {
+    background-image: linear-gradient(90deg, transparent 0.1%, rgb(252, 191, 172) 3%, rgb(252, 191, 172) 97%, transparent 99.9%);
+  }
+
+  &.dark {
+    background-image: linear-gradient(90deg, transparent 0.1%, rgb(255, 123, 160) 3%, rgb(255, 123, 160) 97%, transparent 99.9%);
+  }
+}
