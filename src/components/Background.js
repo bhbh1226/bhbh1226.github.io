@@ -172,20 +172,24 @@ const Background = () => {
             })
           }
         </motion.div>
-        <div className="clouds">
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
-          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
-          <motion.div className="cloud ivory" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudIvoryLeft }} />
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
-          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
-          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
-          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
-        </div>
+        <motion.div className="clouds white" animate={{ x: cloudWhiteLeft }}>
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+          <div className="cloud white" />
+        </motion.div>
+        <motion.div className="clouds pink" animate={{ x: cloudPinkLeft }}>
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+          <div className="cloud pink" />
+        </motion.div>
+        <motion.div className="clouds ivory" animate={{ x: cloudIvoryLeft }}>
+          <div className="cloud ivory" />
+        </motion.div>
       </div>
       <motion.div className="ground" animate={{ x: -globalLeft }}>
         <div className="seas">
