@@ -1,6 +1,7 @@
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/Background.scss'
+import { HomeContext } from '../pages/Home'
 
 const screen_count = 6
 const screen_size = window.innerWidth
@@ -112,7 +113,7 @@ const getParallax = (value, input, output) => {
 }
 
 const Background = () => {
-  const [globalLeft, setGlobalLeft] = useState(0)
+  const [backgroundLeft, setBackgroundLeft] = useState(0)
   const [cloudWhiteLeft, setCloudWhiteLeft] = useState(0)
   const [cloudPinkLeft, setCloudPinkLeft] = useState(0)
   const [cloudIvoryLeft, setCloudIvoryLeft] = useState(0)
@@ -121,6 +122,8 @@ const Background = () => {
   const [starLightLeft, setStarLightLeft] = useState(0)
   const [starDarkLeft, setStarDarkLeft] = useState(0)
 
+  const { scrollX, setScrollX } = useContext(HomeContext)
+
   const containerRef = createRef()
 
   const arrayMaker = (length) => {
@@ -128,19 +131,20 @@ const Background = () => {
   }
 
   useEffect(() => {
-    setStarLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_star_light_size]) + 'px')
-    setStarDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_star_dark_size]) + 'px')
-    setLineLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_line_light_size]) + 'px')
-    setLineDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -max_line_dark_size]) + 'px')
-    setCloudWhiteLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 3.5)]) + 'px')
-    setCloudPinkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 5)]) + 'px')
-    setCloudIvoryLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 6.5)]) + 'px')
-  }, [globalLeft])
+    setBackgroundLeft(scrollX)
+    setStarLightLeft(getParallax(scrollX, [0, max_screen_size], [0, -max_star_light_size]) + 'px')
+    setStarDarkLeft(getParallax(scrollX, [0, max_screen_size], [0, -max_star_dark_size]) + 'px')
+    setLineLightLeft(getParallax(scrollX, [0, max_screen_size], [0, -max_line_light_size]) + 'px')
+    setLineDarkLeft(getParallax(scrollX, [0, max_screen_size], [0, -max_line_dark_size]) + 'px')
+    setCloudWhiteLeft(getParallax(scrollX, [0, max_screen_size], [0, -(max_screen_size / 3.5)]) + 'px')
+    setCloudPinkLeft(getParallax(scrollX, [0, max_screen_size], [0, -(max_screen_size / 5)]) + 'px')
+    setCloudIvoryLeft(getParallax(scrollX, [0, max_screen_size], [0, -(max_screen_size / 6.5)]) + 'px')
+  }, [scrollX])
 
   useEffect(() => {
     if (containerRef.current !== null) {
       containerRef.current.addEventListener('wheel', (event) => {
-        setGlobalLeft(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
+        setScrollX(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
      
         event.preventDefault()
       })
@@ -149,7 +153,7 @@ const Background = () => {
 
   return (
     <motion.div id="container" ref={containerRef}  >
-      <motion.div className="background" animate={{ x: -globalLeft }} />
+      <motion.div className="background" animate={{ x: -backgroundLeft }} />
       <div className="sky">
         <div className="sun" />
         <div className="sun-light" />
@@ -214,7 +218,7 @@ const Background = () => {
           <div className="cloud ivory" />
         </motion.div>
       </div>
-      <motion.div className="ground" animate={{ x: -globalLeft }}>
+      <motion.div className="ground" animate={{ x: -backgroundLeft }}>
         <div className="seas">
           <Sea left={150} duration={4} />
           <Sea left={100} duration={5.5} />

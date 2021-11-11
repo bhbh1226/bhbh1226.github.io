@@ -1,10 +1,10 @@
-import './App.scss';
-import Background from './components/Background';
+import './styles/App.scss';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div id="app">
-      <Background />
+      <Home />
     </div>
   );
 }

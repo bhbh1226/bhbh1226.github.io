@@ -1,0 +1,71 @@
+
+#home-first-section {
+  position: relative;
+  background: linear-gradient(248deg, rgb(78, 76, 189), rgb(102, 126, 234));
+  color: white;
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Noto Sans KR', sans-serif;
+
+    h1, p {
+      font-weight: 900;
+    }
+
+    h1 {
+      margin: 1px 0;
+      font-size: 4em;
+    }
+    
+    p {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+  }
+
+  header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 7em;
+    
+    ul {
+      display: flex;
+      list-style: none;
+
+      li {
+        margin: 2em 1em;
+        font-size: 1.4em;
+        font-weight: 900;
+        font-family: 'Noto Sans KR', sans-serif;
+      }
+    }
+  }
+
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(#000000, 0.04);
+  }
+
+  .circle-1 {
+    left: -20em;
+    top: 44em;
+    width: 60em;
+    height: 60em;
+  }
+
+  .circle-2 {
+    left: -10em;
+    top: 30em;
+    width: 70em;
+    height: 70em;
+  }
+}

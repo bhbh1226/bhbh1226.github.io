@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-@import './styles/global.scss';
+@import './global.scss';
 
 #app {
-  @extend .full-screen;
+  // @extend .full-screen;
 
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // position: relative;
   
   // h1 {
   //   position: absolute;
