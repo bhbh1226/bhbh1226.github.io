@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/Background.scss'
 
@@ -88,72 +88,113 @@ const Sea = ({ left, duration }) => {
   )
 }
 
+const getParallax = (value, input, output) => {
+  let result = 0;
+  
+  input.map((item, index) => {
+    if (value <= item) {
+      if (index === 0) result = output[0]
+      else result = (value / (input[index] - input[index - 1])) * (output[index] - output[index - 1]) + output[index - 1]
+    }
+  })
+
+  return result
+}
+
 const Background = () => {
-  const [left, setLeft] = useState(0)
+  const [globalLeft, setGlobalLeft] = useState(0)
+  const [cloudWhiteLeft, setCloudWhiteLeft] = useState(0)
+  const [cloudPinkLeft, setCloudPinkLeft] = useState(0)
+  const [cloudIvoryLeft, setCloudIvoryLeft] = useState(0)
+  const [lineLightLeft, setLineLightLeft] = useState(0)
+  const [lineDarkLeft, setLineDarkLeft] = useState(0)
+  const [starLightLeft, setStarLightLeft] = useState(0)
+  const [starDarkLeft, setStarDarkLeft] = useState(0)
+  const screen_count = 6
+  const max_screen_size = window.innerWidth * (screen_count - 1)
+  const containerRef = createRef()
 
   const arrayMaker = (length) => {
     return Array.apply(null, Array(length))
   }
 
   useEffect(() => {
-    window.addEventListener('wheel', (event) => {
-      setLeft(l => Math.max(Math.min(l + event.deltaY, window.innerWidth * (2 - 1)), 0))
+    setCloudWhiteLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 3.5)]) + 'px')
+    setCloudPinkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 4.5)]) + 'px')
+    setCloudIvoryLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 5.5)]) + 'px')
+    setLineLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 11)]) + 'px')
+    setLineDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 8)]) + 'px')
+    setStarLightLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 13)]) + 'px')
+    setStarDarkLeft(getParallax(globalLeft, [0, max_screen_size], [0, -(max_screen_size / 10)]) + 'px')
+  }, [globalLeft])
 
-      event.preventDefault()
-    })
-  }, [])
+  useEffect(() => {
+    if (containerRef.current !== null) {
+      containerRef.current.addEventListener('wheel', (event) => {
+        setGlobalLeft(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
+     
+        event.preventDefault()
+      })
+    }
+  }, [containerRef, max_screen_size])
 
   return (
-    <motion.div id="background" animate={{ x: -left }} transition={{ type: "Tween", stiffness: 1000 }}>
+    <motion.div id="container" ref={containerRef}  >
+      <motion.div className="background" animate={{ x: -globalLeft }} />
       <div className="sky">
         <div className="sun" />
-        <div className="stars">
+        <div className="sun-light" />
+        <motion.div className="stars light" animate={{ x: starLightLeft }}>
           {
             arrayMaker(10).map((item) => {
               return <Star type="light" />
             })
           }
+        </motion.div>
+        <motion.div className="stars dark" animate={{ x: starDarkLeft }}>
           {
             arrayMaker(20).map((item) => {
               return <Star type="dark" />
             })
           }
-        </div>
-        <div className="lines">
+        </motion.div>
+        <motion.div className="lines light" animate={{ x: lineLightLeft }}>
           {
             arrayMaker(3).map((item) => {
               return <Line type='light' />
             })
           }
+        </motion.div>
+        <motion.div className="lines dark" animate={{ x: lineDarkLeft }}>
           {
             arrayMaker(5).map((item) => {
               return <Line type='dark' />
             })
           }
-        </div>
+        </motion.div>
         <div className="clouds">
-          <div className="cloud pink" />
-          <div className="cloud pink" />
-          <div className="cloud pink" />
-          <div className="cloud white" />
-          <div className="cloud white" />
-          <div className="cloud ivory" />
-          <div className="cloud pink" />
-          <div className="cloud pink" />
-          <div className="cloud white" />
-          <div className="cloud white" />
-          <div className="cloud pink" />
-          <div className="cloud white" />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
+          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
+          <motion.div className="cloud ivory" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudIvoryLeft }} />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
+          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
+          <motion.div className="cloud pink" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudPinkLeft }} />
+          <motion.div className="cloud white" transformTemplate={({ x }) => (`translateX(${x}) translateY(50%)`)} animate={{ x: cloudWhiteLeft }} />
         </div>
       </div>
-      <div className="ground">
+      <motion.div className="ground" animate={{ x: -globalLeft }}>
         <div className="seas">
           <Sea left={150} duration={4} />
           <Sea left={100} duration={5.5} />
           <Sea left={100} duration={5} />
           <Sea left={180} duration={4.5} />
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

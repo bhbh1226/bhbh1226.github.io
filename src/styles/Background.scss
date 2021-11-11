@@ -4,10 +4,19 @@
 $background-top-color: rgb(255, 134, 177);
 $background-bottom-color: rgb(254, 254, 226);
 
-#background {
-  position: absolute;
-  width: 200vw;
-  height: 100vh;
+$max-background-size: 600vw;
+
+#container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .background {
+    position: absolute;
+    width: $max-background-size;
+    height: 100vh;
+  }
   
   .sky {
     position: relative;
@@ -17,84 +26,99 @@ $background-bottom-color: rgb(254, 254, 226);
 
     .sun {
       position: absolute;
-      bottom: 8em;
-
-      left: 55em;
+      
+      left: 50vw;
       top: 32em;
 
+      width: 5em;
+      height: 5em;
+      
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(white 1%, transparent 60%, transparent);
+      z-index: 4;
+    }
+
+    .sun-light {
+      position: absolute;
+      
+      left: 50vw;
+      top: 32em;
+      
       width: 15em;
       height: 15em;
       
       border-radius: 50%;
-      background: radial-gradient(white, transparent);
-      
-      &::after {
-        content: '';
+      transform: translate(-50%, -50%);
+      background: radial-gradient(rgba(255, 255, 255, 0.7) 1%, transparent 60%, transparent);
+      z-index: 6;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      .star {
         position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 30em;
-        height: 30em;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        background: radial-gradient(white 1%, transparent 60%, transparent);
-        z-index: 3;
-      }
-    }
-
-    .star {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      
-      width: 30px;
-      height: 30px;
-      font-size: 30px;
-
-      &.light {
-        color: rgb(255, 183, 232);
+        top: 10px;
+        left: 10px;
         
-        &::before {
-          content: "\2726";
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+
+        &.light {
+          color: rgb(255, 183, 232);
+          
+          &::before {
+            content: "\2726";
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 28%;
+            top: 50%;
+            width: 20%;
+            height: 20%;
+            transform: rotate(-45deg);
+            background-color: rgb(249, 255, 222);
+          }
         }
 
-        &::after {
-          content: '';
-          position: absolute;
-          left: 28%;
-          top: 50%;
-          width: 20%;
-          height: 20%;
-          transform: rotate(-45deg);
-          background-color: rgb(249, 255, 222);
+        &.dark { 
+          background-color: rgb(255, 203, 177);
+          transform: rotate(45deg);
         }
-      }
-
-      &.dark { 
-        background-color: rgb(255, 203, 177);
-        transform: rotate(45deg);
       }
     }
 
-    .line {
+    .lines {
       position: absolute;
-      top: 10em;
-      left: 50%;
+      width: 100%;
+      height: 100%;
 
-      height: 10px;
-      width: 400px;
-      
-      transform: translate(-50%, -50%) rotate(-22deg);
+      .line {
+        position: absolute;
+        top: 10em;
+        left: 50%;
 
-      // background-image: linear-gradient(90deg, transparent 1%, rgb(252, 191, 172) 5%, rgb(252, 191, 172) 95%, transparent 99%);
-      border-radius: 5px;
+        height: 10px;
+        width: 400px;
+        
+        transform: translate(-50%, -50%) rotate(-22deg);
 
-      &.light {
-        background-image: linear-gradient(90deg, transparent 0.1%, rgb(252, 191, 172) 3%, rgb(252, 191, 172) 97%, transparent 99.9%);
-      }
+        // background-image: linear-gradient(90deg, transparent 1%, rgb(252, 191, 172) 5%, rgb(252, 191, 172) 95%, transparent 99%);
+        border-radius: 5px;
 
-      &.dark {
-        background-image: linear-gradient(90deg, transparent 0.1%, rgb(255, 123, 160) 3%, rgb(255, 123, 160) 97%, transparent 99.9%);
+        &.light {
+          background-image: linear-gradient(90deg, transparent 0.1%, rgb(252, 191, 172) 3%, rgb(252, 191, 172) 97%, transparent 99.9%);
+        }
+
+        &.dark {
+          background-image: linear-gradient(90deg, transparent 0.1%, rgb(255, 123, 160) 3%, rgb(255, 123, 160) 97%, transparent 99.9%);
+        }
       }
     }
 
@@ -103,6 +127,7 @@ $background-bottom-color: rgb(254, 254, 226);
       bottom: 0;
       transform: translateY(50%);
       border-radius: 50%;
+      z-index: 5;
 
       &.pink {
         background-image: linear-gradient(rgb(255, 147, 171), rgb(255, 188, 173) 50%);
@@ -147,7 +172,7 @@ $background-bottom-color: rgb(254, 254, 226);
       }
 
       &:nth-of-type(6) {
-        bottom: 10em;
+        bottom: 8em;
         left: 70em;
         width: 20em;
         height: 18em;
@@ -195,10 +220,11 @@ $background-bottom-color: rgb(254, 254, 226);
 
   .ground {
     position: relative;
-    width: 100%;
+    width: $max-background-size;
     height: 20%;
     background-color: rgb(196, 56, 93);
     overflow: hidden;
+    z-index: 8;
 
     .sea {
       position: absolute;
