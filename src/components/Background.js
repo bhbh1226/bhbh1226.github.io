@@ -1,15 +1,7 @@
 import { createRef, useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/Background.scss'
-import { HomeContext } from '../pages/Home'
-
-const screen_count = 6
-const screen_size = window.innerWidth
-const max_screen_size = screen_size * (screen_count - 1)
-const max_star_light_size = max_screen_size / 14
-const max_star_dark_size = max_screen_size / 10
-const max_line_light_size = max_screen_size / 12
-const max_line_dark_size = max_screen_size / 8
+import { screen_size, max_screen_size, getParallax, HomeContext, max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size, } from '../pages/Home'
 
 const Star = ({ type }) => {
   const [left, setLeft] = useState(Math.random() * 100 + '%')
@@ -99,19 +91,6 @@ const Sea = ({ left, duration }) => {
   )
 }
 
-const getParallax = (value, input, output) => {
-  let result = 0;
-  
-  input.map((item, index) => {
-    if (value <= item) {
-      if (index === 0) result = output[0]
-      else result = (value / (input[index] - input[index - 1])) * (output[index] - output[index - 1]) + output[index - 1]
-    }
-  })
-
-  return result
-}
-
 const Background = () => {
   const [backgroundLeft, setBackgroundLeft] = useState(0)
   const [cloudWhiteLeft, setCloudWhiteLeft] = useState(0)
@@ -145,11 +124,13 @@ const Background = () => {
     if (containerRef.current !== null) {
       containerRef.current.addEventListener('wheel', (event) => {
         setScrollX(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
+
+        console.log('asdf')
      
         event.preventDefault()
       })
     }
-  }, [containerRef, max_screen_size])
+  }, [containerRef, setScrollX])
 
   return (
     <motion.div id="container" ref={containerRef}  >

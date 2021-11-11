@@ -1,0 +1,44 @@
+@import 'global.scss';
+
+#home-ui {
+  ul {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+
+    top: 1em;
+    right: 1em;
+
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+    z-index: 200;
+
+    li {
+      @extend .font-noto-sans;
+      font-size: 1.3em;
+      font-weight: 900;
+      // margin: 0 1em;
+
+      button {
+        background: none;
+        border: 0;
+        margin: 0;
+        padding: 0.5em 1em;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      left: 0;
+      bottom: -1.3em;
+
+      width: 7.4em;
+      height: 3px;
+      border-radius: 2px;
+      background-color: white;
+    }
+  }
+}
