@@ -3,7 +3,8 @@
 $background-top-color: rgb(255, 134, 177);
 $background-bottom-color: rgb(254, 254, 226);
 
-$max-background-size: 600vw;
+// 10vw = spring 방지
+$max-background-size: 610vw;
 
 #container {
   position: relative;

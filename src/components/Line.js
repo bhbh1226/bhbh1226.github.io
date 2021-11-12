@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { screen_size, max_line_light_size, max_line_dark_size, } from '../pages/Home'
+import { useContext } from 'react/cjs/react.development'
+import { screen_size, max_line_light_size, max_line_dark_size, HomeContext } from '../pages/Home'
 import '../styles/Line.scss'
 
 const Line = ({ type }) => {
+  const { themeColors } = useContext(HomeContext)
   const [height, setHeight] = useState('0')
   const [width, setWidth] = useState('0')
   const [left, setLeft] = useState('0')
@@ -29,15 +31,15 @@ const Line = ({ type }) => {
   switch (type) {
     case 'light':
       return (
-        <div className="line light" style={{ width, height, left, top }} />
+        <div className="line light" style={{ width, height, left, top, background: themeColors.lineLight }} />
       )
     case 'dark':
       return (
-        <div className="line dark" style={{ width, height, left, top }} />
+        <div className="line dark" style={{ width, height, left, top, background: themeColors.lineDark }} />
       )
     default:
       return (
-        <div className="line light" style={{ width, height, left, top }} />
+        <div className="line light" style={{ width, height, left, top, background: themeColors.lineDark }} />
       )
   }
 }

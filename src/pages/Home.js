@@ -1,6 +1,7 @@
 import { useState, createContext, useEffect } from 'react'
 import Background from '../components/Background'
 import HomeUI from '../components/HomeUI'
+import { transition, backgroundColors, colorsMaker } from '../components/BackgroundColorManager'
 import '../styles/Home.scss'
 
 const HomeContext = createContext()
@@ -29,6 +30,8 @@ const getParallax = (value, input, output) => {
 
       end = true
     }
+
+    return end
   })
 
   return result
@@ -36,14 +39,16 @@ const getParallax = (value, input, output) => {
 
 const Home = () => {
   const [scrollX, setScrollX] = useState(0)
+  const [themeColors, setThemeColors] = useState(colorsMaker(backgroundColors[0]))
 
   useEffect(() => {
-    console.log(scrollX)
+    setThemeColors(transition(scrollX))
   }, [scrollX])
+  // const themeColors = colorsMaker(backgroundColors[4])
 
   return (
     <div id="home">
-      <HomeContext.Provider value={{ scrollX, setScrollX }}>
+      <HomeContext.Provider value={{ scrollX, setScrollX, themeColors }}>
         <Background />
         <HomeUI />
       </HomeContext.Provider>
@@ -55,5 +60,6 @@ export {
   screen_count, screen_size, max_screen_size,
   max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size,
   getParallax, 
-  HomeContext }
+  HomeContext 
+}
 export default Home
