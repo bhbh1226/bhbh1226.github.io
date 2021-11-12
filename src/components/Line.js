@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useContext } from 'react/cjs/react.development'
+import { useEffect, useState, useContext } from 'react'
 import { screen_size, max_line_light_size, max_line_dark_size, HomeContext } from '../pages/Home'
 import '../styles/Line.scss'
 
