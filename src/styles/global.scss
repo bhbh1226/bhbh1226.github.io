@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
+$z-index-background: 1000;
+$z-index-content: 3000;
+$z-index-ui: 3000;
+
 // font
 .font-noto-sans {
   font-family: 'Noto Sans KR', sans-serif;
@@ -7,7 +11,7 @@
 
 // size
 .full-screen {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
 }

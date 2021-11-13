@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import '../styles/Sea.scss'
+import '../../../styles/Home/Background/Sea.scss'
 
 const Sea = ({ left, duration }) => {
   return (

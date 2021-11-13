@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
-import { screen_size, max_line_light_size, max_line_dark_size, HomeContext } from '../pages/Home'
-import '../styles/Line.scss'
+import { screen_size, max_line_light_size, max_line_dark_size, HomeContext } from '..'
+import '../../../styles/Home/Background/Line.scss'
 
 const Line = ({ type }) => {
   const { themeColors } = useContext(HomeContext)

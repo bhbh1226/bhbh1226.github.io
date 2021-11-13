@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
-import { screen_size, max_star_light_size, max_star_dark_size, HomeContext } from '../pages/Home'
-import '../styles/Star.scss'
+import { screen_size, max_star_light_size, max_star_dark_size, HomeContext } from '..'
+import '../../../styles/Home/Background/Star.scss'
 
 const Star = ({ type }) => {
   const { themeColors } = useContext(HomeContext)

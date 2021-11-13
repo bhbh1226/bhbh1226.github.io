@@ -1,8 +1,8 @@
-import { useState, createContext, useEffect } from 'react'
-import Background from '../components/Background'
-import HomeUI from '../components/HomeUI'
-import { transition, backgroundColors, colorsMaker } from '../components/BackgroundColorManager'
-import '../styles/Home.scss'
+import { useState, createContext, useEffect, createRef } from 'react'
+import Background from './Background'
+import HomeUI from './HomeUI'
+import { transition, backgroundColors, colorsMaker } from './Background/BackgroundColorManager'
+import '../../styles/Home/Home.scss'
 
 const HomeContext = createContext()
 
@@ -41,12 +41,24 @@ const Home = () => {
   const [scrollX, setScrollX] = useState(0)
   const [themeColors, setThemeColors] = useState(colorsMaker(backgroundColors[0]))
 
+  const HomeRef = createRef()
+
+  useEffect(() => {
+    if (HomeRef.current !== null) {
+      HomeRef.current.addEventListener('wheel', (event) => {
+        setScrollX(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
+
+        event.preventDefault()
+      })
+    }
+  }, [])
+
   useEffect(() => {
     setThemeColors(transition(scrollX))
   }, [scrollX])
 
   return (
-    <div id="home">
+    <div id="home" ref={HomeRef}>
       <HomeContext.Provider value={{ scrollX, setScrollX, themeColors }}>
         <Background />
         <HomeUI />

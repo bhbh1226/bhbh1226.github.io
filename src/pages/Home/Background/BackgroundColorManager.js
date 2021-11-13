@@ -1,4 +1,4 @@
-import { getParallax, max_screen_size, screen_count, screen_size } from "../pages/Home";
+import { getParallax, screen_count, screen_size } from "..";
 
 const backgroundColors = [{
   sky: [255, 134, 177, 254, 254, 226], // 2 4.2

@@ -1,8 +1,8 @@
-import { createRef, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import '../styles/Background.scss'
-import '../styles/Clouds.scss'
-import { max_screen_size, getParallax, HomeContext, max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size, screen_size, } from '../pages/Home'
+import '../../../styles/Home/Background/Background.scss'
+import '../../../styles/Home/Background/Clouds.scss'
+import { max_screen_size, getParallax, HomeContext, max_star_light_size, max_star_dark_size, max_line_light_size, max_line_dark_size, screen_size, } from '..'
 import Star from './Star'
 import Line from './Line'
 import Sea from './Sea'
@@ -24,6 +24,10 @@ const Cloud = ({ type }) => {
     case 'ivory':
       return (
         <div className={`cloud ivory`} style={{ background: themeColors.cloudIvory}} />
+      )
+    default:
+      return (
+        <div className={`cloud ivory`} style={{ background: themeColors.cloudIvory }} />
       )
   }
 }

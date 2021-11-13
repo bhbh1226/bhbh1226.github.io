@@ -1,4 +1,4 @@
-@import './global.scss';
+@import '../../global.scss';
 
 $background-top-color: rgb(255, 134, 177);
 $background-bottom-color: rgb(254, 254, 226);
@@ -10,7 +10,7 @@ $screen-width: 100vw;
 $screen-height: 100vh;
 
 #container {
-  position: relative;
+  position: absolute;
   display: flex;
   width: $screen-width;
   height: $screen-height;

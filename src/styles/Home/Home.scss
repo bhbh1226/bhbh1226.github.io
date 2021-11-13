@@ -1,0 +1,7 @@
+@import '../global.scss';
+
+#home {
+  @extend .full-screen; 
+
+  position: relative;
+}

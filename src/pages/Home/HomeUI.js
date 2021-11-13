@@ -1,8 +1,8 @@
 import { motion } from "framer-motion"
-import { createRef, useContext, useEffect, useState } from "react"
-import { getParallax, HomeContext, max_screen_size, screen_size } from "../pages/Home"
-import lunaLogo from '../images/logo_line.png'
-import '../styles/HomeUI.scss'
+import { useContext, useEffect, useState } from "react"
+import { getParallax, HomeContext, max_screen_size, screen_size } from "."
+import lunaLogo from '../../images/logo_line.png'
+import '../../styles/Home/HomeUI.scss'
 
 const NavigationButton = ({ children, onClick, color }) => {
   return (
@@ -20,18 +20,6 @@ const HomeUI = () => {
   const [indicatorWidth, setIndicatorWidth] = useState(7.4)
   const [uiColor, setUiColor] = useState('rgb(255, 255, 255)')
   const [namecardOpacity, setNamecardOpacity] = useState(0)
-
-  const HomeUIRef = createRef()
-
-  useEffect(() => {
-    if (HomeUIRef.current !== null) {
-      HomeUIRef.current.addEventListener('wheel', (event) => {
-        setScrollX(l => Math.max(Math.min(l + event.deltaY, max_screen_size), 0))
-
-        event.preventDefault()
-      })
-    }
-  }, [])
 
   useEffect(() => {
     const percentInput = [0, screen_size * (2 - 1), screen_size * (3 - 1), screen_size * (4 - 1), screen_size * (5 - 1), max_screen_size]
@@ -52,7 +40,7 @@ const HomeUI = () => {
   }, [scrollX])
 
   return (
-    <div id="home-ui" ref={HomeUIRef}>
+    <div id="home-ui">
       <ul>
         <NavigationButton color={uiColor} onClick={() => { setScrollX(0) }}>Home</NavigationButton>
         <NavigationButton color={uiColor} onClick={() => { setScrollX(screen_size * (2 - 1)) }}>Activitys</NavigationButton>
@@ -74,7 +62,7 @@ const HomeUI = () => {
           <p>C | C++ | C# | JAVA | JS | Python | GO | GML</p>
         </div>
         <div className="namecard-content namecard-righttop">
-          <img src={lunaLogo} />
+          <img src={lunaLogo} alt="luna logo" />
         </div>
         <div className="namecard-content namecard-rightbottom">
           <p>T +82 10 6274 6790</p>

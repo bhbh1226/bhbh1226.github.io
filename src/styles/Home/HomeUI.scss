@@ -1,4 +1,4 @@
-@import 'global.scss';
+@import '../global.scss';
 
 #home-ui {
   position: fixed;
@@ -9,7 +9,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 
   ul {
     position: fixed;
@@ -22,7 +22,6 @@
     list-style: none;
     margin: 1em 0;
     padding: 0;
-    z-index: 200;
 
     li {
       @extend .font-noto-sans;
