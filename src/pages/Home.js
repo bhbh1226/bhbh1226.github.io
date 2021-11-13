@@ -44,7 +44,6 @@ const Home = () => {
   useEffect(() => {
     setThemeColors(transition(scrollX))
   }, [scrollX])
-  // const themeColors = colorsMaker(backgroundColors[4])
 
   return (
     <div id="home">

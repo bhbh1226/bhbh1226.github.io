@@ -6,21 +6,49 @@ $background-bottom-color: rgb(254, 254, 226);
 // 10vw = spring 방지
 $max-background-size: 610vw;
 
+$screen-width: 100vw;
+$screen-height: 100vh;
+
 #container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  width: $screen-width;
+  height: $screen-height;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+
+  .contact-frame {
+    @extend .card-shadow;
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    // width: 70em;
+    // height: 40em;
+
+    overflow: hidden;
+  }
 
   .background {
     position: absolute;
+
+    top: 0;
+    left: 0;
+
     width: $max-background-size;
-    height: 100vh;
+    height: $screen-height;
   }
   
   .sky {
-    position: relative;
-    width: 100%;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: $screen-width;
     height: 80%;
     background: linear-gradient(to bottom, $background-top-color 35%, $background-bottom-color 60%);
 
@@ -56,23 +84,26 @@ $max-background-size: 610vw;
 
     .stars {
       position: absolute;
-      width: 100%;
+      width: $screen-width;
       height: 100%;
     }
 
     .lines {
       position: absolute;
-      width: 100%;
+      width: $screen-width;
       height: 100%;
-    }
-
-    
+    }    
   }
 
   .ground {
-    position: relative;
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
     width: $max-background-size;
     height: 20%;
+    
     background-color: rgb(196, 56, 93);
     overflow: hidden;
     z-index: 100;

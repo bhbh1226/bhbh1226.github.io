@@ -1,6 +1,16 @@
 @import 'global.scss';
 
 #home-ui {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
   ul {
     position: fixed;
     display: flex;
@@ -38,6 +48,68 @@
       width: 7.4em;
       height: 3px;
       border-radius: 2px;
+      background-color: white;
+    }
+  }
+
+  .namecard-container {
+    @extend .font-noto-sans;
+
+    position: relative;
+
+    width: 70em;
+    height: 40em;
+
+    box-sizing: border-box;
+
+    color: white;
+
+    .namecard-content {
+      padding: 3em;
+    }
+
+    .namecard-lefttop {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .namecard-leftbottom {
+      position: absolute;
+      left: 0;
+      bottom: 0; 
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 4em;
+    }
+
+    h2 {
+      margin: 0.6em 0 1em 0;
+      font-size: 1.8em;
+    }
+
+    p {
+      margin: 0.6em 0 0 0;
+    }
+
+    .namecard-righttop {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .namecard-rightbottom {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      text-align: right;
+    }
+
+    .br-line {
+      width: 6em;
+      height: 3px;
       background-color: white;
     }
   }
