@@ -65,9 +65,9 @@ const Background = () => {
   }, [scrollX])
 
   return (
-    <div id="container" >
+    <div id="background-container" >
       <motion.div className="contact-frame" animate={{ width: namecardWidth, height: namecardHeight }}>
-        <motion.div className="background" animate={{ x: -backgroundLeft }} />
+        <motion.div className="background-content" animate={{ x: -backgroundLeft }} />
         <div className="sky" style={{ background: themeColors.sky }}>
           <div className="sun" />
           <div className="sun-light" />

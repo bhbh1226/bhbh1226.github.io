@@ -1,0 +1,50 @@
+@import '../global.scss';
+
+#mobile-hider {
+  @extend .font-noto-sans;
+
+  position: fixed;
+  display: flex;
+  
+  top: 0;
+  left: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 1em;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100vh;
+
+  color: black;
+  background-color: white;
+
+  z-index: $z-index-hider;
+
+  // @media mobile hider
+  @include media-mobile {
+    & {
+      display: flex;
+    }
+  }
+
+  @include media-tablet {
+    & {
+      display: none;
+    }
+  }
+
+  @include media-notebook {
+    & {
+      display: none;
+    }
+  }
+
+  @include media-desktop {
+    & {
+      display: none;
+    }
+  }
+}

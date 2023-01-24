@@ -1,8 +1,10 @@
 import { useState, createContext, useEffect, createRef } from 'react'
 import Background from './Background'
 import HomeUI from './HomeUI'
+import Content from './Content'
 import { transition, backgroundColors, colorsMaker } from './Background/BackgroundColorManager'
 import '../../styles/Home/Home.scss'
+import MobileHider from '../component/MobileHider'
 
 const HomeContext = createContext()
 
@@ -62,6 +64,8 @@ const Home = () => {
       <HomeContext.Provider value={{ scrollX, setScrollX, themeColors }}>
         <Background />
         <HomeUI />
+        <Content />
+        <MobileHider />
       </HomeContext.Provider>
     </div>
   )

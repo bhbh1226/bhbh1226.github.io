@@ -1,12 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
+// z-index
 $z-index-background: 1000;
+$z-index-ui: 2000;
 $z-index-content: 3000;
-$z-index-ui: 3000;
+$z-index-hider: 10000;
+
+// screen size
+$screen-mobile: 425px;
+$screen-tablet: 769px;
+$screen-notebook: 1441px;
 
 // font
 .font-noto-sans {
   font-family: 'Noto Sans KR', sans-serif;
+}
+
+// @media
+// @media mixin
+@mixin media-mobile {
+  @media (max-width: $screen-mobile) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+    @content;
+  }
+}
+
+@mixin media-notebook {
+  @media (min-width: $screen-tablet) and (max-width: $screen-notebook) {
+    @content;
+  }
+}
+
+@mixin media-desktop {
+  @media (min-width: $screen-notebook) {
+    @content;
+  }
 }
 
 // size

@@ -9,7 +9,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: $z-index-ui;
 
   ul {
     position: fixed;
@@ -27,7 +27,6 @@
       @extend .font-noto-sans;
       font-size: 1.3em;
       font-weight: 900;
-      // margin: 0 1em;
 
       button {
         background: none;

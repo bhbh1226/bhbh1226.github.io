@@ -1,0 +1,28 @@
+$size: 100vw;
+
+#christmas {
+  &:before {
+    content: '';
+    position: absolute;
+    left: -50vw;
+    top: -50vh;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 50%;
+    transform: rotate(-15deg);
+    background-image:
+      radial-gradient(circle at 30% 30%, #fff 1.5%, transparent 2%),
+      radial-gradient(circle at 80% 70%, #fff 1.5%, transparent 2%),
+      radial-gradient(circle at 30% 50%, #fff 1%, transparent 1.5%),
+      radial-gradient(circle at 70% 85%, #fff 1%, transparent 1.5%);
+    background-size: 100% 100%, 100% 100%, 50% 100%, 50% 50%;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+    animation: snow 6s linear infinite forwards;
+
+    @keyframes snow {
+      100% {
+        background-position: 0px $size, 0 $size, 0px $size, 0px $size;
+      }
+    }
+  }
+}

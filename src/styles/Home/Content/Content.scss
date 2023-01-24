@@ -1,0 +1,27 @@
+@import '../../global.scss';
+
+#content {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+  z-index: $z-index-content;
+
+  .page {
+    position: absolute;
+    top: 50vh;
+
+    transform: translate(-50%, -50%);
+
+    &.christmas {
+      transform: translate(-50%, -50%);
+    }
+
+    @for $i from 1 through 6 {
+      &:nth-of-type(#{$i}) {
+        left: #{($i - 1) * 100 + 50}vw;
+      }
+    }
+  }
+}

@@ -4,4 +4,29 @@
   @extend .full-screen; 
 
   position: relative;
+
+  // @media font-size
+  @include media-mobile {
+    & {
+      font-size: 12px;
+    }
+  }
+
+  @include media-tablet {
+    & {
+      font-size: 12px;
+    }
+  }
+
+  @include media-notebook {
+    & {
+      font-size: 14px;
+    }
+  }
+
+  @include media-desktop {
+    & {
+      font-size: 16px;
+    }
+  }
 }
