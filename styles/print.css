@@ -1,0 +1,29 @@
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .portfolio {
+    display: block;
+    padding: 0;
+  }
+
+  .page {
+    break-after: page;
+    box-shadow: none;
+  }
+
+  .page:last-child {
+    break-after: auto;
+  }
+}

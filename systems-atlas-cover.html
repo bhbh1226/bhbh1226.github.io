@@ -1,0 +1,77 @@
+<div id="systems-atlas-cover" aria-label="Systems Atlas 포트폴리오 표지 콘셉트">
+  <style>
+    #systems-atlas-cover { display:grid; gap:22px; color:var(--foreground); }
+    #systems-atlas-cover .atlas-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    #systems-atlas-cover .atlas-option { display:grid; gap:9px; }
+    #systems-atlas-cover .atlas-option > h3 { margin:0; font-size:16px; }
+    #systems-atlas-cover .atlas-option > p { margin:0; color:var(--muted-foreground); font-size:13px; line-height:1.5; }
+    #systems-atlas-cover .cover { position:relative; aspect-ratio:1.414/1; overflow:hidden; background:#f1efe9; color:#171815; box-shadow:0 12px 30px color-mix(in srgb,var(--foreground) 10%,transparent); }
+    #systems-atlas-cover .rail { position:absolute; left:0; top:0; bottom:0; width:32px; border-right:1px solid #c8c5bb; display:flex; align-items:center; justify-content:center; }
+    #systems-atlas-cover .rail span { writing-mode:vertical-rl; transform:rotate(180deg); font:9px ui-monospace,monospace; letter-spacing:.14em; color:#686962; }
+    #systems-atlas-cover .meta { position:absolute; top:18px; left:50px; right:18px; display:flex; justify-content:space-between; font:9px ui-monospace,monospace; letter-spacing:.06em; }
+    #systems-atlas-cover .title { position:absolute; left:50px; top:70px; z-index:3; }
+    #systems-atlas-cover .title h2 { margin:0; max-width:310px; font-size:32px; line-height:1.02; letter-spacing:-.05em; }
+    #systems-atlas-cover .title p { margin:12px 0 0; max-width:250px; color:#5c5e58; font-size:10px; line-height:1.55; }
+    #systems-atlas-cover .index { position:absolute; left:50px; bottom:18px; display:flex; gap:14px; font:8px ui-monospace,monospace; color:#676860; }
+    #systems-atlas-cover .index b { color:#a33e2f; font-weight:500; }
+    #systems-atlas-cover .atlas-graphic { position:absolute; right:-16px; top:40px; width:58%; height:80%; }
+    #systems-atlas-cover .plane { position:absolute; width:190px; height:112px; border:1px solid #70736d; transform:skewY(-22deg) rotate(-4deg); background:color-mix(in srgb,#f1efe9 84%,transparent); }
+    #systems-atlas-cover .plane.one { right:18px; top:18px; }
+    #systems-atlas-cover .plane.two { right:42px; top:68px; }
+    #systems-atlas-cover .plane.three { right:66px; top:118px; }
+    #systems-atlas-cover .plane.four { right:90px; top:168px; border-color:#a33e2f; }
+    #systems-atlas-cover .node { position:absolute; z-index:2; width:7px; height:7px; border:1px solid #3a3d38; border-radius:50%; background:#f1efe9; }
+    #systems-atlas-cover .node.n1 { right:64px; top:70px; }
+    #systems-atlas-cover .node.n2 { right:142px; top:102px; }
+    #systems-atlas-cover .node.n3 { right:104px; top:158px; background:#a33e2f; border-color:#a33e2f; }
+    #systems-atlas-cover .node.n4 { right:188px; top:194px; }
+    #systems-atlas-cover .link { position:absolute; z-index:1; height:1px; transform-origin:left center; background:#666a63; }
+    #systems-atlas-cover .link.l1 { right:66px; top:75px; width:84px; transform:rotate(22deg); }
+    #systems-atlas-cover .link.l2 { right:108px; top:160px; width:76px; transform:rotate(-46deg); }
+    #systems-atlas-cover .link.l3 { right:110px; top:162px; width:91px; transform:rotate(28deg); background:#a33e2f; }
+    #systems-atlas-cover .portrait-zone { position:absolute; right:20px; top:44px; bottom:0; width:43%; overflow:hidden; background:linear-gradient(150deg,#d5d3cc,#9b9d98); }
+    #systems-atlas-cover .portrait-zone::before { content:"PORTRAIT"; position:absolute; inset:auto 0 18px; text-align:center; font:9px ui-monospace,monospace; letter-spacing:.18em; color:#f1efe9; }
+    #systems-atlas-cover .portrait-zone::after { content:""; position:absolute; width:58%; height:76%; left:21%; bottom:-10%; border-radius:48% 48% 16% 16%; background:linear-gradient(#676b68 0 26%,#3e423f 27%); filter:grayscale(1); }
+    #systems-atlas-cover .portrait .atlas-graphic { z-index:2; right:-74px; top:82px; width:62%; opacity:.85; mix-blend-mode:multiply; }
+    #systems-atlas-cover .portrait .title { top:82px; }
+    #systems-atlas-cover .portrait .title h2 { max-width:260px; font-size:30px; }
+    #systems-atlas-cover .principle { border-left:3px solid var(--primary); padding-left:14px; }
+    #systems-atlas-cover .principle strong { display:block; margin-bottom:4px; }
+    #systems-atlas-cover .principle span { color:var(--muted-foreground); font-size:13px; }
+    @media(max-width:800px){ #systems-atlas-cover .atlas-grid{grid-template-columns:1fr;} }
+  </style>
+  <div class="atlas-grid">
+    <section class="atlas-option">
+      <div class="cover">
+        <div class="rail"><span>APPLIED AI / SELECTED WORK</span></div>
+        <div class="meta"><span>PARK PYEONGJIN</span><span>2026</span></div>
+        <div class="title"><h2>From signals<br>to systems.</h2><p>의료 데이터에서 시작해 모델, 서비스, GPU 인프라까지 연결해온 작업 기록.</p></div>
+        <div class="atlas-graphic" aria-hidden="true">
+          <i class="plane one"></i><i class="plane two"></i><i class="plane three"></i><i class="plane four"></i>
+          <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i>
+          <i class="link l1"></i><i class="link l2"></i><i class="link l3"></i>
+        </div>
+        <div class="index"><span><b>01</b> MEDICAL AI</span><span><b>02</b> SYSTEMS</span><span><b>03</b> SOFTWARE</span></div>
+      </div>
+      <h3>Systems Atlas — 구조 중심</h3>
+      <p>CT 단면, graph, software layer, GPU node를 겹친 추상 구조입니다. 3D처럼 보이지만 직접 그린 기하 구조라 생성 이미지 느낌이 적습니다.</p>
+    </section>
+    <section class="atlas-option">
+      <div class="cover portrait">
+        <div class="rail"><span>APPLIED AI / SELECTED WORK</span></div>
+        <div class="meta"><span>PARK PYEONGJIN</span><span>2026</span></div>
+        <div class="portrait-zone" aria-label="지원자 사진 위치"></div>
+        <div class="title"><h2>Building AI<br>across layers.</h2><p>Research · Medical AI · Infrastructure · Software</p></div>
+        <div class="atlas-graphic" aria-hidden="true">
+          <i class="plane one"></i><i class="plane two"></i><i class="plane three"></i><i class="plane four"></i>
+          <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i>
+          <i class="link l1"></i><i class="link l2"></i><i class="link l3"></i>
+        </div>
+        <div class="index"><span><b>AI</b> RESEARCH TO OPERATION</span></div>
+      </div>
+      <h3>Systems Atlas — 인물 중심</h3>
+      <p>흑백 인물 사진 위에 구조를 일부 겹칩니다. 지원자가 먼저 기억되고, 기술 구조는 정체성을 보조합니다.</p>
+    </section>
+  </div>
+  <div class="principle"><strong>권장 방향: 인물 중심 버전</strong><span>사진 55%, 구조 25%, 텍스트 20% 정도로 두고 구조선은 실제 프로젝트 페이지의 diagram 문법으로 이어갑니다.</span></div>
+</div>

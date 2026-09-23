@@ -1,0 +1,78 @@
+import PageShell from './components/PageShell.jsx'
+import CoverPage from './pages/CoverPage.jsx'
+import AneurysmPage from './pages/AneurysmPage.jsx'
+import DigitalPhenotypingPage from './pages/DigitalPhenotypingPage.jsx'
+import ProjectSkeletonPage from './pages/ProjectSkeletonPage.jsx'
+
+const pages = [
+  {
+    label: 'Seoul National University Hospital',
+    title: 'Medical Vision Lab',
+    focus: '연구 재현과 데이터·평가 파이프라인 교정 과정을 중심으로 구성합니다.',
+    placeholder: 'Reproduction → audit → corrected patient-level evaluation',
+  },
+  {
+    label: 'Asan Medical Center',
+    title: 'MI2RL',
+    focus: '의료영상 생성 연구와 비교 실험 pipeline을 중심으로 구성합니다.',
+    placeholder: 'Medical image synthesis / model comparison pipeline',
+  },
+  {
+    label: 'Pathology AI + XAI',
+    title: 'Pathology AI + XAI',
+    focus: '분류 결과와 XAI 시각화 중 중심 장면을 결정합니다.',
+    placeholder: 'Original → Prediction → XAI visualization',
+  },
+  {
+    label: 'AI Infrastructure',
+    title: 'GPU / AI Infrastructure',
+    focus: '공용 AI 학습 인프라의 핵심 구조를 결정합니다.',
+    placeholder: 'Researchers → JupyterHub → Slurm → GPU nodes',
+  },
+  {
+    label: 'Recappers',
+    title: 'Recappers',
+    focus: 'Multi-Modal pipeline과 실제 서비스 화면 중 중심 요소를 결정합니다.',
+    placeholder: 'Lecture context pipeline / service UI',
+  },
+  {
+    label: 'Generative AI Video',
+    title: 'Generative AI Video',
+    focus: '입력·출력 비교와 생성 pipeline 중 중심 요소를 결정합니다.',
+    placeholder: 'Two images + theme → generated video',
+  },
+  {
+    label: 'Profile & Other Work',
+    title: 'Profile, Awards & Other Work',
+    focus: '학력·연구 경험·수상과 Bixby·STAC을 간결하게 정리합니다.',
+    placeholder: 'Profile / experience / awards / selected projects / contact',
+  },
+]
+
+export default function App() {
+  return (
+    <main className="portfolio" aria-label="Park PyeongJin AI Portfolio">
+      <PageShell pageNumber={1} section="Profile">
+        <CoverPage />
+      </PageShell>
+
+      <PageShell pageNumber={2} section="Seoul National University Hospital · Medical Vision Lab" tone="dark">
+        <AneurysmPage />
+      </PageShell>
+
+      <PageShell pageNumber={3} section="Seoul National University Hospital · Medical Vision Lab" tone="dark">
+        <DigitalPhenotypingPage />
+      </PageShell>
+
+      {pages.slice(1).map((page, index) => (
+        <PageShell
+          key={page.label}
+          pageNumber={index + 4}
+          section={page.label}
+        >
+          <ProjectSkeletonPage {...page} />
+        </PageShell>
+      ))}
+    </main>
+  )
+}
