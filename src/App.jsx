@@ -1,22 +1,11 @@
 import PageShell from './components/PageShell.jsx'
-import CoverPage from './pages/CoverPage.jsx'
-import AneurysmPage from './pages/AneurysmPage.jsx'
-import DigitalPhenotypingPage from './pages/DigitalPhenotypingPage.jsx'
-import ProjectSkeletonPage from './pages/ProjectSkeletonPage.jsx'
+import CoverPage from './pages/01-cover/CoverPage.jsx'
+import AneurysmPage from './pages/02-aneurysm/AneurysmPage.jsx'
+import DigitalPhenotypingPage from './pages/03-digital-phenotyping/DigitalPhenotypingPage.jsx'
+import VentilationPage from './pages/04-ventilation/VentilationPage.jsx'
+import ProjectSkeletonPage from './pages/project-skeleton/ProjectSkeletonPage.jsx'
 
 const pages = [
-  {
-    label: 'Seoul National University Hospital',
-    title: 'Medical Vision Lab',
-    focus: '연구 재현과 데이터·평가 파이프라인 교정 과정을 중심으로 구성합니다.',
-    placeholder: 'Reproduction → audit → corrected patient-level evaluation',
-  },
-  {
-    label: 'Asan Medical Center',
-    title: 'MI2RL',
-    focus: '의료영상 생성 연구와 비교 실험 pipeline을 중심으로 구성합니다.',
-    placeholder: 'Medical image synthesis / model comparison pipeline',
-  },
   {
     label: 'Pathology AI + XAI',
     title: 'Pathology AI + XAI',
@@ -64,10 +53,14 @@ export default function App() {
         <DigitalPhenotypingPage />
       </PageShell>
 
-      {pages.slice(1).map((page, index) => (
+      <PageShell pageNumber={4} section="Asan Medical Center · MI2RL" tone="dark">
+        <VentilationPage />
+      </PageShell>
+
+      {pages.map((page, index) => (
         <PageShell
           key={page.label}
-          pageNumber={index + 4}
+          pageNumber={index + 5}
           section={page.label}
         >
           <ProjectSkeletonPage {...page} />

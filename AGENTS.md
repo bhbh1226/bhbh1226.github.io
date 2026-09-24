@@ -734,22 +734,44 @@ Repeated-seed Reliability Check
   - 위촉연구원: 2026년 3월 ~ 2026년 6월 30일
   - 2026년 2월의 역할과 정확한 역할 전환일은 추후 확인
 
-## Contrast-enhanced CT Synthesis
+## Page Focus — CT-based Lung Ventilation Synthesis
 
-- 의료영상 생성 모델
-- Fourier Domain Adaptation 적용
+Page 4는 논문으로 완료된 폐 환기지도 합성 비교 연구에 단독 할당한다. Contrast-enhanced CT / PECT 연구를 같은 페이지에 함께 배치하지 않는다.
 
-## CT-based Lung Ventilation Synthesis
+연구 내용:
 
-구조가 다른 생성 모델 4종을
+- 공동 연구자가 전처리한 흡기·호기 CT로 폐 환기지도를 합성
+- 비교 모델: pix2pixHD, ResViT, I2SB, SelfRDB
+- 일반 영상 품질과 환기 결손 재현 성능을 함께 평가
+- 영상 유사도가 높은 모델과 환기 결손을 잘 재현한 모델이 서로 달랐다는 비교 결과를 중심으로 구성
 
-동일한 조건에서:
+지원자의 직접 수행 범위:
 
-- Train
-- Evaluation
-- Comparison
+- 연구진이 지정한 4개 생성 모델을 해당 task에 맞게 구현
+- 모델 학습·평가 실행과 공통 평가 코드 구성
+- 통계 분석과 비교 figure 제작
+- 실험 방법·결과·해석을 중심으로 논문 작성
 
-할 수 있도록 pipeline 구축.
+연구 방향, 비교 모델과 평가 지표는 선임 연구자의 요청으로 정해졌다. 따라서 다음 표현은 사용하지 않는다.
+
+- 연구 전체를 주도하거나 설계했다.
+- 비교 모델과 평가 지표를 직접 선정했다.
+- 새로운 생성 모델을 제안했다.
+- 데이터 전처리를 담당했다.
+
+## Contrast-enhanced CT / PECT Disclosure
+
+PECT 연구는 공개 승인을 받지 않았으므로 Page 4 본문에서 제외한다.
+
+승인 전에는 다음을 공개하지 않는다.
+
+- 실제 CT·DICOM과 생성 결과
+- 환자 수, cohort 구성과 내부 데이터 흐름
+- 에너지 조건, FDA 설정과 상세 모델 구조
+- 성능 수치, 결과 figure와 실험 화면
+- 코드, 저장소, 내부 서버 경로와 파일명
+
+기관에서 업무 내용의 외부 표기를 허용하는 것이 확인된 경우에만 마지막 페이지에 `의료영상 생성 모델의 학습·평가 환경과 비교 실험 파이프라인 구현` 정도의 일반적인 한 줄을 사용할 수 있다. PECT, A2SB, FDA 및 구체적인 변환 조건은 연구진의 명시적 승인 후에만 추가한다.
 
 ## Research Result
 
@@ -764,13 +786,16 @@ MICCAI 2026 SASHIMI Workshop
 
 실제 환자 데이터가 포함된 이미지는 넣지 않는다.
 
-가능하면:
+실제 환자 CT나 논문의 임상 영상 figure를 그대로 사용하지 않는다.
 
-- 모델 architecture schematic
-- pipeline diagram
-- abstracted result visualization
+다음을 synthetic schematic으로 재구성한다.
 
-사용.
+- 흡기 CT + 호기 CT 입력
+- GAN 2종 / Diffusion 2종 비교 구조
+- 폐 환기지도 출력
+- 영상 유사도 평가와 환기 결손 평가의 대비
+
+결과 수치는 페이지의 논지를 설명하는 대표 지표만 최소한으로 사용한다.
 
 
 ==================================================
@@ -1267,7 +1292,8 @@ Codex는 **처음부터 9페이지 전체를 한 번에 완성하지 않는다.*
 
 - 서울아산병원의 정확한 역할 전환일과 2026년 2월의 역할
 - 각 프로젝트의 정확한 수행 기간
-- 서울아산병원 비교 실험에 사용한 생성 모델 4종의 공식 명칭
+- 서울아산병원 논문의 채택·저자 표기 공식 문구와 슬라이드용 대표 지표
+- PECT 연구의 프로젝트명·방법·담당 범위 공개 가능 여부에 대한 연구진 승인
 - Recappers의 실제 Backend 기술과 논문 제목·저자 정보
 - Pathology AI의 데이터 공개 가능 범위와 수상 공식 명칭·연도
 - AI Infrastructure 운영 기간과 공식 역할
@@ -1320,9 +1346,11 @@ Page 1 작성.
 
 서울아산병원 MI2RL 작성.
 
-의료영상 생성 연구와 비교 실험 pipeline을 중심으로 구성.
+CT-based Lung Ventilation Synthesis 논문을 한 페이지의 단독 주제로 구성한다.
 
-작업 전, CT-based Lung Ventilation Synthesis / 모델 4종 비교 pipeline / Contrast-enhanced CT Synthesis 중 무엇을 가장 크게 보여줄지 결정한다.
+연구진이 지정한 pix2pixHD, ResViT, I2SB, SelfRDB를 구현·학습·평가하고 통계 분석, 비교 figure, 실험 방법과 결과 해석 원고를 작성한 범위를 보여준다. 연구 기획이나 모델 선정의 주도성을 주장하지 않는다.
+
+PECT는 공개 승인 전까지 이 페이지에서 제외한다. 실제 환자 영상 대신 synthetic CT·ventilation map·defect mask schematic을 사용한다.
 
 ## STEP 6
 

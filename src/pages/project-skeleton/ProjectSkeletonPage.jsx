@@ -1,15 +1,19 @@
+
+import styles from './ProjectSkeletonPage.module.css'
+
+const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
 export default function ProjectSkeletonPage({ title, focus, placeholder }) {
   return (
-    <div className="project-layout">
-      <div className="project-heading">
+    <div className={cx('project-layout')}>
+      <div className={cx('project-heading')}>
         <p className="kicker">Project</p>
         <h2>{title}</h2>
         <p>{focus}</p>
       </div>
 
-      <div className="project-grid">
-        <div className="main-placeholder">
-          <div className="placeholder-cross" aria-hidden="true" />
+      <div className={cx('project-grid')}>
+        <div className={cx('main-placeholder')}>
+          <div className={cx('placeholder-cross')} aria-hidden="true" />
           <div>
             <span>Main visual placeholder</span>
             <strong>{placeholder}</strong>
@@ -17,7 +21,7 @@ export default function ProjectSkeletonPage({ title, focus, placeholder }) {
           </div>
         </div>
 
-        <aside className="content-outline" aria-label="Page content outline">
+        <aside className={cx('content-outline')} aria-label="Page content outline">
           <div><span>01</span><strong>Problem</strong><small>해결하려던 문제</small></div>
           <div><span>02</span><strong>Approach</strong><small>기술과 구조</small></div>
           <div><span>03</span><strong>My Role</strong><small>직접 수행한 작업</small></div>
@@ -25,7 +29,7 @@ export default function ProjectSkeletonPage({ title, focus, placeholder }) {
         </aside>
       </div>
 
-      <div className="decision-note">
+      <div className={cx('decision-note')}>
         <span>PAGE DECISION</span>
         <p>다음 단계에서 이 페이지가 가장 크게 보여줄 한 가지를 먼저 결정합니다.</p>
       </div>

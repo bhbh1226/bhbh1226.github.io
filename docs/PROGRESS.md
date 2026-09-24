@@ -1,6 +1,6 @@
 # Portfolio Progress
 
-마지막 업데이트: 2026-09-23
+마지막 업데이트: 2026-09-24
 
 ## 1. Current State
 
@@ -10,14 +10,14 @@
 
 `전체 Skeleton → 표지 → 한 페이지씩 구현·검토 → 전체 통일 → PDF 검수`
 
-현재 1~3페이지 초안을 확정했으며, 다음 작업 대상은 4페이지 서울아산병원 Medical AI다.
+현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구의 상세 초안을 구현·검토했다.
 
 | Page | Content | Status |
 | --- | --- | --- |
 | 01 | Cover | Draft approved |
 | 02 | SNUH — Aneurysm / ICA feature study | Draft approved |
 | 03 | SNUH — Pediatric digital phenotyping | Draft approved |
-| 04 | Asan Medical Center — Medical AI | Skeleton / next |
+| 04 | Asan Medical Center — CT-based lung ventilation synthesis | Detailed draft / reviewing |
 | 05 | Pathology AI + XAI | Skeleton |
 | 06 | GPU / AI Infrastructure | Skeleton |
 | 07 | Recappers | Skeleton |
@@ -117,24 +117,94 @@ TOF-MRA에서 좌우 ICA 구간의 geometry·radiomics 특성을 구성하고, c
 - PDF 출력 시 micro-diagram 내부 글자 크기 확인
 - 전체 페이지 완성 후 Page 02와 정보 밀도 비교
 
-## 6. Next Page — Asan Medical Center
+## 6. Current Review — Asan Medical Center
 
-다음 페이지를 구현하기 전에 가장 크게 보여줄 연구 한 가지를 먼저 결정한다.
+Page 04는 논문으로 완료된 **CT 기반 폐 환기지도 합성 연구**에 단독 할당한다. PECT 연구는 같은 페이지에 넣지 않는다.
 
-현재 후보:
+### Ventilation Study — Confirmed Scope
 
-1. Contrast-enhanced CT synthesis와 Fourier Domain Adaptation
-2. 구조가 다른 CT-based lung ventilation synthesis 모델 4종의 공통 학습·평가 pipeline
+- 입력: 공동 연구자가 전처리한 흡기·호기 CT
+- 비교 모델: pix2pixHD, ResViT, I2SB, SelfRDB
+- 박평진의 직접 수행 범위:
+  - 연구진이 지정한 4개 생성 모델을 연구 task에 맞게 구현
+  - 모델 학습과 평가 실행
+  - 공통 평가 코드 구성
+  - 통계 분석
+  - 비교 figure 제작
+  - 실험 방법·결과·해석을 중심으로 논문 작성
+- 데이터 전처리는 공동 연구자가 담당
+- 연구 방향, 비교 모델과 평가 지표는 선임 연구자의 요청에 따라 정해졌으므로 연구 기획·모델 선정의 주도성을 주장하지 않는다.
+- 결과: MICCAI 2026 SASHIMI Workshop 채택 논문, 제2저자
 
-필요한 정보:
+페이지의 중심 메시지:
 
-- 두 연구에서 본인이 직접 수행한 범위
-- 실제 사용한 모델명과 framework
-- 공개 가능한 architecture 또는 abstracted result
-- MICCAI 2026 SASHIMI Workshop 채택 연구와 각 작업의 관계
-- 병원 승인 없이 공개하면 안 되는 자료의 범위
+> 4개 생성 모델을 같은 데이터와 평가 조건에서 구현·비교했으며, 영상 유사도가 높은 모델과 환기 결손을 잘 재현한 모델이 서로 달랐다.
 
-실제 의료영상이나 내부 결과를 확인하기 전에는 placeholder 또는 synthetic schematic만 사용한다.
+주요 결과는 ResViT의 PSNR·SSIM과 SelfRDB의 결손 영역 DSC·Sensitivity 차이를 중심으로 최소한만 노출한다. 실제 환자 CT와 논문 figure를 그대로 사용하지 않고, synthetic CT·ventilation map·defect mask schematic으로 평가 구조를 재구성한다.
+
+### PECT — Deferred / Disclosure Rule
+
+PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트폴리오 본문에서 제외한다.
+
+승인 전 공개하지 않는 정보:
+
+- 실제 CT·DICOM 및 생성 영상
+- 환자 수와 cohort 구성
+- 내부 전처리 및 데이터 흐름
+- 에너지 조건, FDA 설정과 상세 모델 구조
+- 중간·최종 성능 수치와 결과 figure
+- 코드, 저장소, 내부 경로와 실행 화면
+
+기관에서 업무 내용 자체의 외부 표기를 허용한다는 전제에서 마지막 페이지에 `의료영상 생성 모델의 학습·평가 환경과 비교 실험 파이프라인 구현` 정도의 일반적인 한 줄만 사용할 수 있다. 프로젝트명, PECT, A2SB, FDA와 구체적인 변환 조건은 연구진의 명시적 승인 후에만 추가한다.
+
+### Implemented Visual Structure
+
+- 상단: 연구 제목과 `AI RESEARCH` category mark
+- 요약: 동일 데이터·평가 조건에서 GAN 2종과 Diffusion 2종을 비교했다는 연구 범위
+- 메인 도식: `정합된 흡기·호기 CT → 4개 생성 모델 → 폐 환기지도`
+- 결과 비교: ResViT의 영상 유사도와 SelfRDB의 환기 결손 재현 결과를 하나의 비교축으로 구성
+- 공통 결론: 영상 유사도와 환기 결손 재현에서 서로 다른 모델이 가장 높은 결과를 보였음을 명시
+- 하단: `본인 기여 → 연구 맥락 → 논문 정보` 순서로 역할과 결과를 분리
+
+### Synthetic Assets
+
+- 입력은 실제 연구 데이터가 아닌 lung-masked coronal synthetic CT를 사용한다.
+- 흡기 이미지: `assets/images/synthetic-coronal-inspiratory-ct-v1.png`
+- 정합 호기 이미지: `assets/images/synthetic-coronal-registered-expiratory-ct-v1.png`
+- 출력 이미지: `assets/images/synthetic-lung-ventilation-v3.png`
+- 초기 axial CT는 실제 입력 형태 및 coronal output과 연결성이 부족해 폐기했다.
+- ventilation v2의 기관·주기관지가 입력 폐 마스크와 일치하지 않아, 좌우 폐만 남긴 v3로 교체했다.
+- 출력에서는 밝은 영역을 높은 환기, 어두운 영역을 낮은 환기로 설명한다.
+
+### Role Presentation
+
+- 본인 기여를 `4개 모델 구현 → 공통 조건 학습·평가 → 통계 분석·비교 figure → 방법·결과·해석 원고 작성`의 네 단계로 표시한다.
+- 연구진이 비교 모델과 평가 지표를 지정한 사실은 `RESEARCH CONTEXT`에 배치한다.
+- 공동 연구자가 CT 전처리를 담당한 사실을 같은 영역에 명시한다.
+- 연구 전체 기획, 모델·지표 선정 또는 데이터 전처리를 주도한 것처럼 표현하지 않는다.
+
+### Layout Verification
+
+- 중앙 모델 영역은 `GENERATIVE MODELS` 아래 GAN / Diffusion 두 열로 단순화했다.
+- 불필요했던 `IMPLEMENT · TRAIN · EVALUATE`, `SYNTHESIZE`, `같은 데이터` 표기를 제거했다.
+- 하단을 `평가별 대표 결과 → 공통 결론 → 본인 기여 → 연구 맥락·출판` 순서로 재구성했다.
+- 고정 행 높이를 재배분해 하단 영역의 실제 overflow를 제거했다.
+- 브라우저 측정 결과 Page 04의 `.vent-case`와 `.vent-foot`은 `scrollHeight === clientHeight`이며 내부 넘침이 없다.
+- `npm run build`와 `git diff --check`를 통과했다.
+
+### Remaining Review
+
+- `MICCAI 2026 SASHIMI Workshop`과 `Second author`의 최종 공식 표기 확인
+- 최종 PDF 배율에서 대표 수치와 영문 caption 가독성 확인
+- 실제 PDF 출력에서 v3 이미지의 검은 배경, crop, grayscale 대비 확인
+- Page 04 사용자 승인 후에만 Page 05 Pathology AI로 이동
+
+### Image Generation Workflow
+
+- 이후 신규 raster 이미지가 필요해도 Codex에서 바로 생성하지 않는다.
+- 먼저 이미지의 역할, 구도, 표현 방식과 금지 요소를 정리한다.
+- 사용자가 ChatGPT에서 생성할 수 있도록 완성된 이미지 생성·편집 프롬프트를 제공한다.
+- 사용자가 전달한 결과물을 페이지에 적용하고 crop·크기·대비만 조정한다.
 
 ## 7. Final QA Backlog
 
@@ -149,40 +219,21 @@ TOF-MRA에서 좌우 ICA 구간의 geometry·radiomics 특성을 구성하고, c
 
 ## 8. Git / Commit Plan
 
-현재 `/Users/bhbh1226/coding/portfolio`는 Git 저장소가 아니다.
-
-사용자 확인 후 다음 순서로 시작한다.
-
-1. `git init`
-2. `.gitignore` 추가
-   - `node_modules/`
-   - `dist/`
-   - macOS 임시 파일
-3. `npm run build` 재검증
-4. 현재 상태를 기준 커밋으로 생성
-
-권장 첫 커밋:
+Git 저장소와 기준 커밋이 생성되어 있다.
 
 ```text
-feat: establish portfolio skeleton and first medical AI pages
+9b51757 feat: establish portfolio skeleton and first medical AI pages
 ```
 
-첫 커밋에는 다음을 함께 포함한다.
+Page 04의 사용자 검토가 끝나면 다음 커밋으로 분리한다.
 
-- Vite/React 및 A4 landscape print 구조
-- 9페이지 Skeleton
-- Cover
-- SNUH Aneurysm page
-- SNUH Digital Phenotyping page
-- 현재 디자인 시스템과 synthetic assets
-- README와 진행 상황 문서
-
-현재까지의 작업은 서로 의존성이 높고 Git 이력이 없으므로, 과거 작업을 억지로 여러 커밋으로 분할하지 않는다.
+```text
+feat: build Asan Medical Center ventilation study page
+```
 
 이후에는 페이지 단위로 커밋한다.
 
 ```text
-feat: build Asan Medical Center case study
 feat: build pathology AI and XAI case study
 feat: document GPU training infrastructure
 feat: build Recappers case study

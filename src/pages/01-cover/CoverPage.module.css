@@ -1,0 +1,93 @@
+.hero-cover {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  color: #f0f0eb;
+  background:
+    linear-gradient(90deg, #080908 0%, #080908 35%, transparent 62%),
+    #080908;
+}
+
+.hero-cover::after {
+  position: absolute;
+  inset: 9mm;
+  border: 1px solid rgb(240 240 235 / 14%);
+  pointer-events: none;
+  content: "";
+}
+
+.hero-cover__meta {
+  position: absolute;
+  z-index: 3;
+  top: 14mm;
+  right: 14mm;
+  left: 14mm;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 7.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-cover__object {
+  position: absolute;
+  z-index: 1;
+  top: -9mm;
+  right: -42mm;
+  width: 88%;
+  height: 114%;
+  object-fit: cover;
+  object-position: right center;
+  filter: saturate(0.82) contrast(1.08);
+}
+
+.hero-cover__name {
+  position: absolute;
+  z-index: 4;
+  top: 78mm;
+  left: 18mm;
+}
+
+.hero-cover__name p {
+  margin: 0 0 2mm;
+  color: rgb(240 240 235 / 58%);
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+}
+
+.hero-cover__name h1 {
+  margin: 0;
+  color: #f0f0eb;
+  font-size: 100pt;
+  font-weight: 720;
+  letter-spacing: -0.075em;
+  line-height: 1;
+}
+
+.hero-cover__description {
+  position: absolute;
+  z-index: 3;
+  bottom: 19mm;
+  left: 18mm;
+}
+
+.hero-cover__description p {
+  margin: 0;
+  color: rgb(240 240 235 / 72%);
+  font-size: 9.5pt;
+  letter-spacing: 0.025em;
+  line-height: 1.65;
+}
+
+.hero-cover__contact {
+  position: absolute;
+  z-index: 4;
+  right: 17mm;
+  bottom: 19mm;
+  display: flex;
+  gap: 5mm;
+  color: rgb(240 240 235 / 82%);
+  text-shadow: 0 1px 5px rgb(0 0 0 / 80%);
+  font-size: 8.2pt;
+  letter-spacing: 0.015em;
+}
