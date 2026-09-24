@@ -3,15 +3,10 @@ import CoverPage from './pages/01-cover/CoverPage.jsx'
 import AneurysmPage from './pages/02-aneurysm/AneurysmPage.jsx'
 import DigitalPhenotypingPage from './pages/03-digital-phenotyping/DigitalPhenotypingPage.jsx'
 import VentilationPage from './pages/04-ventilation/VentilationPage.jsx'
+import PathologyXaiPage from './pages/05-pathology-xai/PathologyXaiPage.jsx'
 import ProjectSkeletonPage from './pages/project-skeleton/ProjectSkeletonPage.jsx'
 
 const pages = [
-  {
-    label: 'Pathology AI + XAI',
-    title: 'Pathology AI + XAI',
-    focus: '분류 결과와 XAI 시각화 중 중심 장면을 결정합니다.',
-    placeholder: 'Original → Prediction → XAI visualization',
-  },
   {
     label: 'AI Infrastructure',
     title: 'GPU / AI Infrastructure',
@@ -57,10 +52,14 @@ export default function App() {
         <VentilationPage />
       </PageShell>
 
+      <PageShell pageNumber={5} section="Soonchunhyang University · Medical AI Lab · Undergraduate Research" tone="dark">
+        <PathologyXaiPage />
+      </PageShell>
+
       {pages.map((page, index) => (
         <PageShell
           key={page.label}
-          pageNumber={index + 5}
+          pageNumber={index + 6}
           section={page.label}
         >
           <ProjectSkeletonPage {...page} />

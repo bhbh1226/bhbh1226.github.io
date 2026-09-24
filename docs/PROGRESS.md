@@ -1,6 +1,6 @@
 # Portfolio Progress
 
-마지막 업데이트: 2026-09-24
+마지막 업데이트: 2026-09-25
 
 ## 1. Current State
 
@@ -12,13 +12,15 @@
 
 현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구의 상세 초안을 구현·검토했다.
 
+5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다. 다음 작업은 Page 06 GPU / AI Infrastructure다.
+
 | Page | Content | Status |
 | --- | --- | --- |
 | 01 | Cover | Draft approved |
 | 02 | SNUH — Aneurysm / ICA feature study | Draft approved |
 | 03 | SNUH — Pediatric digital phenotyping | Draft approved |
 | 04 | Asan Medical Center — CT-based lung ventilation synthesis | Detailed draft / reviewing |
-| 05 | Pathology AI + XAI | Skeleton |
+| 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
 | 06 | GPU / AI Infrastructure | Skeleton |
 | 07 | Recappers | Skeleton |
 | 08 | Generative AI Video | Skeleton |
@@ -27,6 +29,9 @@
 ## 2. Design Direction Confirmed
 
 - 검은 배경, 저채도 회색 typography, 적갈색 accent를 기본으로 사용한다.
+- 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색, SERVICE 파란색. 초록·파란색 값은 해당 페이지 작업 시 확정한다.
+- Page 05는 AI RESEARCH로 확정했다.
+- 구현은 React + Vite + CSS Modules를 기준으로 한다.
 - 표지에서 정한 기술적·편집 디자인의 결을 프로젝트 페이지까지 연결한다.
 - 동일한 카드와 번호 원을 반복하는 전형적인 AI 생성형 레이아웃을 피한다.
 - 프로젝트마다 핵심 작업을 설명하는 고유한 figure를 사용한다.
@@ -206,6 +211,62 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - 사용자가 ChatGPT에서 생성할 수 있도록 완성된 이미지 생성·편집 프롬프트를 제공한다.
 - 사용자가 전달한 결과물을 페이지에 적용하고 crop·크기·대비만 조정한다.
 
+## 6-1. Page 05 — CLE Tumor Classification + MAGAR XAI (Approved)
+
+### Sources
+
+- 학사 졸업논문: 공초점 레이저 내시현미경 영상의 MaxViT 기반 MAGAR XAI 적용 종양 분류 연구 (2026)
+- 소스코드 저장소 `CLSM-cancer-classification` (비공개, 링크 사용 안 함)
+
+### Confirmed Content
+
+- Category: AI RESEARCH
+- CLE 영상, 대장 선암 Normal / Tumor 영상 단위 분류. WSI patch가 아님
+- 동결절편 검사는 연구 배경과 시간 비교 대상으로만 사용. 판정 시간 단축을 결과로 쓰지 않음
+- MaxViT 5-fold soft-voting ensemble, 환자 단위 GroupKFold, new cohort 4,889장 test
+- F1 0.9485 · AUROC 0.9910 · Recall 0.9727 · 단일 영상 추론 약 205 ms (RTX A6000)
+- MAGAR: Multi-Axis Gradient-weighted Attention Rollout
+- XAI 평가: Stability는 MAGAR 0.27–0.31, Grad-CAM −0.03. Faithfulness(Ins − Del AUC)는 Grad-CAM 우위. MAGAR가 모든 지표에서 우수하다고 쓰지 않음
+- 2024 공과대학 학술제(3인 팀): MaxViT 분류 모델 개발, MAGAR 제안·구현 (웹을 제외한 작업 담당), 제33회 순천향대학교 공과대학 학술제 은상. 당시 웹은 본인 구현 아님
+- 2026 졸업논문(개인): 모델 학습·평가, XAI 정량 검증, 웹 추론 시스템 새로 구현, 논문 작성
+- 웹: React · Vite · Tailwind / FastAPI · SQLAlchemy · PostgreSQL / JWT / Docker Compose · nginx
+- 학술제 당시 성능 수치(예: Accuracy 98.21%)는 논문 수치와 실험 조건이 달라 함께 쓰지 않음
+
+### Disclosure
+
+- 실제 CLE 영상, 논문 figure의 환자 영상 사용 안 함. synthetic CLE + schematic heatmap
+- 전체 데이터 규모(163명 · 9,031장)는 공개 가능하지만 본문에서는 test 조건만 표기
+- 웹 UI는 스크린샷을 쓰지 않고, 실제 화면 구성(Assessment Result · Original / Grad-CAM / MAGAR / Compare 탭)을 참고해 포트폴리오 톤으로 재구성. 확률과 calibrated confidence는 실제 화면의 표시 형식대로 넣고, synthetic 영상이라 예시 표기는 하지 않음
+- Heatmap은 도식: Grad-CAM은 jet colormap과 격자형으로 흩어진 반응, MAGAR는 흑백 영상 위 노란 heatmap이 종양 의심 구조 쪽에 모이고 조직 경계를 따라가도록 표현 (논문 figure의 정성적 경향)
+
+### Implemented Visual Structure
+
+- 메인: MaxViT 구조 칸 → 포트폴리오 톤으로 재구성한 CLE Assessment 웹 창 (확률 · calibrated confidence · Model / Inference / Serving, Original · Grad-CAM · MAGAR 비교)
+- MAGAR 5단계 절차 줄. MAGAR 이름을 MaxViT보다 크게 표시
+- 하단 3칸: CLASSIFICATION 대표 수치 / Stability dot plot과 Faithfulness 한 줄 / 2024 · 2026 MY SCOPE
+- 헤더 라벨: Soonchunhyang University · Medical AI Lab · Undergraduate Research
+- Baseline 한 줄: 동일 조건 7개 모델 중 MaxViT F1 1위, 단일 모델 기준 · AUROC는 Swin-S 근소 우위 (앙상블 수치와 조건이 다름을 명시)
+- STUDY 줄 오른쪽: 배경(동결절편 검사 · 대장 선암 CLE 영상)과 문제(Grad-CAM이 MaxViT의 Block · Grid attention을 반영하지 못함)
+- 뺀 내용: 전체 데이터 규모, Sanity · Concentration 언급, 웹 흐름 목록 (UI 창으로 대체)
+- Chrome headless Print to PDF에서 heatmap blend · SVG mask 정상 출력 확인
+
+### Synthetic Asset
+
+- `assets/images/synthetic-cle-colorectal-v1.png`: ChatGPT로 생성. 처음 프롬프트 결과는 세포 구조가 거부감을 줄 수 있어, 사용자가 찾은 CLE 참고 이미지를 바탕으로 다시 생성
+- 실제 환자 CLE가 포함된 웹 스크린샷(`fig06_web_ui.png`)은 포트폴리오 폴더에서 제거함
+
+### Remaining
+
+- 전체 통합 단계에서 `#a63b2d` 하드코딩을 category 변수로 정리
+
+## 6-2. Next — Page 06 GPU / AI Infrastructure
+
+작업 전 결정할 것:
+
+- 가장 크게 보여줄 것: 전체 cluster architecture 또는 운영 문제 해결 경험
+- GPU INFRA category의 초록색 값 (적갈색과 채도·명도를 맞춤)
+- 운영 기간과 공식 역할 (AGENTS.md의 추후 확인 항목)
+
 ## 7. Final QA Backlog
 
 - 전체 페이지의 기술 용어 표기 통일
@@ -231,10 +292,21 @@ Page 04의 사용자 검토가 끝나면 다음 커밋으로 분리한다.
 feat: build Asan Medical Center ventilation study page
 ```
 
+Page 05는 다음 메시지로 분리해 커밋한다. 커밋 대상은 `src/pages/05-pathology-xai/`, `assets/images/synthetic-cle-colorectal-v1.png`, `src/App.jsx`의 Page 05 등록이다.
+
+```text
+feat: build CLE tumor classification and MAGAR XAI page
+```
+
+React 우선 구조와 분야별 category color를 반영한 `AGENTS.md` 수정은 문서 커밋으로 분리한다.
+
+```text
+docs: align agent guide with React stack and category colors
+```
+
 이후에는 페이지 단위로 커밋한다.
 
 ```text
-feat: build pathology AI and XAI case study
 feat: document GPU training infrastructure
 feat: build Recappers case study
 feat: build generative AI video case study
