@@ -6,7 +6,7 @@
 
 최종 제출 형식은 PDF이며, 웹페이지를 서비스로 배포하는 것이 목적이 아니다.
 
-HTML/CSS 기반으로 PDF 페이지 크기에 맞춘 포트폴리오를 제작하고,
+React + Vite로 PDF 페이지 크기에 맞춘 포트폴리오를 제작하고,
 Chromium 기반 브라우저의 Print to PDF 기능을 사용해 최종 PDF로 변환한다.
 
 최종 결과물은 다음 조건을 만족해야 한다.
@@ -92,37 +92,54 @@ Chromium 기반 브라우저의 Print to PDF 기능을 사용해 최종 PDF로 �
 
 ## 기본 기술
 
-가능한 한 단순하게 구현한다.
+React + Vite로 구현한다.
 
-권장:
+- React: 페이지와 페이지 내부 figure를 컴포넌트 단위로 구성
+- Vite: 개발 서버와 빌드 (`npm run dev`, `npm run build`)
+- CSS Modules: 페이지별 스타일 (`*.module.css`)
+- 전역 CSS: 공통 page 규격, header/footer, category mark, print 규칙
 
-- HTML
-- CSS
-- Vanilla JavaScript
+포트폴리오는 인터랙티브 웹사이트가 아니라 PDF 출력물이다.
+React는 구조화와 재사용을 위해 사용하며, 화면 동작이나 animation을 위해 쓰지 않는다.
 
-React는 필요하지 않다면 사용하지 않는다.
+- 반복되는 도식 요소(패널, 점, 열, 모델 목록 등)는 데이터 배열로 관리하고 map으로 렌더링한다.
+- 한 페이지 안에서도 의미 단위로 컴포넌트를 나눈다.
+- Diagram은 JSX 안의 HTML/CSS 또는 inline SVG로 직접 제작한다.
+- 이미지는 `assets/`에서 import해 Vite가 번들링하도록 한다.
+- 불필요한 UI 라이브러리, 상태 관리 라이브러리, CSS framework는 추가하지 않는다.
 
-포트폴리오는 인터랙티브 웹사이트가 아니라 PDF 출력물이므로,
-JavaScript는 필요한 경우에만 사용한다.
-
-## Recommended Structure
+## Project Structure
 
 ```text
 portfolio/
 ├── AGENTS.md
+├── README.md
 ├── index.html
+├── vite.config.js
+├── docs/
+│   └── PROGRESS.md              # 진행 상황과 확정된 결정
 ├── styles/
-│   ├── main.css
-│   └── print.css
+│   ├── global.css               # 공통 page / header / footer / category
+│   └── print.css                # @page, print 규칙
 ├── assets/
-│   ├── images/
-│   ├── screenshots/
-│   ├── diagrams/
-│   └── icons/
-└── README.md
+│   └── images/                  # synthetic visual 등 raster 자료
+└── src/
+    ├── main.jsx
+    ├── App.jsx                  # 9페이지 순서 조립
+    ├── components/
+    │   └── PageShell.jsx        # 페이지 번호, section, tone, header/footer
+    └── pages/
+        ├── 01-cover/
+        ├── 02-aneurysm/
+        ├── 03-digital-phenotyping/
+        ├── 04-ventilation/
+        └── project-skeleton/    # 아직 구현하지 않은 페이지의 placeholder
 ```
 
-불필요하게 복잡한 프레임워크나 빌드 시스템은 추가하지 않는다.
+새 페이지는 `src/pages/NN-name/` 폴더에 `NamePage.jsx`와 `NamePage.module.css`를 만들고,
+`App.jsx`에서 `PageShell`로 감싸 해당 순서의 skeleton을 교체한다.
+
+페이지 수정 후에는 `npm run build`가 통과하는지 확인한다.
 
 
 ---
@@ -188,15 +205,32 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 
 디자인 방향:
 
-- White / very light background
-- Dark gray typography
-- Accent color 1개
+- 검은 배경 (`#090a09`, 표지 `#080908`)
+- 저채도 밝은 회색 typography (`#ecece6`와 투명도 단계)
+- 분야별 category color 1개씩
 - 충분한 whitespace
 - 큰 프로젝트 화면
 - 간단한 architecture diagram
 - 짧은 설명
 
-포트폴리오 전체에 많은 색을 사용하지 않는다.
+프로젝트 페이지는 `PageShell`의 `tone="dark"`를 사용한다.
+
+## Category Color
+
+페이지의 분야를 우측 상단 category mark(`.case-category--corner`)와 accent color로 구분한다.
+
+| Category | Color | Pages |
+| --- | --- | --- |
+| AI RESEARCH | 적갈색 `#a63b2d` | 02, 03, 04, 05 |
+| GPU INFRA | 초록색 (값은 Page 06 작업 시 확정) | 06 |
+| SERVICE | 파란색 (값은 Page 07 작업 시 확정) | 07, 08 |
+
+- Page 05는 웹서비스도 포함하지만 핵심 기여가 MAGAR 제안이므로 AI RESEARCH로 분류한다.
+- 적갈색은 이미 Page 02~04에서 사용 중이며 확정된 값이다.
+- 초록색과 파란색은 적갈색과 같은 채도·명도 수준으로 맞춰, 검은 배경에서 한 색만 튀지 않게 한다.
+- 한 페이지에는 해당 분야의 색 하나만 사용한다. 다른 분야 색을 섞지 않는다.
+- category color는 category mark, 번호, 강조선, 핵심 도식의 강조 요소에만 사용하고 넓은 면적을 칠하지 않는다.
+- 새 색은 CSS 변수로 추가한다. 현재 Page 02~04와 `global.css`에는 `#a63b2d`가 직접 쓰여 있으므로, 통합 단계에서 category 변수로 정리한다.
 
 ## Layout
 
@@ -272,7 +306,7 @@ Result
 2. 서울대학교병원 — ICA Morphology & Aneurysm Feasibility
 3. 서울대학교병원 — Pediatric Digital Phenotyping
 4. 서울아산병원 MI2RL
-5. Pathology AI + XAI
+5. CLE Tumor Classification + MAGAR XAI (Pathology AI + XAI)
 6. AI Infrastructure
 7. Recappers
 8. Generative AI Video
@@ -799,90 +833,69 @@ MICCAI 2026 SASHIMI Workshop
 
 
 ==================================================
-PAGE 5 — PATHOLOGY AI + XAI
+PAGE 5 — CLE TUMOR CLASSIFICATION + MAGAR XAI
 ==================================================
 
 ## Project
 
-동결절편 검사 판정 시간 단축을 위한
-병리조직 AI 분류 시스템
+- 공식 제목: 공초점 레이저 내시현미경 영상의 MaxViT 기반 MAGAR XAI 적용 종양 분류 연구
+- 영문: A Study on MaxViT-based Tumor Classification of Confocal Laser Endomicroscopy Images Using MAGAR XAI
+- 페이지 제목: MaxViT 기반 CLE 종양 분류와 MAGAR XAI
+- 헤더 라벨: Soonchunhyang University · Medical AI Lab · Undergraduate Research
+- Category: AI RESEARCH
 
-## Task
+## Two Phases
 
-병리조직 이미지:
+두 시기의 결과를 섞지 않는다.
 
-```text
-Normal / Tumor
-```
+- 2024 순천향대학교 공과대학 학술제 (2024.04.01 ~ 2024.11.13, 3인 팀)
+  - 본인: MaxViT 분류 모델 개발, MAGAR 제안·구현. 웹은 다른 팀원이 구현
+  - 결과: 제33회 순천향대학교 공과대학 학술제 은상
+- 2026 학사 졸업논문 (개인, 2026년 5월 제출)
+  - 본인: 5-fold 앙상블 학습·평가, XAI 정량 검증, 웹 추론 시스템 새로 구현, 논문 작성
+  - 페이지의 성능 수치와 XAI 평가 수치는 모두 졸업논문 기준
 
-이진 분류.
+학술제 당시 수치(예: Accuracy 98.21%)는 실험 조건이 달라 논문 수치와 함께 쓰지 않는다.
 
-## Model
+## Background / Problem
 
-MaxViT
+- 배경: 시간이 오래 걸리는 동결절편 검사. 논문에서 동결절편은 연구 배경과 시간 비교 대상이며, 판정 시간 단축을 달성한 결과처럼 쓰지 않는다.
+- 연구 목적: CLE 영상의 Normal / Tumor 분류와 MAGAR를 이용한 XAI 시각화
+- 제안 이유: Grad-CAM은 마지막 conv feature에 의존해 MaxViT의 Block · Grid attention을 반영하지 못하고, 일반 Attention Rollout은 class gradient가 없으며 MaxViT의 partition attention과 바로 호환되지 않는다.
 
-## XAI
+## Data
 
-MAGAR
+- 고려대학교 안암병원 임상 CLE 영상, 대장 선암. 공개 데이터셋 아님
+- 1024 × 1024 흑백 단일 프레임 → scale bar 제거 crop → 512 × 512. WSI patch가 아니다.
+- 영상 단위 Normal / Tumor 라벨
+- 전체 규모(163명 · 9,031장)는 공개 가능하지만 페이지 본문에는 평가 조건만 표기
 
-지원자가 직접:
+## Model / XAI
 
-- 제안
-- 구현
+- MaxViT (MBConv + Block attention + Grid attention), 5-fold soft-voting ensemble
+- 비교 모델: ResNet-50, EfficientNet-B3, EfficientNetV2-S, ConvNeXt-Tiny, ConvNeXt-Small, Swin-Small
+- MAGAR: Multi-Axis Gradient-weighted Attention Rollout
+  - attention 추출 → class gradient 계산 · spatial centering → positive gradient weighting → partition reassembly → layer aggregation → percentile normalization
 
-## Workflow
+## Results
 
-```text
-Image Upload
-     ↓
-MaxViT
-     ↓
-Classification
- Normal / Tumor
-     ↓
-MAGAR
-     ↓
-XAI Visualization
-```
+- 환자 단위 GroupKFold, 학습과 분리된 new cohort 4,889장 test
+- F1 0.9485 · AUROC 0.9910 · Recall 0.9727 · Accuracy 0.9589
+- 단일 영상 추론 약 205 ms (RTX A6000)
+- Baseline(단일 모델, 동일 조건): MaxViT F1 1위, AUROC는 Swin-Small 근소 우위. 앙상블 수치와 조건이 다르므로 F1 값을 나란히 쓰지 않는다.
+- XAI: Stability(Pearson)는 MAGAR 0.27–0.31, Grad-CAM −0.03. Faithfulness(Insertion − Deletion AUC)는 Grad-CAM 우위. MAGAR가 모든 지표에서 우수하다고 쓰지 않는다.
 
-## Full-stack
+## Web System (2026)
 
-모델 실험에 그치지 않고
-사용자가 직접 이미지를 업로드할 수 있는 웹서비스 구현.
+- React · Vite · Tailwind / FastAPI · SQLAlchemy · PostgreSQL / JWT / Docker Compose · nginx
+- 업로드 → 5-fold 앙상블 추론 → Grad-CAM · MAGAR 표시 → 결과 저장 · 조회
 
-사용자는:
+## Disclosure
 
-- 이미지 업로드
-- Classification result
-- XAI visualization
-
-을 확인 가능.
-
-## Result
-
-순천향대학교 공과대학 학술제 은상
-
-## Visual Priority
-
-이 페이지는 시각적으로 강하게 구성.
-
-가능하다면:
-
-왼쪽:
-Original pathology image
-
-중앙:
-Prediction
-
-오른쪽:
-XAI visualization
-
-하단:
-웹 UI screenshot
-
-## Important
-
-민감하거나 사용 권한이 불확실한 의료 이미지는 사용하지 않는다.
+- 실제 CLE 영상, 논문 figure와 웹 스크린샷의 환자 영상을 사용하지 않는다.
+- synthetic CLE 영상(`assets/images/synthetic-cle-colorectal-v1.png`) 위에 도식 heatmap을 그린다.
+- 웹 UI는 스크린샷 대신 포트폴리오 톤으로 재구성하고 "UI 재구성 · SYNTHETIC CLE · SCHEMATIC HEATMAP"을 표시한다.
+- GitHub 저장소는 비공개이므로 링크하지 않는다.
 
 
 ==================================================
@@ -1094,7 +1107,7 @@ Screenshot 사용 시:
 
 ## Architecture Diagram
 
-가능하면 HTML/CSS 또는 SVG로 직접 제작한다.
+가능하면 React 컴포넌트 안의 HTML/CSS 또는 inline SVG로 직접 제작한다.
 
 장점:
 
@@ -1133,7 +1146,7 @@ Screenshot 사용 시:
 포트폴리오는 다음 서사 순서로 경험을 강조한다.
 
 1. Medical AI — 병원 연구실 인턴과 의료 AI 연구 경험
-2. Pathology AI + XAI — 모델 제안·구현과 웹서비스 연결
+2. CLE Tumor Classification + MAGAR XAI — 모델·XAI 제안·구현과 웹서비스 연결
 3. AI Infrastructure — 연구 환경을 운영 가능한 공용 인프라로 확장
 4. Recappers — Multi-Modal LLM 기반 학습 플랫폼과 연구 성과
 5. Generative AI Video — 생성형 AI 파이프라인과 사용자 서비스 구현
@@ -1295,7 +1308,6 @@ Codex는 **처음부터 9페이지 전체를 한 번에 완성하지 않는다.*
 - 서울아산병원 논문의 채택·저자 표기 공식 문구와 슬라이드용 대표 지표
 - PECT 연구의 프로젝트명·방법·담당 범위 공개 가능 여부에 대한 연구진 승인
 - Recappers의 실제 Backend 기술과 논문 제목·저자 정보
-- Pathology AI의 데이터 공개 가능 범위와 수상 공식 명칭·연도
 - AI Infrastructure 운영 기간과 공식 역할
 - Bixby Crew Hackathon과 STAC의 개최 연도 및 수상 공식 표기
 - 포트폴리오에 연결할 프로젝트 URL 또는 저장소 URL
@@ -1354,11 +1366,9 @@ PECT는 공개 승인 전까지 이 페이지에서 제외한다. 실제 환자 
 
 ## STEP 6
 
-Pathology AI 작성.
+CLE Tumor Classification + MAGAR XAI 작성. (완료)
 
-XAI visualization 중심.
-
-작업 전, Original → Prediction → XAI 흐름과 웹 UI 중 무엇을 가장 크게 보여줄지 결정한다.
+MaxViT 구조 → 포트폴리오 톤으로 재구성한 웹 Assessment 창(Original · Grad-CAM · MAGAR 비교)을 메인으로 두고, MAGAR 절차, 분류·XAI 평가, 2024 / 2026 역할을 배치한다.
 
 ## STEP 7
 
