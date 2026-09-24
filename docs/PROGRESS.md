@@ -12,7 +12,8 @@
 
 현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구는 브라우저 기준 상세 디자인 검토를 마쳤다. 최종 PDF 출력 검수만 남아 있다.
 
-5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다. 다음 작업은 Page 06 GPU / AI Infrastructure다.
+5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다.
+6페이지 GPU / AI Infrastructure는 인프라 저장소의 git 기록으로 본인 범위를 확인한 뒤 구현했고, 사용자 검토와 Print to PDF 확인을 마쳤다.
 
 | Page | Content | Status |
 | --- | --- | --- |
@@ -21,7 +22,7 @@
 | 03 | SNUH — Pediatric digital phenotyping | Draft approved |
 | 04 | Asan Medical Center — CT-based lung ventilation synthesis | Browser layout approved / PDF QA pending |
 | 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
-| 06 | GPU / AI Infrastructure | Skeleton |
+| 06 | GPU / AI Infrastructure — Slurm cluster | Draft approved / PDF checked |
 | 07 | Recappers | Skeleton |
 | 08 | Generative AI Video | Skeleton |
 | 09 | Profile, Awards & Other Work | Skeleton |
@@ -29,7 +30,7 @@
 ## 2. Design Direction Confirmed
 
 - 검은 배경, 저채도 회색 typography, 적갈색 accent를 기본으로 사용한다.
-- 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색, SERVICE 파란색. 초록·파란색 값은 해당 페이지 작업 시 확정한다.
+- 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색 `#3f8f66`(확정), SERVICE 파란색. 파란색 값은 해당 페이지 작업 시 확정한다.
 - Page 05는 AI RESEARCH로 확정했다.
 - 구현은 React + Vite + CSS Modules를 기준으로 한다.
 - 표지에서 정한 기술적·편집 디자인의 결을 프로젝트 페이지까지 연결한다.
@@ -259,13 +260,39 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 - 전체 통합 단계에서 `#a63b2d` 하드코딩을 category 변수로 정리
 
-## 6-2. Next — Page 06 GPU / AI Infrastructure
+## 6-2. Page 06 — GPU / AI Infrastructure (Approved)
 
-작업 전 결정할 것:
+### Sources
 
-- 가장 크게 보여줄 것: 전체 cluster architecture 또는 운영 문제 해결 경험
-- GPU INFRA category의 초록색 값 (적갈색과 채도·명도를 맞춤)
-- 운영 기간과 공식 역할 (AGENTS.md의 추후 확인 항목)
+- 인프라 저장소의 코드·설정·문서와 git 기록 (별도 세션에서 조사, 사실마다 커밋·파일 근거 확인)
+- 사용자 확인: 연구실 랩장으로 구축 총괄, 커밋 기간 이후에도 운영·장애 대응 지속, 후임 인수인계, 홈 백업 복원 검증 직접 수행
+
+### Confirmed Content
+
+- 본인 커밋 2026-07-03 ~ 07-08 (37 / 180). 이후 모니터링 · Ansible · accounting · 정량 지표 · 보안 · DR은 다른 기여자 작업이라 페이지에서 제외
+- 관리 노드 2 + GPU 노드 3, GPU 6장 (A6000 ×1, RTX Pro 6000 ×2, L40 ×3 원격)
+- FreeIPA 계정 10개 이식, NFS 중앙 홈, Slurm GRES · partition · cgroup, JupyterHub + MOSlurmSpawner, 로컬망 + Tailscale, Borg 홈 일일 백업과 복원 검증, Git 런북 · CHANGELOG
+- 문제 해결: 제어 노드 주소 충돌, 컨테이너 CUDA 소실(CDI 전환), 매번 전체 복사되던 백업(Borg 전환)
+- "고정 IP 전환", "전체 백업"은 기록과 맞지 않아 "주소 재배치", "홈 백업"으로 표현
+
+### Implemented Visual Structure
+
+- 요약 줄: 서버별 로컬 계정 · 직접 GPU 점유 → 중앙 인증 · GPU 타입별 스케줄링 · JupyterHub 셀프서비스. 오른쪽에 이전 상태와 규모
+- 메인: 왼쪽 접근 흐름(USERS → ENTRY → Slurm) + 반투명 GPU 서버 이미지. Slurm 배정선이 서버 위 LOCAL 선으로 이어지고, LOCAL과 REMOTE 사이는 점선(Tailscale)
+- 서버 위 라벨: GPU 이름, 장수, 초록 칩
+- 기반 구성 한 줄: AUTH · NETWORK · STORAGE · BACKUP · DOCS
+- 하단: 문제 해결 3건(문제 = 흐린 점선, 조치 = 초록 실선 micro-diagram) / MY ROLE 구축 총괄 · 설계·구축 → 운영·장애 대응 → 인수인계
+- 후속 기여자 작업을 흐리게 적던 LATER 줄은 할 일 목록처럼 보여 제거
+
+### Synthetic Asset
+
+- `assets/images/gpu-cluster-translucent-v3.png`: ChatGPT 생성. 첫 이미지(광택 제품 렌더, 서버마다 GPU 4장)와 판화풍 이미지 두 장은 표지 질감과 맞지 않거나 GPU 수가 달라 쓰지 않음
+- 표지 오브제의 표현 방식(반투명 외피 · 흑백 · 강조색 가닥)을 맞추고, 그림 속 GPU 수를 실제 1 · 2 · 3장과 일치시킴
+
+### Remaining
+
+- 쓰지 않는 서버 이미지 3장 정리
+- 랩장 재임 시작 월은 Page 09 경력 작업 때 확인
 
 ## 7. Final QA Backlog
 

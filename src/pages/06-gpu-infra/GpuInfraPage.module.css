@@ -1,0 +1,116 @@
+.infra-case {
+  --infra: #3f8f66;
+  display: grid;
+  grid-template-rows: 17mm 19mm 80mm 12mm 1fr;
+  height: 100%;
+  color: #ecece6;
+}
+
+.infra-case :global(.case-header) { grid-row: 1; }
+.infra-case .infra-category::before,
+.infra-case .infra-category::after { background: var(--infra); }
+
+.infra-brief > span,
+.infra-step > span,
+.infra-foot > div > span {
+  color: var(--infra);
+  font-size: 6.4pt;
+  font-weight: 750;
+  letter-spacing: .1em;
+}
+
+/* Brief */
+.infra-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
+.infra-brief strong { font-size: 10pt; line-height: 1.4; }
+.infra-brief p { margin: 0; color: rgb(236 236 230 / 58%); font-size: 7.4pt; line-height: 1.5; }
+.infra-brief p b { display: inline-block; width: 8mm; color: rgb(236 236 230 / 88%); font-weight: 620; }
+
+/* Hero: access flow → cluster visual */
+.infra-hero { display: grid; grid-template-columns: 76mm 12mm 1fr; min-height: 0; border-bottom: 1px solid rgb(236 236 230 / 16%); }
+
+.infra-access { display: flex; flex-direction: column; justify-content: center; padding: 3mm 0; }
+.infra-step { display: grid; gap: 1mm; border-top: 1px solid rgb(236 236 230 / 22%); padding-top: 2mm; }
+.infra-step strong { font-size: 11pt; font-weight: 640; letter-spacing: -.01em; }
+.infra-step small { color: rgb(236 236 230 / 58%); font-size: 7pt; line-height: 1.4; }
+.infra-step--slurm { border-top-color: var(--infra); }
+.infra-step--slurm strong { font-size: 18pt; font-weight: 700; letter-spacing: -.02em; line-height: 1.05; }
+.infra-down { position: relative; display: block; width: 1px; height: 6mm; margin: 1.6mm 0 1.6mm 1mm; background: rgb(236 236 230 / 30%); }
+.infra-down::after { position: absolute; bottom: 0; left: -.8mm; width: 1.6mm; height: 1.6mm; border-right: 1px solid rgb(236 236 230 / 50%); border-bottom: 1px solid rgb(236 236 230 / 50%); transform: rotate(45deg); content: ""; }
+
+.infra-hero { position: relative; }
+.infra-dispatch { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.infra-dispatch path { fill: none; stroke: var(--infra); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.infra-dispatch circle { fill: var(--infra); }
+.infra-step--slurm strong em { margin-left: 3mm; color: var(--infra); font-size: 6.4pt; font-style: normal; font-weight: 600; letter-spacing: 0; vertical-align: middle; }
+
+.infra-visual { position: relative; z-index: 0; min-width: 0; min-height: 0; overflow: hidden; margin: 0; }
+.infra-visual img { z-index: -1; }
+/* 이미지 위쪽 빈 공간 14mm를 잘라 서버 위에 라벨 자리만 남긴다. */
+.infra-visual img { position: absolute; top: -14mm; left: 0; display: block; width: 100%; height: auto; filter: brightness(.9) contrast(1.05); }
+.infra-visual::after { position: absolute; inset: 0; background: linear-gradient(90deg, #090a09 0%, transparent 6%, transparent 94%, #090a09 100%); pointer-events: none; content: ""; }
+
+.infra-group { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px solid var(--infra); }
+.infra-bridge { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px dashed rgb(63 143 102 / 70%); }
+.infra-group span { position: absolute; top: -1.2mm; left: 0; padding-right: 2mm; background: #090a09; color: rgb(236 236 230 / 52%); font: 5.8pt "SFMono-Regular", Menlo, monospace; letter-spacing: .1em; line-height: 1; }
+.infra-group--remote span { color: var(--infra); }
+
+.infra-label { position: absolute; top: 6.5mm; z-index: 1; display: grid; gap: 1.2mm; transform: translateX(-50%); text-align: center; }
+.infra-label strong { font-size: 10.5pt; font-weight: 660; white-space: nowrap; }
+.infra-label p { display: flex; align-items: center; justify-content: center; gap: 2mm; margin: 0; }
+.infra-label p b { color: rgb(236 236 230 / 64%); font: 7pt "SFMono-Regular", Menlo, monospace; font-weight: 500; }
+.infra-chips { display: flex; gap: .9mm; }
+.infra-chips i { width: 4.6mm; height: 2.4mm; border: 1px solid rgb(236 236 230 / 20%); }
+.infra-chips i.is-on { border-color: var(--infra); background: var(--infra); }
+
+.infra-link { position: absolute; top: 36%; left: 63%; z-index: 1; transform: translateX(-50%); color: var(--infra); font: 5.8pt "SFMono-Regular", Menlo, monospace; letter-spacing: .12em; }
+.infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(236 236 230 / 34%); font-size: 5.4pt; letter-spacing: .08em; }
+
+/* Foundation strip */
+.infra-base { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
+.infra-base p { display: flex; align-items: baseline; gap: 2mm; margin: 0; padding: 0 3.4mm; }
+.infra-base p:first-child { padding-left: 0; }
+.infra-base p:last-child { padding-right: 0; }
+.infra-base p + p { border-left: 1px solid rgb(236 236 230 / 12%); }
+.infra-base span { color: var(--infra); font: 5.8pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .08em; }
+.infra-base strong { font-size: 8.4pt; font-weight: 640; white-space: nowrap; }
+.infra-base small { color: rgb(236 236 230 / 50%); font-size: 6.6pt; white-space: nowrap; }
+
+/* Foot */
+.infra-foot { display: grid; grid-template-columns: 1fr 78mm; min-height: 0; padding-top: 2.6mm; }
+.infra-foot > div { display: flex; flex-direction: column; min-width: 0; }
+.infra-foot > div > span { margin-bottom: 2mm; }
+
+.infra-incidents { padding-right: 7mm; }
+.infra-incidents ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
+.infra-incidents li { display: grid; grid-template-columns: 7mm 1fr; align-content: start; row-gap: 1.4mm; border-top: 1px solid rgb(236 236 230 / 14%); padding: 2mm 5mm 0 0; }
+.infra-incidents li + li { border-left: 1px solid rgb(236 236 230 / 10%); padding-left: 4mm; }
+.infra-incidents li b { grid-row: span 3; color: var(--infra); font: 8pt "SFMono-Regular", Menlo, monospace; font-weight: 600; }
+.infra-incidents li strong { font-size: 9.6pt; font-weight: 640; }
+.infra-incidents li p { margin: 0; color: rgb(236 236 230 / 66%); font-size: 7.6pt; line-height: 1.5; }
+.infra-incidents li em { color: var(--infra); font-style: normal; }
+.infra-incidents li svg { display: block; width: 100%; max-width: 50mm; height: 11.5mm; overflow: visible; }
+
+/* Troubleshooting micro-diagrams */
+.fig-box rect { fill: none; stroke: rgb(236 236 230 / 32%); stroke-width: .8; }
+.fig-text { fill: rgb(236 236 230 / 82%); font-size: 9.4px; text-anchor: middle; }
+.fig-text--good { fill: #ecece6; font-weight: 650; }
+.fig-note { fill: rgb(236 236 230 / 64%); font-size: 9.4px; }
+.fig-note--good { fill: var(--infra); font-weight: 650; }
+.fig-mark { fill: rgb(236 236 230 / 66%); font-size: 9px; text-anchor: middle; }
+.fig-label-good { fill: var(--infra); font-size: 8.6px; font-weight: 700; letter-spacing: .6px; text-anchor: middle; }
+.fig-bad { fill: none; stroke: rgb(236 236 230 / 34%); stroke-width: .9; stroke-dasharray: 2.4 2; }
+.fig-good { fill: none; stroke: var(--infra); stroke-width: 1.4; }
+.fig-pill-bad { fill: none; stroke: rgb(236 236 230 / 40%); stroke-width: .9; stroke-dasharray: 2.4 2; }
+.fig-pill-good { fill: rgb(63 143 102 / 22%); stroke: var(--infra); stroke-width: 1; }
+.fig-bar-bad { fill: rgb(236 236 230 / 16%); stroke: rgb(236 236 230 / 36%); stroke-width: .6; }
+.fig-bar-good { fill: var(--infra); }
+
+.infra-scope { padding-left: 7mm; border-left: 1px solid rgb(236 236 230 / 14%); }
+.infra-scope__role { display: flex; align-items: baseline; gap: 3mm; margin: 0; border-top: 1px solid rgb(236 236 230 / 14%); padding-top: 2.2mm; }
+.infra-scope__role strong { font-size: 16pt; font-weight: 700; letter-spacing: -.02em; }
+.infra-scope__role small { color: rgb(236 236 230 / 56%); font: 7.4pt "SFMono-Regular", Menlo, monospace; }
+.infra-scope__chain { display: grid; grid-template-columns: repeat(3, max-content); column-gap: 7mm; margin: 3mm 0 0; padding: 0; list-style: none; }
+.infra-scope__chain li { position: relative; display: grid; gap: .6mm; }
+.infra-scope__chain li + li::before { position: absolute; bottom: 0; left: -5mm; color: var(--infra); font-size: 8pt; content: "→"; }
+.infra-scope__chain small { color: rgb(236 236 230 / 48%); font-size: 6.2pt; white-space: nowrap; }
+.infra-scope__chain b { font-size: 8.4pt; font-weight: 620; white-space: nowrap; }

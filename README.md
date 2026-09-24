@@ -6,13 +6,14 @@ SK hynix AI Hackathon 2026 지원용 포트폴리오.
 
 ## Status
 
-총 9페이지 Skeleton을 구성했고 다음 5페이지의 초안을 구현했습니다.
+총 9페이지 Skeleton을 구성했고 다음 6페이지의 초안을 구현했습니다.
 
 - 01 — Cover
 - 02 — 서울대학교병원: 좌우 ICA 특성으로 뇌동맥류 부위 구분
 - 03 — 서울대학교병원: 스마트폰·웨어러블 기반 소아·청소년 우울·불안 선별
 - 04 — 서울아산병원: 흡기·호기 CT 기반 폐 환기지도 합성
 - 05 — 순천향대학교: MaxViT 기반 CLE 종양 분류와 MAGAR XAI
+- 06 — 순천향대학교 Efficient Computing Lab: 분산 GPU 서버를 공용 Slurm 클러스터로 통합
 
 현재 04 — 서울아산병원 CT 기반 폐 환기지도 합성 연구의 상세 초안까지 구현했으며, 페이지 승인 전 최종 문구와 PDF 가독성을 검토하고 있습니다.
 
@@ -21,6 +22,8 @@ Page 04는 논문으로 완료된 폐 환기지도 연구에 단독 할당합니
 Page 04의 실제 환자 CT와 논문 figure는 사용하지 않습니다. 입력과 출력은 lung-masked coronal synthetic visual로 구성했고, 결과·본인 기여·협업 범위를 분리해 표시했습니다.
 
 Page 05는 직접 제안한 XAI 방법 MAGAR를 중심으로, 포트폴리오 톤으로 재구성한 웹 추론 화면에서 Grad-CAM과 비교해 보여줍니다. 실제 CLE 영상과 웹 스크린샷 대신 synthetic CLE와 도식 heatmap을 사용합니다.
+
+Page 06은 구축을 총괄한 GPU 클러스터를 반투명 서버 synthetic 이미지와 Slurm 배정 경로로 보여주고, 직접 해결한 운영 문제 3건을 micro-diagram으로 정리했습니다. 후임 담당자가 확장한 부분은 본인 작업으로 표기하지 않습니다.
 
 상세 진행 상황, 확정된 디자인 결정과 다음 작업은 [`docs/PROGRESS.md`](docs/PROGRESS.md)를 참고합니다.
 

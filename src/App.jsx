@@ -4,15 +4,10 @@ import AneurysmPage from './pages/02-aneurysm/AneurysmPage.jsx'
 import DigitalPhenotypingPage from './pages/03-digital-phenotyping/DigitalPhenotypingPage.jsx'
 import VentilationPage from './pages/04-ventilation/VentilationPage.jsx'
 import PathologyXaiPage from './pages/05-pathology-xai/PathologyXaiPage.jsx'
+import GpuInfraPage from './pages/06-gpu-infra/GpuInfraPage.jsx'
 import ProjectSkeletonPage from './pages/project-skeleton/ProjectSkeletonPage.jsx'
 
 const pages = [
-  {
-    label: 'AI Infrastructure',
-    title: 'GPU / AI Infrastructure',
-    focus: '공용 AI 학습 인프라의 핵심 구조를 결정합니다.',
-    placeholder: 'Researchers → JupyterHub → Slurm → GPU nodes',
-  },
   {
     label: 'Recappers',
     title: 'Recappers',
@@ -56,10 +51,14 @@ export default function App() {
         <PathologyXaiPage />
       </PageShell>
 
+      <PageShell pageNumber={6} section="Soonchunhyang University · Efficient Computing Lab · Undergraduate Research" tone="dark">
+        <GpuInfraPage />
+      </PageShell>
+
       {pages.map((page, index) => (
         <PageShell
           key={page.label}
-          pageNumber={index + 6}
+          pageNumber={index + 7}
           section={page.label}
         >
           <ProjectSkeletonPage {...page} />

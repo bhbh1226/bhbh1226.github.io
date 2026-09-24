@@ -222,7 +222,7 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 | Category | Color | Pages |
 | --- | --- | --- |
 | AI RESEARCH | 적갈색 `#a63b2d` | 02, 03, 04, 05 |
-| GPU INFRA | 초록색 (값은 Page 06 작업 시 확정) | 06 |
+| GPU INFRA | 초록색 `#3f8f66` | 06 |
 | SERVICE | 파란색 (값은 Page 07 작업 시 확정) | 07, 08 |
 
 - Page 05는 웹서비스도 포함하지만 핵심 기여가 MAGAR 제안이므로 AI RESEARCH로 분류한다.
@@ -899,92 +899,58 @@ PAGE 5 — CLE TUMOR CLASSIFICATION + MAGAR XAI
 
 
 ==================================================
-PAGE 6 — AI INFRASTRUCTURE
+PAGE 6 — GPU / AI INFRASTRUCTURE
 ==================================================
 
 ## Project
 
-EC Lab GPU / AI Infrastructure
+- 페이지 제목: 분산 GPU 서버를 공용 Slurm 클러스터로 통합
+- 헤더 라벨: Soonchunhyang University · Efficient Computing Lab · Undergraduate Research
+- Category: GPU INFRA (`#3f8f66`)
+- 근거: 인프라 저장소의 코드·설정·문서와 git 기록
 
-## Main Message
+## Role
 
-분산된 GPU 서버를
-연구실 구성원이 함께 사용할 수 있는
-공용 AI 학습 인프라로 통합.
+- 연구실 랩장으로서 인프라 구축을 총괄했다. 랩장 재임 기간(2025년 ~ 2026년 8월)은 이 페이지가 아니라 Page 09 경력에 쓴다.
+- 2026.07 설계·구축: 저장소 커밋은 2026-07-03 ~ 07-08, 전체 180개 중 37개
+- 이후 현재까지 커밋 없이 운영과 장애 대응을 계속했고, 후임 담당자에게 인수인계했다.
+- 2026-07-12 이후 모니터링, Ansible, Slurm accounting, 정량 지표, 보안, DR, 인수인계 문서는 다른 기여자가 만들었다. 이 항목과 그 정량 지표(대기 시간, 우회 점유 건수 등)는 본인 성과로 쓰지 않는다.
 
-## GPU Resources
+## Cluster
 
-실제 구성:
+- 관리 노드 2(Slurm 제어 노드, FreeIPA 인증 노드) + GPU 노드 3, GPU 6장
+  - RTX A6000 ×1 (로컬), RTX Pro 6000 ×2 (로컬), L40 ×3 (원격, Tailscale)
+- 통합 전: 서버마다 로컬 계정과 서로 다른 UID/GID, 채팅으로 GPU 사용 조율, SSH로 직접 GPU 점유 가능
 
-- NVIDIA A6000
-- NVIDIA L40
-- NVIDIA RTX Pro 6000
+## Work (본인)
 
-## Architecture
+- 로컬·원격 GPU 클러스터 아키텍처 설계
+- FreeIPA 중앙 인증: 계정 10개 이식, 파일 소유권 보존을 위해 기존 UID/GID 유지, SSSD/PAM
+- 로컬 노드 NFS 중앙 홈 통합, 원격 노드는 데이터를 현지에 유지
+- Slurm: GPU 타입별 GRES(`a6000` / `rtxpro6000` / `l40`), partition, cgroup으로 CPU·RAM·swap·GPU 장치 격리, 기본 24시간, DOWN 노드 자동 복귀
+- JupyterHub + MOSlurmSpawner: GPU 종류·개수·CPU·시간을 골라 Slurm 잡으로 실행
+- 로컬망 + Tailscale 하이브리드 네트워크
+- Borg 암호화·dedup·append-only 홈 일일 백업, 별도 경로 복원 검증을 직접 수행
+- Git 런북과 CHANGELOG로 인프라 변경 이력 관리
 
-다음 형태의 diagram 권장:
+## Troubleshooting (본인)
 
-```text
-Researchers
-    ↓
-JupyterHub
-    ↓
-Slurm
-    ↓
---------------------------------
-| A6000 | L40 | RTX Pro 6000 |
---------------------------------
-```
+1. 제어 노드 주소 충돌: 학교망의 다른 장비와 같은 주소(ARP 충돌) → 주소 재배치, hosts · NFS · Slurm · JupyterHub 설정 정리
+2. 컨테이너 CUDA 소실: systemd reload 때 cgroup이 GPU 장치 권한을 회수 → NVIDIA CDI 방식 전환, CDI 명세 자동 갱신
+3. 증분 백업이 매번 전체 복사(약 273GB): hardlink 증분이 성립하지 않음 → Borg dedup 백업 전환
 
-Supporting components:
+## Wording Rules
 
-```text
-FreeIPA
-Tailscale
-cgroup
-GRES
-CUDA
-NVIDIA Driver
-NVIDIA Container Toolkit
-Backup
-```
+- "고정 IP 전환"이라고 쓰지 않는다. 주소 예약이 확인되지 않았으므로 "주소 재배치"로 쓴다.
+- 백업은 "홈 백업"으로 한정한다. 대용량 RAID0와 원격 노드 데이터는 백업되지 않았다.
+- L40 노드가 이후 추론 서비스 전용으로 Slurm에서 빠진 것과 JupyterHub 유휴 서버 자동 종료는 본인 이후의 일이라 쓰지 않는다.
+- 내부 IP, 호스트명, 도메인, 계정명, realm, 키, 경로는 공개하지 않는다.
 
-## Work
+## Visual
 
-- 분산 GPU 서버 Slurm cluster 통합
-- FreeIPA 기반 중앙 계정 관리
-- Tailscale 네트워크
-- cgroup 기반 자원 격리
-- GPU 타입별 GRES scheduling
-- JupyterHub / Slurm 연동
-- CUDA / Driver / Container Toolkit 관리
-- 사용자별 GPU 개발환경 장애 대응
-- 네트워크 충돌 분석 및 복구
-- 고정 IP 환경 전환
-- Git 기반 인프라 변경 이력 관리
-- 일일 backup
-- restore validation
-- 후임 인수인계
-
-## Main Visual
-
-이 페이지는 반드시 architecture diagram 중심.
-
-텍스트 나열을 최소화.
-
-예:
-
-왼쪽:
-User / Jupyter
-
-중앙:
-Slurm Controller
-
-오른쪽:
-GPU Nodes
-
-하단:
-Authentication / Network / Resource / Backup layer
+- 반투명 GPU 서버 3대 synthetic 이미지(`assets/images/gpu-cluster-translucent-v3.png`). 그림 속 GPU 수는 실제와 같은 1 · 2 · 3장
+- 왼쪽 접근 흐름(연구원 · 관리자 → JupyterHub · SSH → Slurm)에서 Slurm 배정선이 서버 위 LOCAL · REMOTE 선으로 이어진다.
+- 문제 해결 3건은 "위 줄 흐린 점선 = 문제, 아래 줄 초록 실선 = 조치" micro-diagram으로 보여준다.
 
 
 ==================================================
@@ -1308,7 +1274,7 @@ Codex는 **처음부터 9페이지 전체를 한 번에 완성하지 않는다.*
 - 서울아산병원 논문의 채택·저자 표기 공식 문구와 슬라이드용 대표 지표
 - PECT 연구의 프로젝트명·방법·담당 범위 공개 가능 여부에 대한 연구진 승인
 - Recappers의 실제 Backend 기술과 논문 제목·저자 정보
-- AI Infrastructure 운영 기간과 공식 역할
+- 연구실 랩장 재임 시작 월 (Page 09 경력용)
 - Bixby Crew Hackathon과 STAC의 개최 연도 및 수상 공식 표기
 - 포트폴리오에 연결할 프로젝트 URL 또는 저장소 URL
 
@@ -1372,11 +1338,9 @@ MaxViT 구조 → 포트폴리오 톤으로 재구성한 웹 Assessment 창(Orig
 
 ## STEP 7
 
-AI Infrastructure 작성.
+GPU / AI Infrastructure 작성. (완료)
 
-Slurm architecture diagram 중심.
-
-작업 전, 전체 cluster architecture와 운영 문제 해결 경험 중 무엇을 가장 크게 보여줄지 결정한다.
+반투명 GPU 서버 이미지와 Slurm 배정 경로를 메인으로 두고, 기반 구성 한 줄, 문제 해결 micro-diagram 3건, 구축 총괄 역할을 배치한다.
 
 ## STEP 8
 
