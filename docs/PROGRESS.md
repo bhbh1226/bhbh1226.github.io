@@ -10,7 +10,7 @@
 
 `전체 Skeleton → 표지 → 한 페이지씩 구현·검토 → 전체 통일 → PDF 검수`
 
-현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구의 상세 초안을 구현·검토했다.
+현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구는 브라우저 기준 상세 디자인 검토를 마쳤다. 최종 PDF 출력 검수만 남아 있다.
 
 5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다. 다음 작업은 Page 06 GPU / AI Infrastructure다.
 
@@ -19,7 +19,7 @@
 | 01 | Cover | Draft approved |
 | 02 | SNUH — Aneurysm / ICA feature study | Draft approved |
 | 03 | SNUH — Pediatric digital phenotyping | Draft approved |
-| 04 | Asan Medical Center — CT-based lung ventilation synthesis | Detailed draft / reviewing |
+| 04 | Asan Medical Center — CT-based lung ventilation synthesis | Browser layout approved / PDF QA pending |
 | 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
 | 06 | GPU / AI Infrastructure | Skeleton |
 | 07 | Recappers | Skeleton |
@@ -143,9 +143,9 @@ Page 04는 논문으로 완료된 **CT 기반 폐 환기지도 합성 연구**�
 
 페이지의 중심 메시지:
 
-> 4개 생성 모델을 같은 데이터와 평가 조건에서 구현·비교했으며, 영상 유사도가 높은 모델과 환기 결손을 잘 재현한 모델이 서로 달랐다.
+> 4개 생성 모델을 같은 데이터와 평가 조건에서 구현·비교했으며, 평가 지표에 따라 가장 높은 결과를 보인 모델이 달랐다.
 
-주요 결과는 ResViT의 PSNR·SSIM과 SelfRDB의 결손 영역 DSC·Sensitivity 차이를 중심으로 최소한만 노출한다. 실제 환자 CT와 논문 figure를 그대로 사용하지 않고, synthetic CT·ventilation map·defect mask schematic으로 평가 구조를 재구성한다.
+주요 결과는 ResViT의 PSNR·SSIM과 SelfRDB의 결손 영역 DSC·Sensitivity를 중심으로 노출한다. pix2pixHD, ResViT, I²SB, SelfRDB 네 모델 모두 동일한 `PSNR / SSIM / DSC / Sensitivity` 평균값을 표시하고 최고값만 강조한다. 실제 환자 CT와 논문 figure를 그대로 사용하지 않고, synthetic CT·ventilation map schematic으로 평가 구조를 재구성한다.
 
 ### PECT — Deferred / Disclosure Rule
 
@@ -167,9 +167,9 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - 상단: 연구 제목과 `AI RESEARCH` category mark
 - 요약: 동일 데이터·평가 조건에서 GAN 2종과 Diffusion 2종을 비교했다는 연구 범위
 - 메인 도식: `정합된 흡기·호기 CT → 4개 생성 모델 → 폐 환기지도`
-- 결과 비교: ResViT의 영상 유사도와 SelfRDB의 환기 결손 재현 결과를 하나의 비교축으로 구성
-- 공통 결론: 영상 유사도와 환기 결손 재현에서 서로 다른 모델이 가장 높은 결과를 보였음을 명시
-- 하단: `본인 기여 → 연구 맥락 → 논문 정보` 순서로 역할과 결과를 분리
+- 결과 비교: 네 모델의 `PSNR / SSIM / DSC / Sensitivity` 평균값을 4열로 구성하고 `ResViT — PSNR·SSIM`, `SelfRDB — DSC·Sensitivity` 최고값을 구분
+- 결과 해석: 수치 행 아래에서 `PSNR·SSIM 최고 · ResViT`, `결손 DSC·Sensitivity 최고 · SelfRDB`를 짧게 정리
+- 하단: `MY CONTRIBUTION`을 `IMPLEMENT → EXPERIMENT → ANALYSIS → PAPER` 네 단계로 표시하고, 오른쪽에 연구 맥락과 논문 인용을 배치
 
 ### Synthetic Assets
 
@@ -183,26 +183,26 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 ### Role Presentation
 
-- 본인 기여를 `4개 모델 구현 → 공통 조건 학습·평가 → 통계 분석·비교 figure → 방법·결과·해석 원고 작성`의 네 단계로 표시한다.
-- 연구진이 비교 모델과 평가 지표를 지정한 사실은 `RESEARCH CONTEXT`에 배치한다.
-- 공동 연구자가 CT 전처리를 담당한 사실을 같은 영역에 명시한다.
+- 본인 기여를 `4개 모델 구현 → 동일 조건 학습·평가 → 공통 평가 코드·통계 분석 → 비교 figure·논문 원고 작성`의 네 단계로 표시한다.
+- `RESEARCH CONTEXT`에는 연구진이 정한 비교 조건과 공동 연구자가 전처리한 CT를 바탕으로 모델 구현·평가를 수행했다는 문장만 간결하게 배치한다.
+- `PUBLICATION`에는 `Choi, C., Park, P., Lee, S. M., & Kim, N.` 저자 순서, 논문 제목, `SASHIMI Workshop, MICCAI 2026`을 축약 인용 형식으로 표시하고 `Park, P.`를 강조한다.
 - 연구 전체 기획, 모델·지표 선정 또는 데이터 전처리를 주도한 것처럼 표현하지 않는다.
 
 ### Layout Verification
 
-- 중앙 모델 영역은 `GENERATIVE MODELS` 아래 GAN / Diffusion 두 열로 단순화했다.
+- 중앙 모델 영역은 `GENERATIVE MODELS` 아래 GAN / Diffusion 두 열로 단순화했다. GAN은 회색 이중선, Diffusion은 적갈색 단일선으로 구분한다.
 - 불필요했던 `IMPLEMENT · TRAIN · EVALUATE`, `SYNTHESIZE`, `같은 데이터` 표기를 제거했다.
-- 하단을 `평가별 대표 결과 → 공통 결론 → 본인 기여 → 연구 맥락·출판` 순서로 재구성했다.
+- 하단을 `4개 모델 정량 비교 → 지표별 결론 → 본인 기여 → 연구 맥락·논문 인용` 순서로 재구성했다.
+- 입력 CT 라벨, 모델 그룹명, `4 MODEL COMPARISON`, 출력 설명과 하단 역할 설명의 글자 크기·대비를 확대했다.
 - 고정 행 높이를 재배분해 하단 영역의 실제 overflow를 제거했다.
-- 브라우저 측정 결과 Page 04의 `.vent-case`와 `.vent-foot`은 `scrollHeight === clientHeight`이며 내부 넘침이 없다.
+- 브라우저 측정 결과 Page 04의 page/content 모두 가로·세로 overflow가 없다.
 - `npm run build`와 `git diff --check`를 통과했다.
 
 ### Remaining Review
 
-- `MICCAI 2026 SASHIMI Workshop`과 `Second author`의 최종 공식 표기 확인
-- 최종 PDF 배율에서 대표 수치와 영문 caption 가독성 확인
+- 최종 PDF 배율에서 4개 모델 수치, 영문 caption, 논문 인용의 가독성 확인
 - 실제 PDF 출력에서 v3 이미지의 검은 배경, crop, grayscale 대비 확인
-- Page 04 사용자 승인 후에만 Page 05 Pathology AI로 이동
+- PDF 출력에서 GAN 이중선과 Diffusion 단일선의 두께·강조색 재현 확인
 
 ### Image Generation Workflow
 
@@ -286,7 +286,7 @@ Git 저장소와 기준 커밋이 생성되어 있다.
 9b51757 feat: establish portfolio skeleton and first medical AI pages
 ```
 
-Page 04의 사용자 검토가 끝나면 다음 커밋으로 분리한다.
+Page 04의 브라우저 디자인 검토는 완료했으며, 현재 세부 수정분은 Page 05 작업과 분리해 커밋한다.
 
 ```text
 feat: build Asan Medical Center ventilation study page

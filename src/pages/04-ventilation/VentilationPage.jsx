@@ -32,7 +32,7 @@ function ModelRail() {
         </div>
         <div className={cx('vent-model-group')}>
           <span>DIFFUSION</span>
-          <strong>I2SB</strong>
+          <strong>I²SB</strong>
           <strong>SelfRDB</strong>
         </div>
       </div>
@@ -75,19 +75,51 @@ export default function VentilationPage() {
       <section className={cx('vent-findings')}>
         <div className={cx('vent-finding')}>
           <div>
-            <span>IMAGE FIDELITY</span>
-            <small>전체 영상 구조와 유사도</small>
+            <span>GAN</span>
+            <strong>pix2pixHD</strong>
           </div>
-          <strong>ResViT</strong>
-          <p><b>PSNR&nbsp; 22.22</b><b>SSIM&nbsp; 0.863</b></p>
+          <dl>
+            <div><dt>PSNR</dt><dd>21.17</dd></div>
+            <div><dt>SSIM</dt><dd>0.816</dd></div>
+            <div><dt>DSC</dt><dd>0.625</dd></div>
+            <div><dt>SEN</dt><dd>0.529</dd></div>
+          </dl>
         </div>
-        <div className={cx('vent-finding', 'vent-finding--defect')}>
+        <div className={cx('vent-finding', 'vent-finding--best')}>
           <div>
-            <span>DEFECT RECONSTRUCTION</span>
-            <small>국소 환기 결손 재현</small>
+            <span>BEST · PSNR / SSIM</span>
+            <strong>ResViT</strong>
           </div>
-          <strong>SelfRDB</strong>
-          <p><b>DSC&nbsp; 0.803</b><b>Sensitivity&nbsp; 0.774</b></p>
+          <dl>
+            <div className={cx('is-best')}><dt>PSNR</dt><dd>22.22</dd></div>
+            <div className={cx('is-best')}><dt>SSIM</dt><dd>0.863</dd></div>
+            <div><dt>DSC</dt><dd>0.544</dd></div>
+            <div><dt>SEN</dt><dd>0.467</dd></div>
+          </dl>
+        </div>
+        <div className={cx('vent-finding')}>
+          <div>
+            <span>DIFFUSION</span>
+            <strong>I²SB</strong>
+          </div>
+          <dl>
+            <div><dt>PSNR</dt><dd>20.92</dd></div>
+            <div><dt>SSIM</dt><dd>0.818</dd></div>
+            <div><dt>DSC</dt><dd>0.748</dd></div>
+            <div><dt>SEN</dt><dd>0.706</dd></div>
+          </dl>
+        </div>
+        <div className={cx('vent-finding', 'vent-finding--best')}>
+          <div>
+            <span>BEST · DSC / SENSITIVITY</span>
+            <strong>SelfRDB</strong>
+          </div>
+          <dl>
+            <div><dt>PSNR</dt><dd>21.78</dd></div>
+            <div><dt>SSIM</dt><dd>0.853</dd></div>
+            <div className={cx('is-best')}><dt>DSC</dt><dd>0.803</dd></div>
+            <div className={cx('is-best')}><dt>SEN</dt><dd>0.774</dd></div>
+          </dl>
         </div>
       </section>
 
@@ -96,31 +128,51 @@ export default function VentilationPage() {
           <span>RESULT</span>
           <div className={cx('vent-result__metric')}>
             <strong>ResViT</strong>
-            <p>영상 유사도 최고</p>
+            <p>PSNR·SSIM 최고</p>
           </div>
           <div className={cx('vent-result__metric')}>
             <strong>SelfRDB</strong>
-            <p>환기 결손 재현 최고</p>
+            <p>결손 DSC·Sensitivity 최고</p>
           </div>
         </div>
         <div className={cx('vent-foot__body')}>
           <div className={cx('vent-contribution')}>
             <span>MY CONTRIBUTION</span>
             <ol>
-              <li><b>01</b><p>연구 task에 맞춘<br /><strong>4개 모델 구현</strong></p></li>
-              <li><b>02</b><p>같은 조건의<br /><strong>학습·평가 실행</strong></p></li>
-              <li><b>03</b><p>공통 평가 코드·<br /><strong>통계 분석</strong></p></li>
-              <li><b>04</b><p>비교 figure와<br /><strong>논문 원고 작성</strong></p></li>
+              <li>
+                <div><b>01</b><em>IMPLEMENT</em></div>
+                <strong>4개 모델 구현</strong>
+                <p>연구 task에 맞춰 구현</p>
+              </li>
+              <li>
+                <div><b>02</b><em>EXPERIMENT</em></div>
+                <strong>학습·평가 실행</strong>
+                <p>동일한 데이터·평가 조건</p>
+              </li>
+              <li>
+                <div><b>03</b><em>ANALYSIS</em></div>
+                <strong>통계 분석</strong>
+                <p>공통 평가 코드 구성</p>
+              </li>
+              <li>
+                <div><b>04</b><em>PAPER</em></div>
+                <strong>Figure·원고 작성</strong>
+                <p>방법·결과·해석 정리</p>
+              </li>
             </ol>
           </div>
           <div className={cx('vent-context')}>
             <div>
               <span>RESEARCH CONTEXT</span>
-              <p>비교 모델·평가 지표 <b>연구진 지정</b><br />CT 전처리 <b>공동 연구자 담당</b></p>
+              <p>연구진이 정한 비교 조건과 공동 연구자가 전처리한 CT를 바탕으로 <b>모델 구현·평가 수행</b></p>
             </div>
             <div className={cx('vent-paper')}>
               <span>PUBLICATION</span>
-              <p>MICCAI 2026 SASHIMI Workshop <b>· Second author</b></p>
+              <p>
+                <small>Choi, C., <b>Park, P.</b>, Lee, S. M., &amp; Kim, N.</small>
+                <cite>Synthesizing CT-based Functional Lung Ventilation Map: A Comparative Study of Generative Models for Image-to-Image Translation.</cite>
+                <em>SASHIMI Workshop, MICCAI 2026.</em>
+              </p>
             </div>
           </div>
         </div>
