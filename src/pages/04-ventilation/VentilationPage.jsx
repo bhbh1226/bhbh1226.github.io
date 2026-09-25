@@ -85,9 +85,9 @@ export default function VentilationPage() {
             <div><dt>SEN</dt><dd>0.529</dd></div>
           </dl>
         </div>
-        <div className={cx('vent-finding', 'vent-finding--best')}>
+        <div className={cx('vent-finding')}>
           <div>
-            <span>BEST · PSNR / SSIM</span>
+            <span>GAN</span>
             <strong>ResViT</strong>
           </div>
           <dl>
@@ -109,9 +109,9 @@ export default function VentilationPage() {
             <div><dt>SEN</dt><dd>0.706</dd></div>
           </dl>
         </div>
-        <div className={cx('vent-finding', 'vent-finding--best')}>
+        <div className={cx('vent-finding')}>
           <div>
-            <span>BEST · DSC / SENSITIVITY</span>
+            <span>DIFFUSION</span>
             <strong>SelfRDB</strong>
           </div>
           <dl>
@@ -142,12 +142,12 @@ export default function VentilationPage() {
               <li>
                 <div><b>01</b><em>IMPLEMENT</em></div>
                 <strong>4개 모델 구현</strong>
-                <p>연구 task에 맞춰 구현</p>
+                <p>연구진 지정 모델 · task 구현</p>
               </li>
               <li>
                 <div><b>02</b><em>EXPERIMENT</em></div>
                 <strong>학습·평가 실행</strong>
-                <p>동일한 데이터·평가 조건</p>
+                <p>공동 연구자 전처리 CT · 동일 조건</p>
               </li>
               <li>
                 <div><b>03</b><em>ANALYSIS</em></div>
@@ -161,19 +161,13 @@ export default function VentilationPage() {
               </li>
             </ol>
           </div>
-          <div className={cx('vent-context')}>
-            <div>
-              <span>RESEARCH CONTEXT</span>
-              <p>연구진이 정한 비교 조건과 공동 연구자가 전처리한 CT를 바탕으로 <b>모델 구현·평가 수행</b></p>
-            </div>
-            <div className={cx('vent-paper')}>
-              <span>PUBLICATION</span>
-              <p>
-                <small>Choi, C., <b>Park, P.</b>, Lee, S. M., &amp; Kim, N.</small>
-                <cite>Synthesizing CT-based Functional Lung Ventilation Map: A Comparative Study of Generative Models for Image-to-Image Translation.</cite>
-                <em>SASHIMI Workshop, MICCAI 2026.</em>
-              </p>
-            </div>
+          <div className={cx('vent-paper')}>
+            <span>PUBLICATION</span>
+            <p>
+              <small>Choi, C., <b>Park, P.</b>, Lee, S. M., &amp; Kim, N.</small>
+              <cite>Synthesizing CT-based Functional Lung Ventilation Map: A Comparative Study of Generative Models for Image-to-Image Translation.</cite>
+              <em>SASHIMI Workshop, MICCAI 2026.</em>
+            </p>
           </div>
         </div>
       </section>
