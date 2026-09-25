@@ -20,7 +20,6 @@ function LearningWorkspace() {
             <h3>학습하는 시스템의 기본 구조</h3>
             <div className={cx('rec-slide__diagram')}><i>INPUT DATA</i><span>→</span><b>LEARNING</b><span>→</span><i>PREDICTION</i></div>
             <p>입력 데이터에서 패턴을 학습하고 새로운 입력에 대한 결과를 생성합니다.</p>
-            <em>현재 대본 구간과 연결됨</em>
           </div>
         </section>
 
@@ -30,7 +29,6 @@ function LearningWorkspace() {
             <p><small>STUDENT</small><span>지도학습과 비지도학습의<br />차이를 설명해줘.</span></p>
             <p className={cx('is-ai')}><small>RECAPPERS</small><span>정답 label의 유무로 두 학습 방식을 구분합니다.</span><em>PDF p.12 · 18:42</em></p>
           </div>
-          <div className={cx('rec-quiz-note')}><span>QUIZ</span><p><strong>강의 기반 예상 문제</strong><small>개념 확인 · 응용 · 서술형</small></p></div>
           <div className={cx('rec-chat')}><span>강의 내용에 대해 질문하기</span><b>↗</b></div>
         </aside>
 
@@ -63,12 +61,9 @@ export default function RecappersPage() {
 
       <section className={cx('rec-stage')} aria-label="Knowledge distillation과 Recappers 학습 화면">
         <figure className={cx('rec-visual')}>
-          <header><span>KNOWLEDGE DISTILLATION</span><small>RESEARCH PIPELINE</small></header>
+          <header><span>KNOWLEDGE DISTILLATION</span></header>
           <div className={cx('rec-visual__image')}>
             <img src={distillationVisual} alt="두 Teacher 모델의 지식을 하나의 경량 Student 모델로 전달하는 합성 이미지" />
-            <span className={cx('rec-visual__image-label', 'is-teacher')}>2 TEACHERS</span>
-            <i>KNOWLEDGE TRANSFER</i>
-            <span className={cx('rec-visual__image-label', 'is-student')}>1 STUDENT</span>
           </div>
           <div className={cx('rec-visual__labels')}>
             <p><span>TEACHERS</span><strong>GPT-5<br />Gemini 2.5 Flash</strong></p>
@@ -79,7 +74,7 @@ export default function RecappersPage() {
         </figure>
 
         <div className={cx('rec-service')}>
-          <header><span>LEARNING SERVICE</span><strong>PDF · Chat / Quiz · Linked Transcript</strong><small>서비스 구조·학습 흐름 설계</small></header>
+          <header><span>LEARNING SERVICE</span></header>
           <LearningWorkspace />
         </div>
       </section>
@@ -95,11 +90,13 @@ export default function RecappersPage() {
           <span>MY ROLE</span>
           <strong>Project Lead</strong>
           <p className={cx('rec-role__focus')}>서비스 구조 · AI 파이프라인 설계</p>
+          {/* 본인 작업 3줄 + 팀원 담당 1줄(흐리게) */}
           <div className={cx('rec-role__scope')}>
             <p><b>LEAD</b><span>팀 운영 · 역할 및 개발 과제 분배</span></p>
             <p><b>AI</b><span>강의자료 처리 · Teacher 데이터 생성 · Gemma-3n LoRA</span></p>
+            <p><b>PAPER</b><span>실험 · 논문 작성</span></p>
+            <p className={cx('is-team')}><b>TEAM</b><span>팀원 담당: Web Frontend / Backend · STT</span></p>
           </div>
-          <small><b>DIRECT</b> 실험·논문 작성<br /><b>TEAM</b> Web Frontend / Backend · STT</small>
         </div>
 
         <div className={cx('rec-paper')}>
