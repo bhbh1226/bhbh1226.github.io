@@ -219,7 +219,7 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 ### Remaining Review
 
-- MY CONTRIBUTION 설명 두 줄의 줄바꿈이 어색함("task / 구현", "CT / · 동일 조건") — 문구 길이 또는 칸 폭 조정 필요
+- (해결) MY CONTRIBUTION 설명 두 줄은 의미 단위로 직접 줄바꿈: "연구진 지정 모델을 / task에 맞게 구현", "공동 연구자 전처리 CT / 동일 조건에서 실행"
 
 ### Image Generation Workflow
 

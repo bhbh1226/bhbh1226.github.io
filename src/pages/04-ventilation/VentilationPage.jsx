@@ -142,12 +142,12 @@ export default function VentilationPage() {
               <li>
                 <div><b>01</b><em>IMPLEMENT</em></div>
                 <strong>4개 모델 구현</strong>
-                <p>연구진 지정 모델 · task 구현</p>
+                <p>연구진 지정 모델을<br />task에 맞게 구현</p>
               </li>
               <li>
                 <div><b>02</b><em>EXPERIMENT</em></div>
                 <strong>학습·평가 실행</strong>
-                <p>공동 연구자 전처리 CT · 동일 조건</p>
+                <p>공동 연구자 전처리 CT<br />동일 조건에서 실행</p>
               </li>
               <li>
                 <div><b>03</b><em>ANALYSIS</em></div>
