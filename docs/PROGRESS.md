@@ -10,21 +10,24 @@
 
 `전체 Skeleton → 표지 → 한 페이지씩 구현·검토 → 전체 통일 → PDF 검수`
 
-현재 1~3페이지 초안을 확정했고, 4페이지 서울아산병원 폐 환기지도 합성 연구는 브라우저 기준 상세 디자인 검토를 마쳤다. 최종 PDF 출력 검수만 남아 있다.
+9페이지 모두 구현과 사용자 검토를 마쳤다. 2026-09-25에 Page 03 · 04 · 06 · 07을 가독성 중심으로 다시 다듬었다(`PAGE_03_04_06_REFINEMENT_PLAN.md`에서 시작).
 
-5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다.
-6페이지 GPU / AI Infrastructure는 인프라 저장소의 git 기록으로 본인 범위를 확인한 뒤 구현했고, 사용자 검토와 Print to PDF 확인을 마쳤다.
-7페이지 Recappers는 논문 원문과 사용자 확인을 바탕으로 구현했으며, 브라우저 기준 상세 디자인 검토를 마쳤다. 최종 PDF 출력 검수만 남아 있다.
+- Page 03: PIPELINE AUDIT를 네 행 표로 교체, 기기 이미지 추가, 작은 글자 확대
+- Page 04: 결과 칸 라벨을 GAN / DIFFUSION으로, RESEARCH CONTEXT를 기여 설명과 논문 인용으로 흡수, 작은 글자 확대
+- Page 06: 제목을 "공용 연구 인프라"로 바꾸고, 인증 · 스토리지 · 접속 · 스케줄링의 이전 → 이후를 메인에 배치
+- Page 07: 슬라이드 톤 맞춤, 중복 문구 제거, MY ROLE 형식 통일
+
+전체 9페이지 PDF는 약 15.9MB다. 남은 작업은 전체 typography · spacing 통일과 최종 PDF 검수다.
 
 | Page | Content | Status |
 | --- | --- | --- |
 | 01 | Cover | Draft approved |
 | 02 | SNUH — Aneurysm / ICA feature study | Draft approved |
-| 03 | SNUH — Pediatric digital phenotyping | Draft approved |
-| 04 | Asan Medical Center — CT-based lung ventilation synthesis | Browser layout approved / PDF QA pending |
+| 03 | SNUH — Pediatric digital phenotyping | Refined / PDF checked |
+| 04 | Asan Medical Center — CT-based lung ventilation synthesis | Refined / PDF checked |
 | 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
-| 06 | GPU / AI Infrastructure — Slurm cluster | Draft approved / PDF checked |
-| 07 | Recappers — Multi-Modal LLM lecture assistant | Browser layout approved / PDF QA pending |
+| 06 | GPU / AI Infrastructure — 공용 연구 인프라 | Restructured / PDF checked |
+| 07 | Recappers — Multi-Modal LLM lecture assistant | Refined / PDF checked |
 | 08 | Generative AI Video — 잔향 | Draft approved / PDF checked |
 | 09 | Profile · Awards · Early Work | Draft approved / PDF checked |
 
@@ -177,9 +180,9 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - 상단: 연구 제목과 `AI RESEARCH` category mark
 - 요약: 동일 데이터·평가 조건에서 GAN 2종과 Diffusion 2종을 비교했다는 연구 범위
 - 메인 도식: `정합된 흡기·호기 CT → 4개 생성 모델 → 폐 환기지도`
-- 결과 비교: 네 모델의 `PSNR / SSIM / DSC / Sensitivity` 평균값을 4열로 구성하고 `ResViT — PSNR·SSIM`, `SelfRDB — DSC·Sensitivity` 최고값을 구분
+- 결과 비교: 네 모델의 `PSNR / SSIM / DSC / Sensitivity` 평균값을 4열로 구성하고, 칸 라벨은 모델군(GAN / DIFFUSION)으로 표시. 최고값은 수치 강조로만 구분
 - 결과 해석: 수치 행 아래에서 `PSNR·SSIM 최고 · ResViT`, `결손 DSC·Sensitivity 최고 · SelfRDB`를 짧게 정리
-- 하단: `MY CONTRIBUTION`을 `IMPLEMENT → EXPERIMENT → ANALYSIS → PAPER` 네 단계로 표시하고, 오른쪽에 연구 맥락과 논문 인용을 배치
+- 하단: `MY CONTRIBUTION`을 `IMPLEMENT → EXPERIMENT → ANALYSIS → PAPER` 네 단계로 표시하고, 오른쪽에는 논문 인용만 배치
 
 ### Synthetic Assets
 
@@ -194,7 +197,7 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 ### Role Presentation
 
 - 본인 기여를 `4개 모델 구현 → 동일 조건 학습·평가 → 공통 평가 코드·통계 분석 → 비교 figure·논문 원고 작성`의 네 단계로 표시한다.
-- `RESEARCH CONTEXT`에는 연구진이 정한 비교 조건과 공동 연구자가 전처리한 CT를 바탕으로 모델 구현·평가를 수행했다는 문장만 간결하게 배치한다.
+- 연구 맥락은 별도 블록 없이 기여 설명에 넣는다: IMPLEMENT "연구진 지정 모델 · task 구현", EXPERIMENT "공동 연구자 전처리 CT · 동일 조건".
 - `PUBLICATION`에는 `Choi, C., Park, P., Lee, S. M., & Kim, N.` 저자 순서, 논문 제목, `SASHIMI Workshop, MICCAI 2026`을 축약 인용 형식으로 표시하고 `Park, P.`를 강조한다.
 - 연구 전체 기획, 모델·지표 선정 또는 데이터 전처리를 주도한 것처럼 표현하지 않는다.
 
@@ -208,11 +211,15 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - 브라우저 측정 결과 Page 04의 page/content 모두 가로·세로 overflow가 없다.
 - `npm run build`와 `git diff --check`를 통과했다.
 
+### 2026-09-25 Refinement
+
+- 결과 칸의 `BEST · …` 라벨을 모델군 라벨로 바꾸고, 수치 · 라벨 · 캡션 · 논문 인용 글자를 키웠다.
+- RESEARCH CONTEXT 블록을 없애고 그 내용을 기여 설명 두 줄로 옮겼다.
+- 9페이지 전체 PDF 출력에서 Page 04 overflow 없음 확인.
+
 ### Remaining Review
 
-- 최종 PDF 배율에서 4개 모델 수치, 영문 caption, 논문 인용의 가독성 확인
-- 실제 PDF 출력에서 v3 이미지의 검은 배경, crop, grayscale 대비 확인
-- PDF 출력에서 GAN 이중선과 Diffusion 단일선의 두께·강조색 재현 확인
+- MY CONTRIBUTION 설명 두 줄의 줄바꿈이 어색함("task / 구현", "CT / · 동일 조건") — 문구 길이 또는 칸 폭 조정 필요
 
 ### Image Generation Workflow
 
@@ -280,18 +287,19 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 - 본인 커밋 2026-07-03 ~ 07-08 (37 / 180). 이후 모니터링 · Ansible · accounting · 정량 지표 · 보안 · DR은 다른 기여자 작업이라 페이지에서 제외
 - 관리 노드 2 + GPU 노드 3, GPU 6장 (A6000 ×1, RTX Pro 6000 ×2, L40 ×3 원격)
-- FreeIPA 계정 10개 이식, NFS 중앙 홈, Slurm GRES · partition · cgroup, JupyterHub + MOSlurmSpawner, 로컬망 + Tailscale, Borg 홈 일일 백업과 복원 검증, Git 런북 · CHANGELOG
+- FreeIPA 계정 10개 이식, NFS 중앙 홈 · 데이터 공유(로컬 노드), Slurm GRES · partition · cgroup, JupyterHub + MOSlurmSpawner, 로컬망 + Tailscale, Borg 홈 일일 백업과 복원 검증, Git 런북 · CHANGELOG
 - 문제 해결: 제어 노드 주소 충돌, 컨테이너 CUDA 소실(CDI 전환), 매번 전체 복사되던 백업(Borg 전환)
 - "고정 IP 전환", "전체 백업"은 기록과 맞지 않아 "주소 재배치", "홈 백업"으로 표현
 
 ### Implemented Visual Structure
 
-- 요약 줄: 서버별 로컬 계정 · 직접 GPU 점유 → 중앙 인증 · GPU 타입별 스케줄링 · JupyterHub 셀프서비스. 오른쪽에 이전 상태와 규모
-- 메인: 왼쪽 접근 흐름(USERS → ENTRY → Slurm, 단계 점을 잇는 세로 레일 · 끝의 Slurm 점만 초록) + 반투명 GPU 서버 이미지. Slurm 배정선이 서버 위 LOCAL 선으로 이어지고, LOCAL과 REMOTE 사이는 점선(Tailscale)
-- 서버 위 라벨: GPU 이름, 장수, 초록 칩
-- 기반 구성 한 줄: AUTH · NETWORK · STORAGE · BACKUP · DOCS
-- 하단: 문제 해결 3건(문제 = 흐린 점선, 조치 = 초록 실선 micro-diagram) / MY ROLE 구축 총괄 · 설계·구축 → 운영·장애 대응 → 인수인계
-- 후속 기여자 작업을 흐리게 적던 LATER 줄은 할 일 목록처럼 보여 제거
+- 제목: 분산 GPU 서버를 공용 연구 인프라로 통합 (이전: "공용 Slurm 클러스터로 통합" — Slurm만 강조돼 변경)
+- 요약 줄: 서버마다 따로 쓰던 계정 · 저장소 · GPU → 중앙 인증 · 공유 스토리지 · Slurm 스케줄링 · JupyterHub. 오른쪽에 역할 · 기간 · 규모
+- 메인 왼쪽: AUTH · STORAGE · ACCESS · SCHEDULER 네 묶음, 각각 이전 → 통합 후 → 설명. 묶음 아래 가로선이 초록 버스로 모여 서버 위 LOCAL 선에 합류
+- 메인 오른쪽: 반투명 GPU 서버 이미지(라벨 + 서버 묶음을 세로 가운데 정렬), LOCAL · REMOTE 선과 Tailscale 점선
+- 하단: 문제 해결 3건(문제 = 흐린 점선, 조치 = 초록 실선 micro-diagram, 좌표계 200 × 52) / FOUNDATION: NETWORK · BACKUP · DOCS
+- 2026-09-25 변경: 화살표 접근 흐름 → 세로 레일 → 버스 구조로 바꿈. MY ROLE 칸과 기반 구성 줄은 없애고 역할 · 기간은 요약 줄로, AUTH · STORAGE는 왼쪽 묶음으로 옮김
+- 사용자 확인 사실 추가: NFS가 홈과 데이터를 로컬 노드 전체에 공유, 통합 전에는 서버마다 저장소가 격리
 
 ### Synthetic Asset
 
@@ -475,15 +483,26 @@ docs: align agent guide with React stack and category colors
 페이지 커밋 현황:
 
 ```text
+c6d895d style: refine GPU infra access flow and foundation strip
+59706f9 style: declutter Recappers page
+727a86d style: improve page 3 research readability
+6f35caa feat: build profile, awards, and early work page
 e28bf5f feat: build Recappers case study
 4e38469 feat: build Time Blending (잔향) generative video page
 975f1fb feat: build GPU cluster infrastructure page
 ```
 
+이번 정리 커밋:
+
+```text
+style: refine ventilation results and contribution text   (Page 04)
+feat: restructure GPU infra page around integrated components   (Page 06 + AGENTS.md)
+docs: record page 3–7 refinements and refinement plan
+```
+
 남은 커밋:
 
 ```text
-feat: build profile, awards, and early work page
 style: unify portfolio typography and spacing
 chore: verify print layout and export final PDF
 ```
