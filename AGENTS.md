@@ -859,7 +859,7 @@ PAGE 6 — GPU / AI INFRASTRUCTURE
 
 ## Project
 
-- 페이지 제목: 분산 GPU 서버를 공용 Slurm 클러스터로 통합
+- 페이지 제목: 분산 GPU 서버를 공용 연구 인프라로 통합 (Slurm 하나가 아니라 인증 · 스토리지 · 접속 · 스케줄링을 묶은 작업이라 Slurm만 제목에 두지 않는다)
 - 헤더 라벨: Soonchunhyang University · Efficient Computing Lab · Undergraduate Research
 - Category: GPU INFRA (`#3f8f66`)
 - 근거: 인프라 저장소의 코드·설정·문서와 git 기록
@@ -875,13 +875,13 @@ PAGE 6 — GPU / AI INFRASTRUCTURE
 
 - 관리 노드 2(Slurm 제어 노드, FreeIPA 인증 노드) + GPU 노드 3, GPU 6장
   - RTX A6000 ×1 (로컬), RTX Pro 6000 ×2 (로컬), L40 ×3 (원격, Tailscale)
-- 통합 전: 서버마다 로컬 계정과 서로 다른 UID/GID, 채팅으로 GPU 사용 조율, SSH로 직접 GPU 점유 가능
+- 통합 전: 서버마다 로컬 계정과 서로 다른 UID/GID, 서버마다 저장소가 따로 격리, 채팅으로 GPU 사용 조율, SSH로 직접 GPU 점유 가능
 
 ## Work (본인)
 
 - 로컬·원격 GPU 클러스터 아키텍처 설계
 - FreeIPA 중앙 인증: 계정 10개 이식, 파일 소유권 보존을 위해 기존 UID/GID 유지, SSSD/PAM
-- 로컬 노드 NFS 중앙 홈 통합, 원격 노드는 데이터를 현지에 유지
+- NFS 중앙 홈 · 데이터: 로컬 노드 전체가 같은 코드 · 데이터를 공유. 원격 노드는 데이터를 현지에 유지
 - Slurm: GPU 타입별 GRES(`a6000` / `rtxpro6000` / `l40`), partition, cgroup으로 CPU·RAM·swap·GPU 장치 격리, 기본 24시간, DOWN 노드 자동 복귀
 - JupyterHub + MOSlurmSpawner: GPU 종류·개수·CPU·시간을 골라 Slurm 잡으로 실행
 - 로컬망 + Tailscale 하이브리드 네트워크
@@ -904,7 +904,10 @@ PAGE 6 — GPU / AI INFRASTRUCTURE
 ## Visual
 
 - 반투명 GPU 서버 3대 synthetic 이미지(`assets/images/gpu-cluster-translucent-v3.png`). 그림 속 GPU 수는 실제와 같은 1 · 2 · 3장
-- 왼쪽 접근 흐름(연구원 · 관리자 → JupyterHub · SSH → Slurm)에서 Slurm 배정선이 서버 위 LOCAL · REMOTE 선으로 이어진다.
+- 왼쪽 기여 목록: AUTH · STORAGE · ACCESS · SCHEDULER 네 묶음이 각각 "이전(흐린 한 줄) → 통합 후(굵게) → 설명". Slurm만 크게 강조하지 않는다.
+- 각 묶음 아래 가로선이 오른쪽 초록 버스로 이어지고, 버스가 서버 위 LOCAL 선에 합류한다. 선 좌표는 묶음 위치를 측정한 값이라 내용이나 간격을 바꾸면 다시 측정한다.
+- 역할(구축 총괄 · 연구실 랩장)과 기간(2026.07 구축 → 운영 · 장애 대응 → 후임 인수인계)은 상단 요약 줄 오른쪽에 둔다.
+- 오른쪽 아래 FOUNDATION: NETWORK · BACKUP · DOCS.
 - 문제 해결 3건은 "위 줄 흐린 점선 = 문제, 아래 줄 초록 실선 = 조치" micro-diagram으로 보여준다.
 
 
@@ -1262,7 +1265,7 @@ MaxViT 구조 → 포트폴리오 톤으로 재구성한 웹 Assessment 창(Orig
 
 GPU / AI Infrastructure 작성. (완료)
 
-반투명 GPU 서버 이미지와 Slurm 배정 경로를 메인으로 두고, 기반 구성 한 줄, 문제 해결 micro-diagram 3건, 구축 총괄 역할을 배치한다.
+인증 · 스토리지 · 접속 · 스케줄링 네 묶음의 이전 → 이후와 반투명 GPU 서버 이미지를 메인으로 두고, 네 묶음을 초록 버스로 클러스터에 잇는다. 하단에 문제 해결 micro-diagram 3건과 FOUNDATION(NETWORK · BACKUP · DOCS), 상단 요약 줄에 역할 · 기간을 배치한다.
 
 ## STEP 8
 
