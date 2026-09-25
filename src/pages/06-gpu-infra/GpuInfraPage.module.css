@@ -21,8 +21,8 @@
 
 /* Brief */
 .infra-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
-.infra-brief strong { font-size: 10pt; line-height: 1.4; }
-.infra-brief p { margin: 0; color: rgb(236 236 230 / 62%); font-size: 7.4pt; line-height: 1.55; }
+.infra-brief strong { font-size: 10.3pt; line-height: 1.4; }
+.infra-brief p { margin: 0; color: rgb(236 236 230 / 72%); font-size: 8pt; line-height: 1.5; }
 .infra-brief p b { display: inline-block; width: 8mm; color: rgb(236 236 230 / 88%); font-weight: 620; }
 .infra-brief p em { color: var(--infra); font-style: normal; font-weight: 700; }
 
@@ -32,11 +32,11 @@
 /* 기여 목록: 네 구성 요소마다 통합 전(흐린 한 줄) → 통합 후(굵게). 묶음 아래 경계선이 초록 버스로 이어져 클러스터에 연결된다. */
 .infra-access { display: flex; flex-direction: column; justify-content: flex-start; gap: 1.6mm; padding: 3.8mm 0 0; }
 .infra-step { display: grid; gap: .7mm; padding-bottom: 2.2mm; }
-.infra-step > span { color: var(--infra); font: 6.2pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
-.infra-before { display: flex; align-items: baseline; gap: 1.6mm; margin: 0; color: rgb(236 236 230 / 46%); font-size: 7pt; }
-.infra-before b { border: 1px solid rgb(236 236 230 / 24%); border-radius: .6mm; padding: 0 .9mm; color: rgb(236 236 230 / 54%); font-size: 6.2pt; font-weight: 500; }
+.infra-step > span { color: var(--infra); font: 6.6pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
+.infra-before { display: flex; align-items: baseline; gap: 1.6mm; margin: 0; color: rgb(236 236 230 / 56%); font-size: 7.4pt; }
+.infra-before b { border: 1px solid rgb(236 236 230 / 28%); border-radius: .6mm; padding: 0 .9mm; color: rgb(236 236 230 / 64%); font-size: 6.5pt; font-weight: 500; }
 .infra-step strong { justify-self: start; font-size: 11pt; font-weight: 660; letter-spacing: -.01em; }
-.infra-step small { color: rgb(236 236 230 / 64%); font-size: 7pt; line-height: 1.4; }
+.infra-step small { color: rgb(236 236 230 / 72%); font-size: 7.4pt; line-height: 1.35; }
 
 .infra-hero { position: relative; }
 .infra-dispatch { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
@@ -52,7 +52,7 @@
 
 .infra-group { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px solid var(--infra); }
 .infra-bridge { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px dashed rgb(63 143 102 / 70%); }
-.infra-group span { position: absolute; top: -1.2mm; left: 0; padding-right: 2mm; background: #090a09; color: rgb(236 236 230 / 52%); font: 5.8pt "SFMono-Regular", Menlo, monospace; letter-spacing: .1em; line-height: 1; }
+.infra-group span { position: absolute; top: -1.2mm; left: 0; padding-right: 2mm; background: #090a09; color: rgb(236 236 230 / 62%); font: 6.2pt "SFMono-Regular", Menlo, monospace; letter-spacing: .1em; line-height: 1; }
 .infra-group--remote span { color: var(--infra); }
 
 .infra-label { position: absolute; top: 8.5mm; z-index: 1; display: grid; gap: 1.2mm; transform: translateX(-50%); text-align: center; }
@@ -63,23 +63,23 @@
 .infra-chips i { width: 4.6mm; height: 2.4mm; border: 1px solid rgb(236 236 230 / 20%); }
 .infra-chips i.is-on { border-color: var(--infra); background: var(--infra); }
 
-.infra-link { position: absolute; top: calc(36% + 4.5mm); left: 63%; z-index: 1; transform: translateX(-50%); color: var(--infra); font: 5.8pt "SFMono-Regular", Menlo, monospace; letter-spacing: .12em; }
-.infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(236 236 230 / 34%); font-size: 5.4pt; letter-spacing: .08em; }
+.infra-link { position: absolute; top: calc(36% + 4.5mm); left: 63%; z-index: 1; transform: translateX(-50%); color: var(--infra); font: 6.2pt "SFMono-Regular", Menlo, monospace; font-weight:600; letter-spacing: .12em; }
+.infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(236 236 230 / 46%); font-size: 5.9pt; letter-spacing: .07em; }
 
 /* Foundation strip */
 /* 나머지 기반 3개: 오른쪽 아래 칸에 라벨 · 구성 · 한 일을 한 줄씩 */
 .infra-base { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .infra-base li { display: grid; grid-template-columns: 15mm 1fr; align-items: baseline; border-top: 1px solid rgb(236 236 230 / 14%); padding: 1.9mm 0; }
 .infra-base li:first-child { border-top-color: var(--infra); }
-.infra-base span { color: var(--infra); font: 6.3pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
+.infra-base span { color: var(--infra); font: 6.7pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
 .infra-base p { display: flex; align-items: baseline; gap: 2.4mm; margin: 0; }
-.infra-base strong { font-size: 9.2pt; font-weight: 650; white-space: nowrap; }
-.infra-base small { color: rgb(236 236 230 / 62%); font-size: 7pt; white-space: nowrap; }
+.infra-base strong { font-size: 9.5pt; font-weight: 650; white-space: nowrap; }
+.infra-base small { color: rgb(236 236 230 / 72%); font-size: 7.4pt; white-space: nowrap; }
 
 /* Foot */
 .infra-foot { display: grid; grid-template-columns: 1fr 78mm; min-height: 0; padding-top: 2.4mm; }
 .infra-foot > div { display: flex; flex-direction: column; min-width: 0; }
-.infra-foot > div > span { margin-bottom: 1.6mm; }
+.infra-foot > div > span { margin-bottom: 1.6mm; font-size:6.8pt; }
 
 .infra-incidents { padding-right: 7mm; }
 .infra-incidents ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
@@ -89,16 +89,16 @@
 .infra-incidents li strong { font-size: 9.6pt; font-weight: 640; }
 .infra-incidents li p { margin: 0; color: rgb(236 236 230 / 66%); font-size: 7.6pt; line-height: 1.5; }
 .infra-incidents li em { color: var(--infra); font-style: normal; }
-.infra-incidents li svg { display: block; width: 100%; max-width: 52mm; height: 11.6mm; margin: .6mm 0 .4mm; overflow: visible; }
+.infra-incidents li svg { display: block; width: 100%; max-width: 52mm; height: 12.4mm; margin: .6mm 0 .4mm; overflow: visible; }
 
 /* Troubleshooting micro-diagrams */
 .fig-box rect { fill: none; stroke: rgb(236 236 230 / 32%); stroke-width: .8; }
-.fig-text { fill: rgb(236 236 230 / 84%); font-size: 10px; text-anchor: middle; }
+.fig-text { fill: rgb(236 236 230 / 88%); font-size: 11px; text-anchor: middle; }
 .fig-text--good { fill: #ecece6; font-weight: 650; }
-.fig-note { fill: rgb(236 236 230 / 66%); font-size: 10px; }
+.fig-note { fill: rgb(236 236 230 / 74%); font-size: 11px; }
 .fig-note--good { fill: var(--infra); font-weight: 650; }
-.fig-mark { fill: rgb(236 236 230 / 68%); font-size: 9.6px; text-anchor: middle; }
-.fig-label-good { fill: var(--infra); font-size: 8.6px; font-weight: 700; letter-spacing: .6px; text-anchor: middle; }
+.fig-mark { fill: rgb(236 236 230 / 76%); font-size: 10.4px; text-anchor: middle; }
+.fig-label-good { fill: var(--infra); font-size: 9.4px; font-weight: 700; letter-spacing: .5px; text-anchor: middle; }
 .fig-bad { fill: none; stroke: rgb(236 236 230 / 34%); stroke-width: .9; stroke-dasharray: 2.4 2; }
 .fig-good { fill: none; stroke: var(--infra); stroke-width: 1.4; }
 .fig-pill-bad { fill: none; stroke: rgb(236 236 230 / 40%); stroke-width: .9; stroke-dasharray: 2.4 2; }
