@@ -4,17 +4,10 @@
   overflow: hidden;
   color: #f0f0eb;
   background:
-    linear-gradient(90deg, #080908 0%, #080908 35%, transparent 62%),
-    #080908;
+#080908;
 }
 
-.hero-cover::after {
-  position: absolute;
-  inset: 9mm;
-  border: 1px solid rgb(240 240 235 / 14%);
-  pointer-events: none;
-  content: "";
-}
+
 
 .hero-cover__meta {
   position: absolute;
@@ -29,22 +22,11 @@
   text-transform: uppercase;
 }
 
-.hero-cover__object {
-  position: absolute;
-  z-index: 1;
-  top: -9mm;
-  right: -42mm;
-  width: 88%;
-  height: 114%;
-  object-fit: cover;
-  object-position: right center;
-  filter: saturate(0.82) contrast(1.08);
-}
 
 .hero-cover__name {
   position: absolute;
   z-index: 4;
-  top: 78mm;
+  top: 56mm;
   left: 18mm;
 }
 
@@ -58,7 +40,7 @@
 .hero-cover__name h1 {
   margin: 0;
   color: #f0f0eb;
-  font-size: 100pt;
+  font-size: 88pt;
   font-weight: 720;
   letter-spacing: -0.075em;
   line-height: 1;
@@ -67,27 +49,38 @@
 .hero-cover__description {
   position: absolute;
   z-index: 3;
-  bottom: 19mm;
+  bottom: 18mm; /* 왼쪽 여백과 같게 */
   left: 18mm;
 }
 
 .hero-cover__description p {
   margin: 0;
   color: rgb(240 240 235 / 72%);
-  font-size: 9.5pt;
+  font-size: 10.5pt;
   letter-spacing: 0.025em;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .hero-cover__contact {
-  position: absolute;
-  z-index: 4;
-  right: 17mm;
-  bottom: 19mm;
   display: flex;
   gap: 5mm;
-  color: rgb(240 240 235 / 82%);
-  text-shadow: 0 1px 5px rgb(0 0 0 / 80%);
+  margin-top: 2.55mm;
+  border-top: 1px solid rgb(240 240 235 / 18%);
+  padding-top: 3mm;
+  color: rgb(240 240 235 / 78%);
   font-size: 8.2pt;
   letter-spacing: 0.015em;
+}
+
+
+
+/* AI 생성 추상 배경. 왼쪽은 원래 어두워 글자 자리로 쓴다 */
+.hero-cover__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
 }
