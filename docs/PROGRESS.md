@@ -14,6 +14,7 @@
 
 5페이지 CLE 종양 분류와 MAGAR XAI 연구는 구현과 사용자 검토를 마쳤고, Chrome Print to PDF 출력까지 확인했다.
 6페이지 GPU / AI Infrastructure는 인프라 저장소의 git 기록으로 본인 범위를 확인한 뒤 구현했고, 사용자 검토와 Print to PDF 확인을 마쳤다.
+7페이지 Recappers는 논문 원문과 사용자 확인을 바탕으로 구현했으며, 브라우저 기준 상세 디자인 검토를 마쳤다. 최종 PDF 출력 검수만 남아 있다.
 
 | Page | Content | Status |
 | --- | --- | --- |
@@ -23,7 +24,7 @@
 | 04 | Asan Medical Center — CT-based lung ventilation synthesis | Browser layout approved / PDF QA pending |
 | 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
 | 06 | GPU / AI Infrastructure — Slurm cluster | Draft approved / PDF checked |
-| 07 | Recappers | Skeleton |
+| 07 | Recappers — Multi-Modal LLM lecture assistant | Browser layout approved / PDF QA pending |
 | 08 | Generative AI Video — 잔향 | Draft approved / PDF checked |
 | 09 | Profile, Awards & Other Work | Skeleton |
 
@@ -293,6 +294,60 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 - 쓰지 않는 서버 이미지 3장 정리
 - 랩장 재임 시작 월은 Page 09 경력 작업 때 확인
+
+## 6-3. Page 07 — Recappers (Browser Approved)
+
+### Sources
+
+- 논문: `강의자료 기반 Multi-Modal LLM Distillation을 활용한 강의 특화 학습 보조 시스템`
+- 영문 제목: `Lecture-Tailored Learning Assistance via Multi-Modal LLM Distillation from Lecture Materials`
+- 사용자 확인: 프로젝트 팀장으로 서비스 구조와 역할을 설계하고 개발 과제를 분배. Web Frontend / Backend와 STT 구현은 팀원 담당, 나머지 AI 파이프라인·실험·논문 작성 담당
+- 초기 서비스는 학생이 PDF를 직접 질의하는 방식이었으나, 피드백 후 교수자가 강의자료를 업로드하고 검수한 뒤 학생에게 제공하는 구조로 변경
+
+### Confirmed Content
+
+- 입력: PDF 강의자료와 강의 음성
+- 전처리: OCR 기반 slide parsing과 ASR transcript를 강의 구간 단위로 연결
+- Teacher: GPT-5 · Gemini 2.5 Flash
+- Student: Gemma-3n + 강의별 LoRA
+- Teacher가 생성한 요약·질의응답 데이터를 이용한 lecture-specific multimodal distillation
+- 학습 서비스: PDF 열람 · 강의 기반 Chat / Quiz · 음성과 연결된 Transcript
+- 교수자 검수 후 학생에게 제공하는 흐름
+- 연구 결과: 12개 강의 데이터셋, Teacher Q&A 성능 87% 유지, 질문 변형 응답 일관성 0.91, ROUGE-L 약 40, untuned baseline 대비 주요 지표 22–28% 향상
+- 논문 제1저자, KICSP 2025 추계학술대회 우수발표논문상
+
+### Implemented Visual Structure
+
+- Category: AI SERVICE, Page 08과 같은 파란색 `#5b87b5`
+- 상단 요약: 프로젝트 설명과 `학생의 단순 PDF 질의 도구 → 교수자 중심 강의 특화 시스템` 전환
+- 메인 왼쪽: 두 Teacher 모델에서 하나의 lecture-specific Student 모델로 지식이 전달되는 합성 이미지
+  - 이미지 위에 `2 TEACHERS → KNOWLEDGE TRANSFER → 1 STUDENT`를 직접 표시
+  - 아래에 실제 모델명과 `Teacher 요약·질의응답 데이터 → 강의별 Gemma-3n LoRA 학습`을 표시
+- 메인 오른쪽: 실제 기능 구조를 포트폴리오 톤으로 재구성한 Web UI
+  - 왼쪽 PDF lecture slide, 오른쪽 Chat / Quiz, 하단 Audio & Linked Transcript
+  - lecture slide는 밝은 차콜 배경과 흰색 본문·파란색 강조 사용
+  - 오디오 행을 14mm로 줄여 채팅 영역을 확보
+  - `INSTRUCTOR REVIEW → STUDENT` 상태 표시
+- 왼쪽 이미지와 Web UI 박스의 시작점을 동일하게 정렬하고, Web UI 헤더 아래의 중복 가로선 제거
+- 하단 3개 영역: RESEARCH RESULT / MY ROLE / PUBLICATION
+  - MY ROLE은 `Project Lead → 핵심 책임 → LEAD / AI → DIRECT / TEAM` 순서로 구성
+  - DIRECT: 실험·논문 작성
+  - TEAM: Web Frontend / Backend · STT
+  - 세로 구분선은 중간 영역과 footer 경계 기준으로 위아래 여백을 동일하게 조정
+- 작은 회색 보조 텍스트는 크기와 명도를 높여 PDF 축소 보기에서도 읽히도록 조정
+- 브라우저 기준 페이지, Web UI, Chat, Transcript overflow 없음
+
+### Synthetic Asset
+
+- 현재 사용 이미지: `assets/images/recappers-knowledge-distillation-v1.png`
+- 두 개의 기계형 Teacher brain과 하나의 작은 Student brain을 연속적인 파란색 신호선으로 연결
+- GPU 인프라 이미지로 오해되지 않도록 뇌 형태를 유지하고, 표지·Page 06과 같은 흑백 연필 질감과 단일 강조색을 사용
+
+### Remaining
+
+- 실패한 이미지 후보 정리
+- Chrome Print to PDF에서 작은 UI 본문과 논문 인용문 가독성 확인
+- 전체 페이지 용어 통일 단계에서 `Teacher`, `Student`, `distillation` 표기 최종 점검
 
 ## 6-4. Page 08 — Generative AI Video 〈잔향〉 (Approved)
 
