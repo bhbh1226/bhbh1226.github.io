@@ -14,8 +14,7 @@
 .case-question p { margin: 0; color: rgb(236 236 230 / 62%); font-size: 7.5pt; line-height: 1.45; }
 
 .case-brain { position: relative; grid-column: 1 / 3; grid-row: 3; min-height: 0; overflow: hidden; margin: 0; border-right: 1px solid rgb(236 236 230 / 18%); }
-.case-brain img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; filter: brightness(.68) contrast(1.13); }
-.case-brain::after { position: absolute; inset: 0; background: linear-gradient(90deg,#090a09 0%,transparent 16%,transparent 86%,#090a09 100%); content:""; }
+.case-brain img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .case-brain figcaption { position: absolute; z-index: 2; bottom: 3mm; left: 3mm; color: rgb(236 236 230 / 42%); font-size: 6pt; letter-spacing: .09em; }
 .case-method { position: absolute; z-index: 5; left: 66mm; bottom: 40mm; display: grid; grid-template-columns: repeat(4,1fr); width: 123mm; border-top: 1px solid rgb(236 236 230 / 38%); background: rgb(9 10 9 / 86%); }
 .case-method > div { min-height: 27mm; border-right: 1px solid rgb(236 236 230 / 18%); padding: 3mm; }

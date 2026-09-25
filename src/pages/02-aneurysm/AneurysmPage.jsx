@@ -1,4 +1,4 @@
-import brainVisual from '../../../assets/images/synthetic-cerebrovascular-brain-v1.png'
+import brainVisual from '../../../assets/images/synthetic-cerebrovascular-brain-v1-print.png'
 import styles from './AneurysmPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')

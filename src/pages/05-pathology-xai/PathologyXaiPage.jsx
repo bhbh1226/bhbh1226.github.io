@@ -1,4 +1,7 @@
 import cleVisual from '../../../assets/images/synthetic-cle-colorectal-v1.png'
+import bakedOriginal from '../../../assets/images/xai-baked-original.png'
+import bakedGradcam from '../../../assets/images/xai-baked-gradcam.png'
+import bakedMagar from '../../../assets/images/xai-baked-magar.png'
 import AwardBadge, { AwardBadges } from '../../components/AwardBadge.jsx'
 import styles from './PathologyXaiPage.module.css'
 
@@ -45,7 +48,10 @@ const metrics = [
   { name: 'Recall', value: '0.9727' },
 ]
 
-function GradCamOverlay() {
+const BAKED = { original: bakedOriginal, gradcam: bakedGradcam, magar: bakedMagar }
+
+// 구운 이미지의 원본 overlay. 수정하면 화면 렌더를 다시 캡처해 xai-baked-*.png를 갱신한다.
+export function GradCamOverlay() {
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <defs>
@@ -76,7 +82,7 @@ function GradCamOverlay() {
   )
 }
 
-function MagarOverlay() {
+export function MagarOverlay() {
   const spots = magarSpots.map((spot) => (
     <ellipse key={`${spot.x}-${spot.y}`} cx={spot.x} cy={spot.y} rx={spot.rx} ry={spot.ry} transform={`rotate(${spot.angle} ${spot.x} ${spot.y})`} fill="url(#magar-heat)" opacity={spot.o} />
   ))
@@ -104,9 +110,8 @@ function CleImage({ label, note, overlay }) {
   return (
     <figure className={cx('xai-frame')}>
       <div className={cx('xai-frame__image')}>
-        <img src={cleVisual} alt="합성 CLE 영상" />
-        {overlay === 'gradcam' && <GradCamOverlay />}
-        {overlay === 'magar' && <MagarOverlay />}
+        {/* PDF 인쇄에서 SVG mask · blend · 반투명 gradient가 깨져, overlay를 화면에서 렌더한 이미지로 구워 쓴다 */}
+        <img src={BAKED[overlay] ?? BAKED.original} alt="합성 CLE 영상" />
       </div>
       <figcaption><span>{label}</span><small>{note}</small></figcaption>
     </figure>
