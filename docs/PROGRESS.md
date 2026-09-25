@@ -24,13 +24,13 @@
 | 05 | CLE tumor classification + MAGAR XAI | Draft approved / PDF checked |
 | 06 | GPU / AI Infrastructure — Slurm cluster | Draft approved / PDF checked |
 | 07 | Recappers | Skeleton |
-| 08 | Generative AI Video | Skeleton |
+| 08 | Generative AI Video — 잔향 | Draft approved / PDF checked |
 | 09 | Profile, Awards & Other Work | Skeleton |
 
 ## 2. Design Direction Confirmed
 
 - 검은 배경, 저채도 회색 typography, 적갈색 accent를 기본으로 사용한다.
-- 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색 `#3f8f66`(확정), SERVICE 파란색. 파란색 값은 해당 페이지 작업 시 확정한다.
+- 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색 `#3f8f66`(확정), SERVICE 파란색 `#5b87b5`(Page 07 · 08 공통).
 - Page 05는 AI RESEARCH로 확정했다.
 - 구현은 React + Vite + CSS Modules를 기준으로 한다.
 - 표지에서 정한 기술적·편집 디자인의 결을 프로젝트 페이지까지 연결한다.
@@ -293,6 +293,50 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 
 - 쓰지 않는 서버 이미지 3장 정리
 - 랩장 재임 시작 월은 Page 09 경력 작업 때 확인
+
+## 6-4. Page 08 — Generative AI Video 〈잔향〉 (Approved)
+
+### Sources
+
+- 서비스 저장소 조사(별도 세션): 코드 · 설정 · git 기록. 커밋은 2025-06-19 한 개(본인)
+- 사용자 확인: 컨버전스디자인과 연말 학과 전시 작품 〈잔향〉 팀(4명)의 요청으로 웹 · AI 파이프라인 전체 개발. 기획 · 검수 · 전시는 작품 팀. 얼굴 보존 제약은 작품 의미 때문에 추가. AirDrop → 입력 화면 → 렌즈 디스플레이 설치 구조
+
+### Confirmed Content
+
+- 스택: Vite · HTML/JS · SCSS / Node.js · Express · sharp · JWT / Gemini 2.0 Flash · Kling multi-image2video (AGENTS.md의 React 표기를 바로잡음)
+- 파이프라인: 입력 → JPEG 정규화 → Gemini 프롬프트 → Kling 작업 생성 → 4초 폴링 → 저장 · 전시 화면 반복 재생
+- 본인 작업: 화면 UI · 전시 재생 페이지 / API 5개 라우트 · JPEG 정규화 · 영상 저장 / Gemini 호출 · 지시문 설계 · Kling JWT · 폴링 · 오류 코드 한글 안내
+
+### Evidence
+
+- 입력 사진 2장과 주제는 실제. 사본은 GPS · EXIF 제거 후 900×1200
+- Gemini 출력은 본인 프로그램으로 실제 생성
+- 영상 프레임은 재현: Kling Trial Package($9.8)를 구매할 수 없어 ChatGPT 2×2 프레임을 잘라 사용. 페이지에 "재현 프레임 · 동일 입력, 다른 생성 모델"로 표시
+- 전시 현장 사진은 초점이 작품 팀으로 옮겨가 사용하지 않음
+
+### Implemented Visual Structure
+
+- 요약 줄: 서비스 설명 + 문제 / 해결
+- 메인: INPUT → GEMINI 실제 출력(0–3s ~ 8–10s 구간, 얼굴 보존 문장 인용) → OUTPUT 재현 프레임 4장
+  - 주제 문장은 입력 사진 바로 아래에 붙여 사진과 한 묶음으로 둔다.
+  - 세 칸 모두 위쪽 정렬. 입력 묶음(사진 + 주제)과 프레임 2×2의 높이를 같게 맞춘다.
+  - 프레임 시간 라벨(0s · 3s · 6s · 10s)은 프레임 안쪽 왼쪽 아래에 겹쳐 높이를 아낀다.
+  - GEMINI 칸을 66mm로 넓혀 얼굴 보존 인용문을 한 줄로 표시
+  - OUTPUT 칸은 프레임 2×2 폭(약 100mm)에 맞춰 오른쪽 끝에 붙이고, 남는 폭은 INPUT(80.8mm)에 준다. 사진 비율은 22:23으로 입력 묶음 높이를 프레임과 맞춘다.
+  - 주제 문장은 실제 입력 원문 그대로 한 줄로 둔다. "정말 재밌게"는 Gemini 출력의 "fun memory"와 연결되므로 빼지 않는다.
+  - "실제 출력" / "재현 프레임" 라벨은 6.4pt · 불투명도 68%로 본문 수준으로 읽히게 한다.
+- PIPELINE: 한 줄 연결선, 선 위 처리 주체, AI 단계(Gemini · Kling)만 파란색
+  - 화살표는 다음 단계의 점 약 2mm 앞에서 끝나 단계 사이에 틈을 둔다.
+  - 아래 간격은 위 간격의 약 1.5배(5.4mm)로 MY ROLE과 구분
+- MY ROLE: FRONTEND · SERVER · AI 연동 세 층에 기술과 작업을 함께 표시 (STACK 칸 통합)
+  - 층 이름 7.4pt, 스택 7pt. 세로선은 영역 끝까지 내리고 위아래 여백을 같게 둔다.
+- Chrome Print to PDF 확인: 넘침 없음, 전체 9페이지 PDF 약 15.5MB
+
+### Remaining
+
+- 서비스 저장소의 평문 API 키 폐기 · 재발급
+- Kling으로 실제 생성이 가능해지면 재현 프레임 교체
+- 커밋 제외: 원본 사진 2장, ChatGPT 2×2 원본, 전시 사진 사본
 
 ## 7. Final QA Backlog
 

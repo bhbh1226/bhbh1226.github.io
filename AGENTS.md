@@ -223,7 +223,7 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 | --- | --- | --- |
 | AI RESEARCH | 적갈색 `#a63b2d` | 02, 03, 04, 05 |
 | GPU INFRA | 초록색 `#3f8f66` | 06 |
-| SERVICE | 파란색 (값은 Page 07 작업 시 확정) | 07, 08 |
+| SERVICE | 파란색 `#5b87b5` (Page 07 · 08 공통) | 07, 08 |
 
 - Page 05는 웹서비스도 포함하지만 핵심 기여가 MAGAR 제안이므로 AI RESEARCH로 분류한다.
 - 적갈색은 이미 Page 02~04에서 사용 중이며 확정된 값이다.
@@ -381,110 +381,65 @@ PAGE 1 — PROFILE / INTRO
 
 
 ==================================================
-PAGE 8 — GENERATIVE AI VIDEO
+PAGE 8 — GENERATIVE AI VIDEO (잔향)
 ==================================================
 
 ## Project
 
-두 이미지 기반 AI 영상 생성 웹서비스
+- 페이지 제목: 잔향 — 두 순간의 사진을 잇는 10초 AI 영상
+- 헤더 라벨: Soonchunhyang University · Convergence Design Exhibition · Web & AI Development
+- Category: AI SERVICE (`#5b87b5`)
+- 작품: 컨버전스디자인과 연말 학과 전시 작품 〈잔향 — 가장 원하던 순간들의 평행세계〉. 졸업전시가 아니다.
+- 근거: 서비스 저장소(`design-aesthetic`, 앱 제목 "Time Blending AI")의 코드와 git 기록, 사용자 확인
 
-## Concept
+## Role
 
-AI 시대에도 인간에게 중요한 감각 중 하나인 "시간"에 주목.
+- 작품 팀(4명)의 요청으로 웹과 AI 파이프라인 전체를 혼자 개발했다. 기획·검수·전시는 작품 팀이 했다.
+- 페이지의 초점은 본인이 개발한 시스템이다. 작품 소개, 전시 현장, "졸업전시" 표현은 쓰지 않는다.
+- 저장소 커밋은 2025-06-19 한 개(본인)라 세부 개발 기간은 알 수 없다.
 
-서로 다른 두 시점의 기억을 하나의 장면으로 연결하는
-예술적 경험을 AI로 구현.
+## Problem / Solution
 
-사용자가:
+- 문제: 사진만 영상 모델에 넘기면 원하는 장면과 두 순간 사이의 전환을 제어하기 어렵다.
+- 해결: Gemini가 두 사진과 주제로 10초 연출 프롬프트를 먼저 쓰고, Kling이 그 프롬프트로 영상을 만든다.
+- 얼굴 보존 제약: 얼굴이 뭉개지면 작품 의미가 사라져 서버 지시문에 넣었다.
 
-- 이미지 2장
-- 주제
+## Pipeline (코드 기준)
 
-를 입력하면
-
-10초 길이의 영상 생성.
-
-## Architecture
-
-반드시 시각화:
-
-```text
-Image A
-        \
-         → Gemini → Video Prompt → Kling → Generated Video
-        /
-Image B
-
-       + User Theme
-```
-
-좀 더 상세하게:
-
-```text
-Two Images + Theme
-        ↓
-Gemini API
-- 이미지 분석
-- 주제 해석
-- 시작 장면
-- 전환 과정
-- 종결 장면
-        ↓
-Generated Video Prompt
-        ↓
-Kling multi-image-to-video API
-        ↓
-10 sec Video
-```
+1. 브라우저: 사진 2장 · 장면 주제 입력
+2. 서버: sharp로 JPEG 정규화 · base64
+3. Gemini 2.0 Flash: 두 이미지 + 주제 → 10초 영상 프롬프트
+4. Kling `multi-image2video`: duration 10, JWT 인증, task_id 발급. `model_name`을 지정하지 않아 모델명은 쓰지 않는다.
+5. 브라우저 ↔ 서버: 4초 간격 상태 폴링, 로딩 화면
+6. 서버 저장 → `/display` 전시 화면이 최신 영상을 반복 재생
 
 ## Tech
 
-- React
-- Gemini API
-- Kling API
-- multi-image-to-video
+- Frontend: Vite · HTML/JS · SCSS (React 아님)
+- Backend: Node.js · Express · sharp · jsonwebtoken
+- AI: Gemini 2.0 Flash · Kling API
 
-## Key Problem
+## Work (본인)
 
-이미지를 그대로 영상 생성 모델에 전달할 경우:
+- FRONTEND: 입력 · 로딩 · 결과 화면 UI, 전시 화면 반복 재생 페이지
+- SERVER: API 5개 라우트(프롬프트 생성, 작업 생성, 작업 조회, 이미지 변환, 최신 영상 조회), JPEG 정규화 · 완성 영상 저장
+- AI 연동: Gemini 멀티모달 호출 · 연출 지시문 설계, Kling JWT 인증 · 작업 생성 · 4초 폴링, 오류 코드 → 한글 안내
 
-- 사용자 의도 반영 부족
-- 두 장면 사이 흐름 불안정
-- 전환 과정 제어 어려움
+## Evidence Rules
 
-## Solution
+- 입력: 실제 사진 2장(2017 키우던 강아지, 2026 수상 케이블카)과 실제 주제 문장. 포트폴리오에는 GPS·EXIF를 지운 900×1200 사본만 쓴다.
+- Gemini 프롬프트: 본인 프로그램으로 실제 생성한 출력. 페이지에는 구간별 요약과 얼굴 보존 문장만 싣는다.
+- 영상 프레임: Kling API를 구매할 수 없어 같은 입력으로 다른 생성 모델(ChatGPT)에서 만든 재현 프레임이다. 반드시 "재현 프레임 · 동일 입력, 다른 생성 모델"로 표시한다. Kling으로 다시 생성하면 frames만 교체한다.
+- 근거 없는 "결과를 반복 비교하며 프롬프트 개선" 문구는 쓰지 않는다.
+- 저장소에 API 키가 평문으로 남아 있다. 코드 캡처나 저장소 공개 전 키 폐기·재발급과 기록 정리가 필요하다.
 
-Gemini가 영상 생성용 프롬프트를 생성한 후
-Kling이 영상을 생성하도록 파이프라인 구성.
+## Visual
 
-## My Role
-
-- React UI 구현
-- 이미지 입력
-- Gemini 연동
-- 프롬프트 설계
-- Kling API 연동
-- 서버 요청 및 결과 반환 흐름 구현
-
-## Result
-
-사용자가 영상 생성 모델이나 프롬프트 작성법을 몰라도
-
-두 이미지 + 주제
-
-만으로 하나의 영상을 생성할 수 있도록 구현.
-
-생성 결과를 반복 비교하며 프롬프트를 수정해
-장면 전환 및 영상 흐름 개선.
-
-## Visual Priority
-
-반드시 가능하면 다음 자료 사용:
-
-- 실제 입력 화면
-- 두 원본 이미지
-- 생성된 영상 대표 frame
-- Pipeline diagram
+- 메인: INPUT(사진 2장 · 바로 아래 주제) → GEMINI(실제 출력 구간 스크립트) → OUTPUT(재현 프레임 0 · 3 · 6 · 10s). 세 칸은 위쪽 정렬이고 입력 묶음과 프레임 2×2의 높이를 맞춘다.
+- 주제 문장은 입력 원문 그대로 쓴다. 표시 공간 때문에 문구를 줄이지 않는다.
+- 실제 출력과 재현 프레임을 구분하는 라벨은 본문 수준 크기와 밝기로 표시한다.
+- PIPELINE: 6단계를 한 줄로 잇고, 선 위에 처리 주체(BROWSER · SERVER · GEMINI · KLING)를 표시. AI 단계만 파란색. 화살표는 다음 점 앞에서 끊어 단계 사이에 틈을 둔다.
+- MY ROLE: FRONTEND · SERVER · AI 연동 세 층에 기술과 만든 것을 함께 표시
 
 
 ==================================================
@@ -1352,11 +1307,9 @@ Architecture diagram 포함.
 
 ## STEP 9
 
-Generative AI Video page 작성.
+Generative AI Video(잔향) 작성. (완료)
 
-실제 screenshot 위치 placeholder 포함.
-
-작업 전, 실제 입력 화면 / 원본 이미지 / 생성 영상 frame / pipeline 중 무엇을 가장 크게 보여줄지 결정한다.
+실제 입력 사진, Gemini 실제 출력, 재현 프레임을 메인으로 두고, 처리 주체를 표시한 파이프라인과 층별 역할을 배치한다.
 
 ## STEP 10
 

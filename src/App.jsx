@@ -5,21 +5,19 @@ import DigitalPhenotypingPage from './pages/03-digital-phenotyping/DigitalPhenot
 import VentilationPage from './pages/04-ventilation/VentilationPage.jsx'
 import PathologyXaiPage from './pages/05-pathology-xai/PathologyXaiPage.jsx'
 import GpuInfraPage from './pages/06-gpu-infra/GpuInfraPage.jsx'
+import TimeBlendingPage from './pages/08-time-blending/TimeBlendingPage.jsx'
 import ProjectSkeletonPage from './pages/project-skeleton/ProjectSkeletonPage.jsx'
 
-const pages = [
+const pagesBefore = [
   {
     label: 'Recappers',
     title: 'Recappers',
     focus: 'Multi-Modal pipeline과 실제 서비스 화면 중 중심 요소를 결정합니다.',
     placeholder: 'Lecture context pipeline / service UI',
   },
-  {
-    label: 'Generative AI Video',
-    title: 'Generative AI Video',
-    focus: '입력·출력 비교와 생성 pipeline 중 중심 요소를 결정합니다.',
-    placeholder: 'Two images + theme → generated video',
-  },
+]
+
+const pagesAfter = [
   {
     label: 'Profile & Other Work',
     title: 'Profile, Awards & Other Work',
@@ -55,10 +53,24 @@ export default function App() {
         <GpuInfraPage />
       </PageShell>
 
-      {pages.map((page, index) => (
+      {pagesBefore.map((page, index) => (
         <PageShell
           key={page.label}
           pageNumber={index + 7}
+          section={page.label}
+        >
+          <ProjectSkeletonPage {...page} />
+        </PageShell>
+      ))}
+
+      <PageShell pageNumber={8} section="Soonchunhyang University · Convergence Design Exhibition · Web & AI Development" tone="dark">
+        <TimeBlendingPage />
+      </PageShell>
+
+      {pagesAfter.map((page, index) => (
+        <PageShell
+          key={page.label}
+          pageNumber={index + 9}
           section={page.label}
         >
           <ProjectSkeletonPage {...page} />
