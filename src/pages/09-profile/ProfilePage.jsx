@@ -1,6 +1,7 @@
 import stacImage from '../../../assets/images/early-work/stac.png'
 import bixbyImage from '../../../assets/images/early-work/bixby.png'
 import clusterImage from '../../../assets/images/early-work/cluster.png'
+import { MedalIcon } from '../../components/AwardBadge.jsx'
 import styles from './ProfilePage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
@@ -86,7 +87,7 @@ export default function ProfilePage() {
                 </span>
               </div>
               <strong>{item.title}</strong>
-              <small className={cx('pf-award')}>{item.award}{item.topics && <em>{item.topics}</em>}</small>
+              <small className={cx('pf-award')}><MedalIcon accent="#8e78b8" />{item.award}{item.topics && <em>{item.topics}</em>}</small>
             </article>
           ))}
         </div>

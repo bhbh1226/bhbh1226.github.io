@@ -232,6 +232,12 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 - category color는 category mark, 번호, 강조선, 핵심 도식의 강조 요소에만 사용하고 넓은 면적을 칠하지 않는다.
 - 새 색은 CSS 변수로 추가한다. 현재 Page 02~04와 `global.css`에는 `#a63b2d`가 직접 쓰여 있으므로, 통합 단계에서 category 변수로 정리한다.
 
+## Award · Publication Badge
+
+- 수상하거나 논문으로 게재된 프로젝트는 페이지 제목 오른쪽에 배지를 단다(`src/components/AwardBadge.jsx`, 스타일은 `global.css`의 `.award-badge`).
+- 종류: `award`(메달 아이콘, 수상) · `paper`(문서 아이콘, 논문 게재). 아이콘만 해당 페이지의 category color, 테두리와 글자는 중립색.
+- 현재: 04 MICCAI 2026 게재(SASHIMI Workshop · 제2저자) / 05 제33회 공과대학 학술제 은상 / 07 KICSP 우수발표논문상 · 제19회 Capstone Design 경진대회 동상 / 09 초기 프로젝트 상 줄에 메달 아이콘.
+
 ## Layout
 
 한 페이지에 너무 많은 요소를 넣지 않는다.

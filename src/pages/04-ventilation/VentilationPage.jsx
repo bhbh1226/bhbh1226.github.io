@@ -1,4 +1,5 @@
 import lungVentilationVisual from '../../../assets/images/synthetic-lung-ventilation-v3.png'
+import AwardBadge, { AwardBadges } from '../../components/AwardBadge.jsx'
 import inspiratoryCtVisual from '../../../assets/images/synthetic-coronal-inspiratory-ct-v1.png'
 import expiratoryCtVisual from '../../../assets/images/synthetic-coronal-registered-expiratory-ct-v1.png'
 import styles from './VentilationPage.module.css'
@@ -44,7 +45,10 @@ export default function VentilationPage() {
   return (
     <div className={cx('vent-case')}>
       <header className="case-header">
-        <h2>흡기·호기 CT 기반 폐 환기지도 합성</h2>
+        <div className="case-title">
+          <h2>흡기·호기 CT 기반 폐 환기지도 합성</h2>
+          <AwardBadges><AwardBadge kind="paper" award="MICCAI 2026 게재" detail="SASHIMI Workshop · 제2저자" accent="#a63b2d" /></AwardBadges>
+        </div>
         <span className="case-category case-category--corner">AI RESEARCH</span>
       </header>
 

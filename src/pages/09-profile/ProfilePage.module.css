@@ -50,7 +50,7 @@
 .pf-callout--right b { left: 8mm; top: 0; transform: translateY(-50%); }
 .pf-highlights strong { margin-top: 3mm; font-size: 11pt; font-weight: 650; line-height: 1.35; word-break: keep-all; }
 .pf-award { display: flex; flex-wrap: wrap; align-items: center; gap: 1mm 2mm; margin-top: 1.8mm; color: #eee9f7; font-size: 8.4pt; font-weight: 680; line-height: 1.35; }
-.pf-award::before { width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--profile); box-shadow: 0 0 3mm rgb(142 120 184 / 34%); content: ""; }
+.pf-award :global(.award-badge__icon) { width: 2.6mm; height: 3.4mm; }
 .pf-award em { margin-left: .8mm; border-left: 1px solid rgb(236 236 230 / 22%); padding-left: 2mm; color: rgb(236 236 230 / 48%); font-size: 7pt; font-style: normal; font-weight: 400; }
 
 .pf-lower { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 10mm; margin-top: auto; border-top: 1px solid rgb(236 236 230 / 22%); padding-top: 3.4mm; }

@@ -185,6 +185,24 @@ a {
   content: "";
 }
 
+/* 제목 + 수상 배지 묶음 */
+.case-title { display: flex; align-items: flex-end; gap: 5mm; min-width: 0; }
+.award-badges { display: flex; flex-direction: column; gap: 1.2mm; padding-bottom: .6mm; }
+.award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.8mm;
+  border: 1px solid rgb(236 236 230 / 34%);
+  border-radius: 1mm;
+  padding: .9mm 2.4mm .9mm 1.8mm;
+  background: rgb(236 236 230 / 4%);
+  white-space: nowrap;
+}
+.award-badge__icon { width: 3mm; height: 4mm; flex: none; }
+.award-badge__text { display: flex; align-items: baseline; gap: 1.8mm; }
+.award-badge__text b { color: #ecece6; font-size: 8pt; font-weight: 680; letter-spacing: -.01em; }
+.award-badge__text small { color: rgb(236 236 230 / 62%); font-size: 6.6pt; }
+
 @media screen and (max-width: 1100px) {
   .portfolio {
     justify-content: start;

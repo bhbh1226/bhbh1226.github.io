@@ -1,4 +1,5 @@
 import distillationVisual from '../../../assets/images/recappers-knowledge-distillation-v1.png'
+import AwardBadge, { AwardBadges } from '../../components/AwardBadge.jsx'
 import styles from './RecappersPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
@@ -49,7 +50,13 @@ export default function RecappersPage() {
   return (
     <div className={cx('rec-case')}>
       <header className="case-header">
-        <h2>강의 특화 Multi-Modal LLM, Recappers</h2>
+        <div className="case-title">
+          <h2>강의 특화 Multi-Modal LLM, Recappers</h2>
+          <AwardBadges>
+            <AwardBadge award="우수발표논문상" detail="KICSP 2025 추계학술대회" accent="#5b87b5" />
+            <AwardBadge award="동상" detail="제19회 Capstone Design 경진대회" accent="#5b87b5" />
+          </AwardBadges>
+        </div>
         <span className="case-category case-category--corner">AI SERVICE</span>
       </header>
 

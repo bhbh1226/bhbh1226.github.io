@@ -1,4 +1,5 @@
 import cleVisual from '../../../assets/images/synthetic-cle-colorectal-v1.png'
+import AwardBadge, { AwardBadges } from '../../components/AwardBadge.jsx'
 import styles from './PathologyXaiPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
@@ -165,7 +166,10 @@ export default function PathologyXaiPage() {
   return (
     <div className={cx('xai-case')}>
       <header className="case-header">
-        <h2>MaxViT 기반 CLE 종양 분류와 MAGAR XAI</h2>
+        <div className="case-title">
+          <h2>MaxViT 기반 CLE 종양 분류와 MAGAR XAI</h2>
+          <AwardBadges><AwardBadge award="은상" detail="제33회 공과대학 학술제 · 2024" accent="#a63b2d" /></AwardBadges>
+        </div>
         <span className="case-category case-category--corner">AI RESEARCH</span>
       </header>
 
