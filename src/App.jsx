@@ -44,7 +44,7 @@ export default function App() {
         <TimeBlendingPage />
       </PageShell>
 
-      <PageShell pageNumber={9} section="Profile · Awards · Early Work" tone="dark">
+      <PageShell pageNumber={9} section="Profile · Projects · Awards" tone="dark">
         <ProfilePage />
       </PageShell>
     </main>

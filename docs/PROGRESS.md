@@ -10,14 +10,16 @@
 
 `전체 Skeleton → 표지 → 한 페이지씩 구현·검토 → 전체 통일 → PDF 검수`
 
-9페이지 모두 구현과 사용자 검토를 마쳤다. 2026-09-25에 Page 03 · 04 · 06 · 07을 가독성 중심으로 다시 다듬었다(`PAGE_03_04_06_REFINEMENT_PLAN.md`에서 시작).
+Page 01 – 08은 구현과 사용자 검토를 마쳤고, Page 09는 재구성을 마치고 승인을 기다린다. 2026-09-25에 Page 03 · 04 · 06 · 07을 가독성 중심으로 다시 다듬었다(`PAGE_03_04_06_REFINEMENT_PLAN.md`에서 시작).
 
 - Page 03: PIPELINE AUDIT를 네 행 표로 교체, 기기 이미지 추가, 작은 글자 확대
 - Page 04: 결과 칸 라벨을 GAN / DIFFUSION으로, RESEARCH CONTEXT를 기여 설명과 논문 인용으로 흡수, 작은 글자 확대
 - Page 06: 제목을 "공용 연구 인프라"로 바꾸고, 인증 · 스토리지 · 접속 · 스케줄링의 이전 → 이후를 메인에 배치
 - Page 07: 슬라이드 톤 맞춤, 중복 문구 제거, MY ROLE 형식 통일
+- Page 06 추가(커밋 전): 다른 세션이 글자 크기 · 밝기를 올렸고, 그에 맞춰 버스 연결선 좌표를 다시 재고 문제 해결 도식 상자 폭을 넓혔다
+- Page 09(커밋 전): 주제를 프로필 · 프로젝트 · 수상으로 정하고, 앞 페이지에 없는 것만 모음. 경력 · 자격증 제거, 초기 프로젝트를 합성 이미지 + 이미지 라벨로, 수상을 하단 목록으로 강조
 
-전체 9페이지 PDF는 약 15.9MB다. 남은 작업은 전체 typography · spacing 통일과 최종 PDF 검수다.
+전체 9페이지 PDF는 약 18.7MB다. 남은 작업은 전체 typography · spacing 통일과 최종 PDF 검수다.
 
 | Page | Content | Status |
 | --- | --- | --- |
@@ -29,7 +31,7 @@
 | 06 | GPU / AI Infrastructure — 공용 연구 인프라 | Restructured / PDF checked |
 | 07 | Recappers — Multi-Modal LLM lecture assistant | Refined / PDF checked |
 | 08 | Generative AI Video — 잔향 | Draft approved / PDF checked |
-| 09 | Profile · Awards · Early Work | Draft approved / PDF checked |
+| 09 | Profile · Projects · Awards | Restructured / PDF checked — 승인 대기 |
 
 ## 2. Design Direction Confirmed
 
@@ -411,37 +413,36 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - Kling으로 실제 생성이 가능해지면 재현 프레임 교체
 - 커밋 제외: 원본 사진 2장, ChatGPT 2×2 원본, 전시 사진 사본
 
-## 6-5. Page 09 — Profile · Awards · Early Work (Approved)
+## 6-5. Page 09 — Profile · Projects · Awards (Restructured, 승인 대기)
 
 ### Direction
 
-- 이력서를 옮긴 첫 초안은 이력서와 겹치고 보여주는 것이 약해 다시 구성했다.
-- 2016 – 2026 타임라인 페이지(Page 10 안)는 썸네일이 작고 전달하려는 바가 불분명해 폐기했다.
-- 엔딩 페이지는 새 정보가 없어 넣지 않는다.
-- 최종 역할: 앞 페이지의 작업을 어디서 했는지 잇는 경력 색인, 초기 작업의 구조 도식, 대학 수상 참조, 연락처로 포트폴리오를 닫는다.
+- 이력서를 옮긴 첫 초안은 이력서와 겹치고 보여주는 것이 약해 다시 구성했다. 타임라인 페이지와 엔딩 페이지는 넣지 않는다.
+- 2026-09-25 재구성. 페이지가 무엇을 보여주는지 불분명해 주제를 **프로필 · 프로젝트 · 수상**으로 정했다.
+- 원칙: 앞 페이지에서 다루지 않은 프로젝트를 모은다.
+- UNIVERSITY AWARDS 기준: 순천향대학교가 수여한 상만 싣는다. 수상이 많아 전체 색인으로 두지 않는다. KICSP 우수발표논문상은 학회 수상이라 넣지 않고 p.07에서 다룬다.
+- CAREER · CERTIFICATES는 이력서와 함께 제출하므로 뺐다. 포트폴리오만 받는 곳에는 되살린다(커밋 `6f35caa`, AGENTS.md Page 9에 내용 보존).
 
-### Confirmed Content
+### Implemented Visual Structure (커밋 전)
 
-- 공과대학 수석졸업(성적우수상, 2026.08)
-- 경력: 서울대병원 MVL 인턴(2026.07 – 08) · 서울아산병원 MI2RL 인턴 → 위촉연구원(2025.12 – 2026.06) · EC Lab 랩장(2025.10 – 2026.08) · Medical AI Lab 랩장(2024.12 – 2025.09)
-- 서울아산병원 2026년 2월은 계약 없이 연구를 이어간 기간이라 기간을 합쳐 표기
-- 자격증: 정보처리기사(2026.09) · ADsP(2026.06). 자격증 이미지는 개인정보가 있어 쓰지 않음
-- 대학 수상: KICSP 우수발표논문상 · Capstone 동상(p.07), 학술제 은상(p.05)
-- 초기 작업: STAC 2018 우수상 · 2020 Bixby Hackathon 우수상(삼성전자) · 국가슈퍼컴퓨팅 캠프 3위
-- 뺀 초기 수상 4건(스마트 해커단, 창의IT, 메이커톤, 정보올림피아드)은 이력서에 둔다. 항목을 16개에서 12개로 줄여 밀도를 다른 페이지와 맞춤
+- 제목 `프로필 · 프로젝트 · 수상`, 머리말 `Profile · Projects · Awards`
+- 요약 줄: PROFILE | 박평진 Park PyeongJin | 학력(순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업)
+- EARLY PROJECTS 3칸(전체 폭, 이미지 60mm): 이미지 위 라벨(보라 = 본인 제작) → 제목(만든 것) → 보라 점 + 날짜 · 상
+  - 시각장애인용 물건 위치 · 위험 알림 — 라벨 "위치 · 위험 감지 모듈", **"실시간 관리 웹"** — STAC 2018 우수상
+  - 영화 · 문화 정보 음성 검색 — 라벨 "음성 질문", **"Capsule · 영화 데이터 API"** — Bixby Hackathon 우수상
+  - 국가슈퍼컴퓨팅 청소년 캠프 3위 — 라벨 "블랙홀 빛 왜곡 계산", 주제 병렬 처리 · 양자컴퓨팅 · AI — KISTI 원장상
+- 하단 왼쪽 UNIVERSITY AWARDS: 졸업 성적우수상(보라 표기 "공과대학 수석졸업") · Capstone 동상 p.07 · 학술제 은상 p.05 / 오른쪽 CONTACT
 
-### Implemented Visual Structure
+### Images
 
-- 왼쪽: 이름 · 학력 / CAREER(페이지 참조 표시) / CERTIFICATES
-- 오른쪽: EARLY WORK 3건(구조 도식 · 설명 · ROLE 또는 TOPIC) / UNIVERSITY AWARDS 3건
-- 모든 섹션: 회색 구분선 → 보라색 라벨 → 보라색 첫 선 → 항목
-- 도식의 보라색은 본인이 직접 만든 부분에만: STAC의 실시간 관리 웹(mac 창 형태), Bixby의 Capsule
-- 한국어 줄바꿈은 단어 단위, ROLE 줄은 항목 단위로 줄바꿈
-- 양쪽 칸이 거의 같은 높이에서 끝나도록 초기 작업 도식 여백과 글자 크기를 조정
+- `assets/images/early-work/`: STAC · Bixby는 이전 한 장(`06_58_10`)의 편집본, 블랙홀 랙은 따로 생성. 원본 Codex 파일은 커밋하지 않는다
+- 색: 보라를 `#8e78b8` 색조(261°)로 맞추고, Bixby 몸체에 번진 보라는 흑백으로, 블랙홀 가닥은 밝기 · 채도를 올려 STAC에 맞춤. Bixby · 블랙홀은 표시 크기에 맞게 줄여 PDF 20.8 → 18.7MB
+- Bixby 캡슐의 Bixby 표시는 사용자 요청으로 넣었다(실제 참가한 행사 표시)
+- 캠프 사실(사용자 확인, 기억 기준): 블랙홀 주변 빛 왜곡을 수식으로 계산하는 시뮬레이션을 슈퍼컴퓨터로 수행
 
 ### Remaining
 
-- 해커톤 지원서에 이력서를 따로 제출하는지 확인. 따로 낸다면 자격증을 학력 줄에 합치는 안을 검토
+- 사용자 최종 승인 후 커밋
 
 ## 7. Final QA Backlog
 
@@ -492,12 +493,20 @@ e28bf5f feat: build Recappers case study
 975f1fb feat: build GPU cluster infrastructure page
 ```
 
-이번 정리 커밋:
+이후 커밋:
 
 ```text
-style: refine ventilation results and contribution text   (Page 04)
-feat: restructure GPU infra page around integrated components   (Page 06 + AGENTS.md)
-docs: record page 3–7 refinements and refinement plan
+baba883 style: fix contribution line breaks on ventilation page
+6dab4b7 docs: record page 3–7 refinements and refinement plan
+ce11e98 feat: restructure GPU infra page around integrated components
+2b439a6 style: refine ventilation results and contribution text
+```
+
+대기 중(커밋 전):
+
+```text
+style: raise GPU infra text sizes and realign bus and figures   (Page 06)
+feat: rebuild early work page around synthetic images   (Page 09 + early-work 이미지 + 문서)
 ```
 
 남은 커밋:
