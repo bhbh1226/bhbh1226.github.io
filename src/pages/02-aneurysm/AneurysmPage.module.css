@@ -22,11 +22,10 @@
 .case-method b { color: #a63b2d; font-size: 6.6pt; }.case-method span { display:block; margin:2mm 0; font-size:7.8pt; font-weight:700; }.case-method p { margin:0; color:rgb(236 236 230 / 68%); font-size:7.3pt; line-height:1.42; }
 
 .case-anatomy { grid-column: 3; grid-row: 3; min-height: 0; overflow: hidden; padding: 3mm 0 0 3mm; }
-.case-cow { width: 100%; height: 62mm; }
-.case-cow__vessel path { fill:none; stroke:rgb(236 236 230 / 62%); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round; }
-.case-cow__ica path { fill:none; stroke:#a63b2d; stroke-width:7; stroke-linecap:round; }
-.case-cow__points circle { fill:#090a09; stroke:#e8e5dc; stroke-width:2; }
-.case-cow__label text { fill:rgb(236 236 230 / 45%); font-size:10px; letter-spacing:.8px; }
+.case-cow { position: relative; width: 57mm; margin: 9mm auto 9mm; }
+.case-cow img { display: block; width: 100%; }
+.case-cow span { position: absolute; transform: translate(-50%, -50%); color: rgb(236 236 230 / 62%); font-size: 6.6pt; letter-spacing: .08em; white-space: nowrap; }
+.case-cow span.is-ica { color: #c4533f; font-weight: 700; }
 .case-anatomy > p { margin:-2mm 0 0; color:rgb(236 236 230 / 68%); font-size:7.3pt; line-height:1.45; }
 .case-anatomy > p span { display:block; margin-bottom:1.5mm; color:#a63b2d; font-size:6.4pt; font-weight:750; letter-spacing:.08em; }
 
