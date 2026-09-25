@@ -1,18 +1,57 @@
-
+import phoneImage from '../../../assets/images/phenotyping/device-phone.png'
+import wearableImage from '../../../assets/images/phenotyping/device-wearable.png'
+import surveyImage from '../../../assets/images/phenotyping/device-survey.png'
 import styles from './DigitalPhenotypingPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
 const WINDOW_X = [178, 266, 354, 442]
 const SURVEY_X = [181, 229, 282, 337, 391, 448, 510]
-const FEATURE_COLUMNS = ['ACT', 'SLEEP', 'GPS', 'SCALE', 'WEEK']
+// 감사 규칙 4개를 같은 문법(번호 → 작은 도식 → 교정 · 대상)으로 한 표에 보여준다.
+const AUDIT_GROUPS = [
+  {
+    title: 'DATA INTEGRITY',
+    description: '분석 대상 · 관측값',
+    rules: [
+      { number: '01', visual: 'label', correction: '분석 대상에서 제외', note: '임상군에 포함되던 규칙 교정' },
+      { number: '02', visual: 'value', correction: '결측값으로 정제', note: '센티넬 · 무한대 · 불가능한 생체값' },
+    ],
+  },
+  {
+    title: 'LEAKAGE CONTROL',
+    description: 'feature 범위 · CV 경계',
+    rules: [
+      { number: '03', visual: 'feature', correction: 'feature에서 제거', note: '정답 척도 · 시점 metadata' },
+      { number: '04', visual: 'fold', correction: '학습 fold 내부로 이동', note: '정제 · 대치 · feature 선택' },
+    ],
+  },
+]
+
+const LABEL_TOKENS = [
+  { text: '대조군', korean: true },
+  { text: '임상군', korean: true },
+  { text: '결측·중도탈락·미분류', removed: true, korean: true },
+]
+const VALUE_TOKENS = [
+  { text: '72' },
+  { text: '∞', removed: true },
+  { text: '2³²−1', removed: true },
+  { text: '94' },
+]
+const FEATURE_TOKENS = [
+  { text: 'ACT' },
+  { text: 'SLEEP' },
+  { text: 'GPS' },
+  { text: 'SCALE', removed: true, struck: true },
+  { text: 'WEEK', removed: true, struck: true },
+]
 
 const PHONE_PATH = 'M158 51 C178 50 184 31 203 38 S232 69 250 48 S279 26 300 46 S330 65 350 41 S383 33 403 51 S435 65 454 38 S493 33 512 49 S533 54 548 35'
 const WEARABLE_PATH = 'M158 112 L179 112 187 89 198 130 208 103 218 112 247 112 255 98 264 121 274 111 296 111 307 86 318 134 329 111 359 111 369 96 379 124 389 111 420 111 429 91 440 130 451 111 480 111 490 99 500 120 511 111 548 111'
 
 const PARTICIPANTS = [
-  { name: '참여자 A', weeks: [true, false, true, false], group: '학습군' },
-  { name: '참여자 B', weeks: [true, true, false, true], group: '학습군' },
-  { name: '참여자 C', weeks: [true, true, true, false], group: '평가군', heldOut: true },
+  { name: '참여자 A', weeks: [true, false, true, false], group: '학습' },
+  { name: '참여자 B', weeks: [true, true, false, true], group: '학습' },
+  { name: '참여자 C', weeks: [true, true, true, false], group: '평가', heldOut: true },
 ]
 
 function LongitudinalInput() {
@@ -23,7 +62,7 @@ function LongitudinalInput() {
         <span>START</span><i /><span>END</span>
       </div>
 
-      <svg className={cx('pheno-timeline')} viewBox="0 0 690 210" role="img" aria-label="스마트폰, 웨어러블, 자가보고 데이터가 공통 관측창으로 묶여 feature table이 되는 과정">
+      <svg className={cx('pheno-timeline')} viewBox="-8 0 698 210" role="img" aria-label="스마트폰, 웨어러블, 자가보고 데이터가 공통 관측창으로 묶여 feature table이 되는 과정">
         <path className={cx('timeline-phone-depth')} d={PHONE_PATH} />
         <path className={cx('timeline-wearable-depth')} d={WEARABLE_PATH} />
         <g className={cx('timeline-survey-depth')}>{SURVEY_X.map((x) => <circle key={x} cx={x} cy="172" r="4" />)}</g>
@@ -40,10 +79,16 @@ function LongitudinalInput() {
           ))}
         </g>
 
+        {/* synthetic 기기 이미지: 라벨과 신호선 사이, 각 입력 행의 기준선에 중심을 맞춤 */}
+        <g className={cx('timeline-devices')}>
+          <image href={phoneImage} x="98" y="20" width="50" height="60" preserveAspectRatio="xMidYMid meet" />
+          <image href={wearableImage} x="98" y="86" width="50" height="50" preserveAspectRatio="xMidYMid meet" />
+          <image href={surveyImage} x="98" y="147" width="50" height="50" preserveAspectRatio="xMidYMid meet" />
+        </g>
         <g className={cx('timeline-labels')}>
-          <text x="0" y="44">SMARTPHONE</text><text x="0" y="59">사용 · 사회활동 · GPS</text>
-          <text x="0" y="105">WEARABLE</text><text x="0" y="120">활동 · 수면 · 심박</text>
-          <text x="0" y="166">SELF-REPORT</text><text x="0" y="181">자가보고 설문</text>
+          <text x="-8" y="44">SMARTPHONE</text><text x="-8" y="59">사용 · 사회활동 · GPS</text>
+          <text x="-8" y="105">WEARABLE</text><text x="-8" y="120">활동 · 수면 · 심박</text>
+          <text x="-8" y="166">SELF-REPORT</text><text x="-8" y="181">자가보고 설문</text>
         </g>
         <g className={cx('timeline-baselines')}><path d="M158 50H548 M158 111H548 M158 172H548" /></g>
         <path className={cx('timeline-phone')} d={PHONE_PATH} />
@@ -62,9 +107,11 @@ function LongitudinalInput() {
           {[68, 88, 108, 128].flatMap((y) => [635, 655, 675].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />))}
           <text x="655" y="153">FEATURE TABLE</text>
         </g>
+        <g className={cx('timeline-output-caption')}>
+          <text x="655" y="174">관측창별 feature 구성</text>
+          <text x="655" y="190">시간 단위로 데이터 소스 조립</text>
+        </g>
       </svg>
-
-      <div className={cx('timeline-caption')}><b>관측창별 feature 구성</b><span>서로 다른 데이터 소스를 동일한 시간 단위로 조립</span></div>
     </div>
   )
 }
@@ -84,74 +131,61 @@ function ParticipantSplit() {
           </div>
         ))}
       </div>
+      <p className={cx('cv-note')}>같은 참여자의 관측 시점은 한쪽에만 배정</p>
       <div className={cx('nested-split')}>
         <div className={cx('nested-train')}><span>학습 참여자 A · B</span><div><b>내부 교차검증</b><small>전처리 · feature 선택<br />모델 선택</small></div></div>
         <i />
-        <div className={cx('nested-test')}><span>평가 참여자 C</span><b>최종 평가</b><small>학습·전처리에 사용하지 않음</small></div>
+        <div className={cx('nested-test')}><span>평가 참여자 C</span><b>최종 평가</b><small>학습·전처리에<br />사용하지 않음</small></div>
       </div>
-      <p className={cx('cv-note')}>같은 참여자의 관측 시점을<br />서로 다른 fold에 나누지 않음</p>
     </div>
   )
 }
 
-function LabelAudit() {
+function AuditTokens({ tokens }) {
   return (
-    <div className={cx('audit-item')}>
-      <svg viewBox="0 0 210 34" aria-label="유효 라벨과 제외 라벨 구분">
-        <text className={cx('audit-row-label')} x="0" y="11">USE</text>
-        <g className={cx('audit-valid')}><circle cx="38" cy="8" r="3"/><text x="47" y="11">CONTROL</text><circle cx="119" cy="8" r="3"/><text x="128" y="11">CLINICAL</text></g>
-        <text className={cx('audit-row-label')} x="0" y="29">DROP</text>
-        <g className={cx('audit-excluded')}><text x="38" y="29">MISSING</text><text x="96" y="29">DROPOUT</text><text x="158" y="29">UNCLASS.</text></g>
-      </svg>
-      <p><b>유효 라벨만 사용</b><small>결측·중도탈락·미분류 제외</small></p>
-    </div>
+    <span className={cx('audit-tokens')}>
+      {tokens.map((token) => <i className={cx(token.removed && 'is-removed', token.struck && 'is-struck', token.korean && 'is-text')} key={token.text}>{token.text}</i>)}
+    </span>
   )
 }
 
-function ValueAudit() {
+function FoldVisual() {
   return (
-    <div className={cx('audit-item', 'audit-item--value')}>
-      <svg viewBox="0 0 210 34" aria-label="비정상 값이 결측값으로 정제되는 과정">
-        <text className={cx('audit-row-label')} x="0" y="11">RAW</text>
-        <g className={cx('audit-values')}><text x="48" y="11">72</text><text className={cx('audit-infinity')} x="88" y="12">∞</text><text className={cx('audit-sentinel')} x="142" y="11">2³²−1</text><text x="195" y="11">94</text></g>
-        <path className={cx('audit-drop')} d="M88 14v9 M142 14v9"/><path className={cx('audit-arrow')} d="M84 20l4 4 4-4 M138 20l4 4 4-4"/>
-        <text className={cx('audit-row-label')} x="0" y="31">CLEAN</text>
-        <g className={cx('audit-clean', 'audit-values')}><text x="48" y="31">72</text><text x="88" y="31">—</text><text x="142" y="31">—</text><text x="195" y="31">94</text></g>
-      </svg>
-      <p><b>비정상 값을 결측으로 정제</b><small>센티넬·무한대·비정상 생체값</small></p>
-    </div>
+    <span className={cx('audit-fold')}>
+      <span className={cx('audit-fold__train')}>
+        <small>TRAIN FOLD</small>
+        {['정제', '대치', '선택'].map((step) => <i key={step}>{step}</i>)}
+      </span>
+      <span className={cx('audit-fold__valid')}>VALID</span>
+    </span>
   )
 }
 
-function LeakageAudit() {
-  return (
-    <div className={cx('audit-item', 'audit-item--leakage')}>
-      <svg viewBox="0 0 210 34" aria-label="누수 가능성이 있는 feature 열 제외">
-        {FEATURE_COLUMNS.map((label, index) => <g key={label} transform={`translate(${index * 42},0)`}><rect x="0" y="1" width="35" height="31" rx="1"/><text x="17.5" y="19">{label}</text>{index > 2 && <path d="M3 5l29 23 M32 5L3 28"/>}</g>)}
-      </svg>
-      <p><b>누수 feature 제외</b><small>정답 척도·시점 metadata 제거</small></p>
-    </div>
-  )
+const AUDIT_VISUALS = {
+  label: () => <AuditTokens tokens={LABEL_TOKENS} />,
+  value: () => <AuditTokens tokens={VALUE_TOKENS} />,
+  feature: () => <AuditTokens tokens={FEATURE_TOKENS} />,
+  fold: FoldVisual,
 }
 
-function CrossValidationAudit() {
-  return (
-    <div className={cx('audit-item')}>
-      <svg viewBox="0 0 210 34" aria-label="전처리와 feature 선택을 학습 fold 내부에서 수행">
-        <rect className={cx('audit-fold')} x="1" y="1" width="149" height="32" rx="1"/><text className={cx('audit-fold-label')} x="8" y="10">TRAIN FOLD</text>
-        <g className={cx('audit-cv-steps')}><rect x="9" y="15" width="34" height="12"/><rect x="52" y="15" width="34" height="12"/><rect x="95" y="15" width="43" height="12"/><text x="26" y="23">정제</text><text x="69" y="23">대치</text><text x="116.5" y="23">선택</text><path d="M43 21h9 M86 21h9"/></g>
-        <path className={cx('audit-cv-arrow')} d="M151 17h14"/><rect className={cx('audit-validation')} x="166" y="8" width="43" height="20" rx="1"/><text x="187.5" y="20">VALID</text>
-      </svg>
-      <p><b>학습 fold 내부에서 수행</b><small>전처리·대치·feature 선택</small></p>
-    </div>
-  )
-}
-
-function AuditGroup({ title, description, children }) {
+function AuditGroup({ title, description, rules }) {
   return (
     <div className={cx('audit-rule-group')}>
       <div className={cx('audit-rule-group__title')}><span>{title}</span><small>{description}</small></div>
-      {children}
+      <div className={cx('audit-rules')}>
+        {rules.map((rule) => {
+          const Visual = AUDIT_VISUALS[rule.visual]
+          return (
+            <div className={cx('audit-rule')} key={rule.number}>
+              <span className={cx('audit-rule__number')}>{rule.number}</span>
+              <Visual />
+              <i aria-hidden="true" />
+              <strong>{rule.correction}</strong>
+              <small>{rule.note}</small>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -159,9 +193,10 @@ function AuditGroup({ title, description, children }) {
 function AuditLedger() {
   return (
     <div className={cx('audit-ledger')}>
-      <div className={cx('audit-ledger__head')}><span>PIPELINE AUDIT</span><strong>재현 과정에서 확인하고 교정한 규칙</strong></div>
-      <AuditGroup title="DATA RULES" description="분석에 들어가는 행과 값"><LabelAudit /><ValueAudit /></AuditGroup>
-      <AuditGroup title="EVALUATION RULES" description="모델이 볼 수 있는 정보와 범위"><LeakageAudit /><CrossValidationAudit /></AuditGroup>
+      <div className={cx('audit-ledger__head')}><span>PIPELINE AUDIT</span></div>
+      <div className={cx('audit-ledger__groups')}>
+        {AUDIT_GROUPS.map((group) => <AuditGroup {...group} key={group.title} />)}
+      </div>
     </div>
   )
 }

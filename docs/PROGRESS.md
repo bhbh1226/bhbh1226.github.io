@@ -107,9 +107,9 @@ TOF-MRA에서 좌우 ICA 구간의 geometry·radiomics 특성을 구성하고, c
 
 ### Visual Structure
 
-- 좌측 상단: 관측창별 longitudinal input과 feature table
+- 좌측 상단: 기기 이미지(스마트폰 · 스마트밴드 · 설문지) + 관측창별 longitudinal input과 feature table
 - 우측 상단: 참여자 단위 학습·평가 분리
-- 좌측 하단: Data Rules / Evaluation Rules audit micro-diagram
+- 좌측 하단: PIPELINE AUDIT 표. DATA INTEGRITY(01 라벨 · 02 관측값) / LEAKAGE CONTROL(03 feature · 04 CV 경계) 네 행이 `번호 → 작은 도식 → 교정 · 대상` 같은 열을 쓴다.
 - 우측 하단: Reproduction / Observation / My Scope
 
 ### Implementation Notes
@@ -117,12 +117,19 @@ TOF-MRA에서 좌우 ICA 구간의 geometry·radiomics 특성을 구성하고, c
 - `DigitalPhenotypingPage.jsx`를 의미 단위 컴포넌트로 분리했다.
 - 패널 위치, 설문 점, 참여자 주차, feature 열을 데이터로 관리한다.
 - 폐기된 Page 03 CSS와 후행 override를 제거했다.
-- 네 audit SVG는 동일한 `210 × 34` 좌표계를 사용한다.
+- 네 audit 규칙은 `AUDIT_GROUPS` 데이터와 HTML 토큰(`AuditTokens`, `FoldVisual`)으로 그린다. 기존 네 SVG와 2열 시각안은 글자가 5pt 수준으로 작아져 교체했다.
+- 제외·제거 대상은 적갈 점선 토큰, feature 제거는 취소선으로 표시한다.
+- 2026-09-25 가독성 보강(`PAGE_03_04_06_REFINEMENT_PLAN.md` A–D): 상단 설명 8.2pt, 참여자 도식 라벨 6.2–7.2pt, audit 교정 7.6pt · 대상 6.8pt, `반복 실행 기록 기준` 6.2pt.
+
+### Synthetic Asset
+
+- `assets/images/phenotyping/device-phone.png` · `device-wearable.png` · `device-survey.png`: Codex로 생성한 투명 배경 한 장(스마트폰 · 스마트밴드 · 설문지 세로 1열)을 기기별로 잘라 metadata를 지운 사본. 빨강은 적갈 `#a63b2d` 색상(7°)으로 돌리고 채도 · 밝기를 조금 낮췄다. 원본 생성 파일은 커밋하지 않는다.
+- 질감은 Page 06 서버 이미지와 같은 반투명 외피 · 흑백 · 적갈 강조. 입력 도식의 SMARTPHONE · WEARABLE · SELF-REPORT 라벨과 신호선 사이에 둔다.
+- 이미지 생성 프롬프트는 배경을 칠하지 않고 투명 배경으로 요청한다.
 
 ### Deferred
 
 - `feature`, `metadata`, `seed`, `fold`, `pipeline`의 표기 통일
-- PDF 출력 시 micro-diagram 내부 글자 크기 확인
 - 전체 페이지 완성 후 Page 02와 정보 밀도 비교
 
 ## 6. Current Review — Asan Medical Center
