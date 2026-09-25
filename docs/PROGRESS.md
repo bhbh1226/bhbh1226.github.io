@@ -4,7 +4,7 @@
 
 ## 1. Current State
 
-최종 결과물은 A4 Landscape 규격의 9페이지 PDF로 제작한다.
+최종 결과물은 A4 Landscape 규격의 PDF로 제작한다. 제출 제약은 파일 1개 · 50MB 이하뿐이며, 페이지 수 제한은 없다. 현재 9페이지 구성이다.
 
 전체 페이지를 한 번에 완성하지 않고 다음 순서를 유지한다.
 
@@ -26,12 +26,13 @@
 | 06 | GPU / AI Infrastructure — Slurm cluster | Draft approved / PDF checked |
 | 07 | Recappers — Multi-Modal LLM lecture assistant | Browser layout approved / PDF QA pending |
 | 08 | Generative AI Video — 잔향 | Draft approved / PDF checked |
-| 09 | Profile, Awards & Other Work | Skeleton |
+| 09 | Profile · Awards · Early Work | Draft approved / PDF checked |
 
 ## 2. Design Direction Confirmed
 
 - 검은 배경, 저채도 회색 typography, 적갈색 accent를 기본으로 사용한다.
 - 분야별 category color를 사용한다: AI RESEARCH 적갈색 `#a63b2d`(확정), GPU INFRA 초록색 `#3f8f66`(확정), SERVICE 파란색 `#5b87b5`(Page 07 · 08 공통).
+- Page 09 Profile은 보라색 `#8e78b8`을 쓴다. 세 분야 색과 채도 · 명도를 맞췄다.
 - Page 05는 AI RESEARCH로 확정했다.
 - 구현은 React + Vite + CSS Modules를 기준으로 한다.
 - 표지에서 정한 기술적·편집 디자인의 결을 프로젝트 페이지까지 연결한다.
@@ -393,6 +394,38 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 - Kling으로 실제 생성이 가능해지면 재현 프레임 교체
 - 커밋 제외: 원본 사진 2장, ChatGPT 2×2 원본, 전시 사진 사본
 
+## 6-5. Page 09 — Profile · Awards · Early Work (Approved)
+
+### Direction
+
+- 이력서를 옮긴 첫 초안은 이력서와 겹치고 보여주는 것이 약해 다시 구성했다.
+- 2016 – 2026 타임라인 페이지(Page 10 안)는 썸네일이 작고 전달하려는 바가 불분명해 폐기했다.
+- 엔딩 페이지는 새 정보가 없어 넣지 않는다.
+- 최종 역할: 앞 페이지의 작업을 어디서 했는지 잇는 경력 색인, 초기 작업의 구조 도식, 대학 수상 참조, 연락처로 포트폴리오를 닫는다.
+
+### Confirmed Content
+
+- 공과대학 수석졸업(성적우수상, 2026.08)
+- 경력: 서울대병원 MVL 인턴(2026.07 – 08) · 서울아산병원 MI2RL 인턴 → 위촉연구원(2025.12 – 2026.06) · EC Lab 랩장(2025.10 – 2026.08) · Medical AI Lab 랩장(2024.12 – 2025.09)
+- 서울아산병원 2026년 2월은 계약 없이 연구를 이어간 기간이라 기간을 합쳐 표기
+- 자격증: 정보처리기사(2026.09) · ADsP(2026.06). 자격증 이미지는 개인정보가 있어 쓰지 않음
+- 대학 수상: KICSP 우수발표논문상 · Capstone 동상(p.07), 학술제 은상(p.05)
+- 초기 작업: STAC 2018 우수상 · 2020 Bixby Hackathon 우수상(삼성전자) · 국가슈퍼컴퓨팅 캠프 3위
+- 뺀 초기 수상 4건(스마트 해커단, 창의IT, 메이커톤, 정보올림피아드)은 이력서에 둔다. 항목을 16개에서 12개로 줄여 밀도를 다른 페이지와 맞춤
+
+### Implemented Visual Structure
+
+- 왼쪽: 이름 · 학력 / CAREER(페이지 참조 표시) / CERTIFICATES
+- 오른쪽: EARLY WORK 3건(구조 도식 · 설명 · ROLE 또는 TOPIC) / UNIVERSITY AWARDS 3건
+- 모든 섹션: 회색 구분선 → 보라색 라벨 → 보라색 첫 선 → 항목
+- 도식의 보라색은 본인이 직접 만든 부분에만: STAC의 실시간 관리 웹(mac 창 형태), Bixby의 Capsule
+- 한국어 줄바꿈은 단어 단위, ROLE 줄은 항목 단위로 줄바꿈
+- 양쪽 칸이 거의 같은 높이에서 끝나도록 초기 작업 도식 여백과 글자 크기를 조정
+
+### Remaining
+
+- 해커톤 지원서에 이력서를 따로 제출하는지 확인. 따로 낸다면 자격증을 학력 줄에 합치는 안을 검토
+
 ## 7. Final QA Backlog
 
 - 전체 페이지의 기술 용어 표기 통일
@@ -430,15 +463,22 @@ React 우선 구조와 분야별 category color를 반영한 `AGENTS.md` 수정�
 docs: align agent guide with React stack and category colors
 ```
 
-이후에는 페이지 단위로 커밋한다.
+페이지 커밋 현황:
 
 ```text
-feat: document GPU training infrastructure
-feat: build Recappers case study
-feat: build generative AI video case study
-feat: complete profile awards and other work
+e28bf5f feat: build Recappers case study
+4e38469 feat: build Time Blending (잔향) generative video page
+975f1fb feat: build GPU cluster infrastructure page
+```
+
+남은 커밋:
+
+```text
+feat: build profile, awards, and early work page
 style: unify portfolio typography and spacing
 chore: verify print layout and export final PDF
 ```
+
+두 에이전트가 같은 저장소에서 작업할 때는 커밋 직전에 스테이징 목록을 확인하고, 공유 파일(`App.jsx`, 문서)은 해당 페이지 부분만 골라 올린다.
 
 커밋 전에는 항상 해당 페이지의 화면 확인과 `npm run build`를 완료한다.

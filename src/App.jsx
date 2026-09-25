@@ -7,16 +7,7 @@ import PathologyXaiPage from './pages/05-pathology-xai/PathologyXaiPage.jsx'
 import GpuInfraPage from './pages/06-gpu-infra/GpuInfraPage.jsx'
 import RecappersPage from './pages/07-recappers/RecappersPage.jsx'
 import TimeBlendingPage from './pages/08-time-blending/TimeBlendingPage.jsx'
-import ProjectSkeletonPage from './pages/project-skeleton/ProjectSkeletonPage.jsx'
-
-const pages = [
-  {
-    label: 'Profile & Other Work',
-    title: 'Profile, Awards & Other Work',
-    focus: '학력·연구 경험·수상과 Bixby·STAC을 간결하게 정리합니다.',
-    placeholder: 'Profile / experience / awards / selected projects / contact',
-  },
-]
+import ProfilePage from './pages/09-profile/ProfilePage.jsx'
 
 export default function App() {
   return (
@@ -53,15 +44,9 @@ export default function App() {
         <TimeBlendingPage />
       </PageShell>
 
-      {pages.map((page, index) => (
-        <PageShell
-          key={page.label}
-          pageNumber={index + 9}
-          section={page.label}
-        >
-          <ProjectSkeletonPage {...page} />
-        </PageShell>
-      ))}
+      <PageShell pageNumber={9} section="Profile · Awards · Early Work" tone="dark">
+        <ProfilePage />
+      </PageShell>
     </main>
   )
 }
