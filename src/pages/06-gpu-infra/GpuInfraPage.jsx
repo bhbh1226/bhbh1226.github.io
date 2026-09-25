@@ -25,33 +25,34 @@ const incidents = [
 ]
 
 // 문제 해결 micro-diagram: 위 줄은 문제 상태(흐린 점선), 아래 줄은 조치 후 상태(초록).
-// 좌표계는 180 × 42, 두 줄의 중심선은 y = 9 / 33.
+// 좌표계는 200 × 52, 두 줄의 중심선은 y = 12 / 40. 상자는 높이 18에 글자 좌우 여백을 두고,
+// 선은 도형 앞뒤 4씩 띄워 도형과 선이 붙지 않게 한다.
 function AddressFigure() {
   return (
-    <svg viewBox="0 0 180 42" aria-label="다른 장비와 같은 주소를 쓰던 제어 노드를 새 주소로 옮김">
-      <g className={cx('fig-box')}><rect x="0.5" y="2" width="42" height="14" /><rect x="137.5" y="2" width="42" height="14" /><rect x="0.5" y="26" width="42" height="14" /></g>
-      <text className={cx('fig-text')} x="21.5" y="12.2">제어 노드</text>
-      <text className={cx('fig-text')} x="158.5" y="12.2">다른 장비</text>
-      <text className={cx('fig-text')} x="21.5" y="36.2">제어 노드</text>
-      <path className={cx('fig-bad')} d="M43 9H64 M116 9H137" />
-      <rect className={cx('fig-pill-bad')} x="64" y="2" width="52" height="14" rx="7" /><text className={cx('fig-text')} x="90" y="12.2">같은 주소</text>
-      <path className={cx('fig-good')} d="M43 33H64" />
-      <rect className={cx('fig-pill-good')} x="64" y="26" width="52" height="14" rx="7" /><text className={cx('fig-text', 'fig-text--good')} x="90" y="36.2">새 주소</text>
-      <text className={cx('fig-note')} x="122" y="36.2">설정 정리</text>
+    <svg viewBox="0 0 200 52" aria-label="다른 장비와 같은 주소를 쓰던 제어 노드를 새 주소로 옮김">
+      <g className={cx('fig-box')}><rect x="0.5" y="3" width="52" height="18" rx="1.5" /><rect x="147.5" y="3" width="52" height="18" rx="1.5" /><rect x="0.5" y="31" width="52" height="18" rx="1.5" /></g>
+      <text className={cx('fig-text')} x="26.5" y="15.5">제어 노드</text>
+      <text className={cx('fig-text')} x="173.5" y="15.5">다른 장비</text>
+      <text className={cx('fig-text')} x="26.5" y="43.5">제어 노드</text>
+      <path className={cx('fig-bad')} d="M57 12H71 M129 12H143" />
+      <rect className={cx('fig-pill-bad')} x="75" y="3" width="50" height="18" rx="9" /><text className={cx('fig-text')} x="100" y="15.5">같은 주소</text>
+      <path className={cx('fig-good')} d="M57 40H71" />
+      <rect className={cx('fig-pill-good')} x="75" y="31" width="50" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="100" y="43.5">새 주소</text>
+      <text className={cx('fig-note')} x="136" y="43.5">설정 정리</text>
     </svg>
   )
 }
 
 function CdiFigure() {
   return (
-    <svg viewBox="0 0 180 42" aria-label="reload 때 끊기던 컨테이너와 GPU 연결을 CDI로 고정">
-      <g className={cx('fig-box')}><rect x="0.5" y="2" width="46" height="14" /><rect x="137.5" y="2" width="42" height="14" /><rect x="0.5" y="26" width="46" height="14" /><rect x="137.5" y="26" width="42" height="14" /></g>
-      <text className={cx('fig-text')} x="23.5" y="12.2">컨테이너</text><text className={cx('fig-text')} x="158.5" y="12.2">GPU</text>
-      <text className={cx('fig-text')} x="23.5" y="36.2">컨테이너</text><text className={cx('fig-text')} x="158.5" y="36.2">GPU</text>
-      <path className={cx('fig-bad')} d="M47 9H62 M118 9H137" />
-      <text className={cx('fig-mark')} x="90" y="12.2">✕ reload</text>
-      <path className={cx('fig-good')} d="M47 33H72 M108 33H137" />
-      <rect className={cx('fig-pill-good')} x="72" y="26" width="36" height="14" rx="7" /><text className={cx('fig-text', 'fig-text--good')} x="90" y="36.2">CDI</text>
+    <svg viewBox="0 0 200 52" aria-label="reload 때 끊기던 컨테이너와 GPU 연결을 CDI로 고정">
+      <g className={cx('fig-box')}><rect x="0.5" y="3" width="52" height="18" rx="1.5" /><rect x="155.5" y="3" width="44" height="18" rx="1.5" /><rect x="0.5" y="31" width="52" height="18" rx="1.5" /><rect x="155.5" y="31" width="44" height="18" rx="1.5" /></g>
+      <text className={cx('fig-text')} x="26.5" y="15.5">컨테이너</text><text className={cx('fig-text')} x="177.5" y="15.5">GPU</text>
+      <text className={cx('fig-text')} x="26.5" y="43.5">컨테이너</text><text className={cx('fig-text')} x="177.5" y="43.5">GPU</text>
+      <path className={cx('fig-bad')} d="M57 12H76 M128 12H151" />
+      <text className={cx('fig-mark')} x="102" y="15.3">✕ reload</text>
+      <path className={cx('fig-good')} d="M57 40H80 M124 40H151" />
+      <rect className={cx('fig-pill-good')} x="84" y="31" width="36" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="102" y="43.5">CDI</text>
     </svg>
   )
 }
@@ -59,14 +60,14 @@ function CdiFigure() {
 function BackupFigure() {
   const runs = [0, 1, 2]
   return (
-    <svg viewBox="0 0 180 42" aria-label="rsync는 실행마다 전체를 복사, Borg는 첫 실행 뒤 변경분만 전송">
-      <text className={cx('fig-note')} x="0" y="12.2">rsync</text>
-      {runs.map((run) => <rect key={`r${run}`} className={cx('fig-bar-bad')} x={38 + run * 20} y="2" width="14" height="14" />)}
-      <text className={cx('fig-note')} x="104" y="12.2">매번 전체</text>
-      <text className={cx('fig-note', 'fig-note--good')} x="0" y="36.2">Borg</text>
-      <rect className={cx('fig-bar-good')} x="38" y="26" width="14" height="14" />
-      {runs.slice(1).map((run) => <rect key={`b${run}`} className={cx('fig-bar-good')} x={38 + run * 20} y="37" width="14" height="3" />)}
-      <text className={cx('fig-note')} x="104" y="36.2">변경분만</text>
+    <svg viewBox="0 0 200 52" aria-label="rsync는 실행마다 전체를 복사, Borg는 첫 실행 뒤 변경분만 전송">
+      <text className={cx('fig-note')} x="0" y="15.5">rsync</text>
+      {runs.map((run) => <rect key={`r${run}`} className={cx('fig-bar-bad')} x={46 + run * 24} y="4" width="16" height="16" rx="1" />)}
+      <text className={cx('fig-note')} x="128" y="15.5">매번 전체</text>
+      <text className={cx('fig-note', 'fig-note--good')} x="0" y="43.5">Borg</text>
+      <rect className={cx('fig-bar-good')} x="46" y="32" width="16" height="16" rx="1" />
+      {runs.slice(1).map((run) => <rect key={`b${run}`} className={cx('fig-bar-good')} x={46 + run * 24} y="44" width="16" height="4" rx="1" />)}
+      <text className={cx('fig-note')} x="128" y="43.5">변경분만</text>
     </svg>
   )
 }
@@ -103,12 +104,12 @@ function AccessFlow() {
   )
 }
 
-// Slurm → 서버 위 LOCAL / REMOTE 선으로 이어지는 배정 경로. 좌표는 hero 영역 기준 mm.
+// Slurm → 서버 위 LOCAL / REMOTE 선으로 이어지는 배정 경로. 좌표는 hero 영역(267 × 76mm) 기준 mm.
 function DispatchLine() {
   return (
-    <svg className={cx('infra-dispatch')} viewBox="0 0 267 80" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M41 64.8H82V2.5H91.6" />
-      <circle cx="41" cy="64.8" r="0.9" />
+    <svg className={cx('infra-dispatch')} viewBox="0 0 267 76" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M46.4 57.1H82V2.5H91.6" />
+      <circle cx="46.4" cy="57.1" r="0.9" />
     </svg>
   )
 }

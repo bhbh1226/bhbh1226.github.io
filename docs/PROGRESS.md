@@ -287,7 +287,7 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 ### Implemented Visual Structure
 
 - 요약 줄: 서버별 로컬 계정 · 직접 GPU 점유 → 중앙 인증 · GPU 타입별 스케줄링 · JupyterHub 셀프서비스. 오른쪽에 이전 상태와 규모
-- 메인: 왼쪽 접근 흐름(USERS → ENTRY → Slurm) + 반투명 GPU 서버 이미지. Slurm 배정선이 서버 위 LOCAL 선으로 이어지고, LOCAL과 REMOTE 사이는 점선(Tailscale)
+- 메인: 왼쪽 접근 흐름(USERS → ENTRY → Slurm, 단계 점을 잇는 세로 레일 · 끝의 Slurm 점만 초록) + 반투명 GPU 서버 이미지. Slurm 배정선이 서버 위 LOCAL 선으로 이어지고, LOCAL과 REMOTE 사이는 점선(Tailscale)
 - 서버 위 라벨: GPU 이름, 장수, 초록 칩
 - 기반 구성 한 줄: AUTH · NETWORK · STORAGE · BACKUP · DOCS
 - 하단: 문제 해결 3건(문제 = 흐린 점선, 조치 = 초록 실선 micro-diagram) / MY ROLE 구축 총괄 · 설계·구축 → 운영·장애 대응 → 인수인계
@@ -344,6 +344,8 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
   - 세로 구분선은 중간 영역과 footer 경계 기준으로 위아래 여백을 동일하게 조정
 - 작은 회색 보조 텍스트는 크기와 명도를 높여 PDF 축소 보기에서도 읽히도록 조정
 - 브라우저 기준 페이지, Web UI, Chat, Transcript overflow 없음
+
+- 2026-09-25 정리: 중복 문구 제거(이미지 위 2 TEACHERS · KNOWLEDGE TRANSFER · 1 STUDENT, 섹션 머리 보조 문구, QUIZ 설명 블록, 슬라이드 구석 연결 문구). 슬라이드는 회색 면(`#404340`) 대신 페이지와 같은 어두운 면(`#151715`) + 테두리. 증류 이미지는 `mix-blend-mode: lighten`으로 순검정 배경 경계 제거. MY ROLE은 LEAD · AI · PAPER + 흐린 TEAM(팀원 담당) 한 형식으로 통일
 
 ### Synthetic Asset
 

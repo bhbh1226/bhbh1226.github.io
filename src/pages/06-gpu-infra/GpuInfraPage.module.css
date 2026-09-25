@@ -1,7 +1,7 @@
 .infra-case {
   --infra: #3f8f66;
   display: grid;
-  grid-template-rows: 17mm 19mm 80mm 12mm 1fr;
+  grid-template-rows: 17mm 18mm 76mm 15mm 1fr;
   height: 100%;
   color: #ecece6;
 }
@@ -28,14 +28,21 @@
 /* Hero: access flow → cluster visual */
 .infra-hero { display: grid; grid-template-columns: 76mm 12mm 1fr; min-height: 0; border-bottom: 1px solid rgb(236 236 230 / 16%); }
 
-.infra-access { display: flex; flex-direction: column; justify-content: center; padding: 3mm 0; }
-.infra-step { display: grid; gap: 1mm; border-top: 1px solid rgb(236 236 230 / 22%); padding-top: 2mm; }
+/* 접근 흐름: 가로 구분선 + 떨어진 화살표 대신, 단계 점을 잇는 세로 레일 하나. 끝의 초록 Slurm 점에서 배정선이 서버로 나간다. */
+.infra-access { display: flex; flex-direction: column; justify-content: center; padding: 3mm 0 3mm 6mm; }
+.infra-step { position: relative; display: grid; gap: 1mm; }
 .infra-step strong { font-size: 11pt; font-weight: 640; letter-spacing: -.01em; }
 .infra-step small { color: rgb(236 236 230 / 58%); font-size: 7pt; line-height: 1.4; }
-.infra-step--slurm { border-top-color: var(--infra); }
 .infra-step--slurm strong { font-size: 18pt; font-weight: 700; letter-spacing: -.02em; line-height: 1.05; }
-.infra-down { position: relative; display: block; width: 1px; height: 6mm; margin: 1.6mm 0 1.6mm 1mm; background: rgb(236 236 230 / 30%); }
-.infra-down::after { position: absolute; bottom: 0; left: -.8mm; width: 1.6mm; height: 1.6mm; border-right: 1px solid rgb(236 236 230 / 50%); border-bottom: 1px solid rgb(236 236 230 / 50%); transform: rotate(45deg); content: ""; }
+.infra-step::before { position: absolute; top: 1.1mm; left: -5.8mm; box-sizing: border-box; width: 1.8mm; height: 1.8mm; border-radius: 50%; background: var(--infra); content: ""; }
+/* 끝점 Slurm만 조금 크게: 여기서 배정선이 서버로 나간다. */
+.infra-step--slurm::before { top: .8mm; left: -6.1mm; width: 2.4mm; height: 2.4mm; box-shadow: 0 0 0 1mm rgb(63 143 102 / 22%); }
+.infra-step:not(:last-child)::after { position: absolute; top: 3.1mm; bottom: 0; left: -4.9mm; width: 1px; background: var(--infra); content: ""; }
+.infra-down { position: relative; display: block; height: 7mm; margin-left: -4.9mm; border-left: 1px solid var(--infra); }
+.infra-down + .infra-step::after { top: 0; }
+.infra-down + .infra-step::before { z-index: 1; }
+/* 마지막 단계는 레일이 점까지만 닿는다. */
+.infra-step--slurm::after { position: absolute; top: 0; left: -4.9mm; width: 1px; height: 1mm; background: var(--infra); content: ""; }
 
 .infra-hero { position: relative; }
 .infra-dispatch { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
@@ -66,37 +73,38 @@
 .infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(236 236 230 / 34%); font-size: 5.4pt; letter-spacing: .08em; }
 
 /* Foundation strip */
-.infra-base { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
-.infra-base p { display: flex; align-items: baseline; gap: 2mm; margin: 0; padding: 0 3.4mm; }
+/* 직접 구축한 기반 5개: 한 줄 나열 대신 같은 폭 5칸, 칸마다 라벨 · 구성 · 한 일을 세로로 쌓는다. */
+.infra-base { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
+.infra-base p { display: grid; gap: .9mm; margin: 0; padding: 0 4mm; }
 .infra-base p:first-child { padding-left: 0; }
 .infra-base p:last-child { padding-right: 0; }
-.infra-base p + p { border-left: 1px solid rgb(236 236 230 / 12%); }
-.infra-base span { color: var(--infra); font: 5.8pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .08em; }
-.infra-base strong { font-size: 8.4pt; font-weight: 640; white-space: nowrap; }
-.infra-base small { color: rgb(236 236 230 / 50%); font-size: 6.6pt; white-space: nowrap; }
+.infra-base p + p { border-left: 1px solid rgb(236 236 230 / 14%); }
+.infra-base span { color: var(--infra); font: 6.3pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
+.infra-base strong { font-size: 10pt; font-weight: 660; white-space: nowrap; }
+.infra-base small { color: rgb(236 236 230 / 62%); font-size: 7pt; white-space: nowrap; }
 
 /* Foot */
-.infra-foot { display: grid; grid-template-columns: 1fr 78mm; min-height: 0; padding-top: 2.6mm; }
+.infra-foot { display: grid; grid-template-columns: 1fr 78mm; min-height: 0; padding-top: 2.4mm; }
 .infra-foot > div { display: flex; flex-direction: column; min-width: 0; }
-.infra-foot > div > span { margin-bottom: 2mm; }
+.infra-foot > div > span { margin-bottom: 1.6mm; }
 
 .infra-incidents { padding-right: 7mm; }
 .infra-incidents ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
-.infra-incidents li { display: grid; grid-template-columns: 7mm 1fr; align-content: start; row-gap: 1.4mm; border-top: 1px solid rgb(236 236 230 / 14%); padding: 2mm 5mm 0 0; }
+.infra-incidents li { display: grid; grid-template-columns: 7mm 1fr; align-content: start; row-gap: 1.1mm; border-top: 1px solid rgb(236 236 230 / 14%); padding: 2mm 5mm 0 0; }
 .infra-incidents li + li { border-left: 1px solid rgb(236 236 230 / 10%); padding-left: 4mm; }
 .infra-incidents li b { grid-row: span 3; color: var(--infra); font: 8pt "SFMono-Regular", Menlo, monospace; font-weight: 600; }
 .infra-incidents li strong { font-size: 9.6pt; font-weight: 640; }
 .infra-incidents li p { margin: 0; color: rgb(236 236 230 / 66%); font-size: 7.6pt; line-height: 1.5; }
 .infra-incidents li em { color: var(--infra); font-style: normal; }
-.infra-incidents li svg { display: block; width: 100%; max-width: 50mm; height: 11.5mm; overflow: visible; }
+.infra-incidents li svg { display: block; width: 100%; max-width: 52mm; height: 11.6mm; margin: .6mm 0 .4mm; overflow: visible; }
 
 /* Troubleshooting micro-diagrams */
 .fig-box rect { fill: none; stroke: rgb(236 236 230 / 32%); stroke-width: .8; }
-.fig-text { fill: rgb(236 236 230 / 82%); font-size: 9.4px; text-anchor: middle; }
+.fig-text { fill: rgb(236 236 230 / 84%); font-size: 10px; text-anchor: middle; }
 .fig-text--good { fill: #ecece6; font-weight: 650; }
-.fig-note { fill: rgb(236 236 230 / 64%); font-size: 9.4px; }
+.fig-note { fill: rgb(236 236 230 / 66%); font-size: 10px; }
 .fig-note--good { fill: var(--infra); font-weight: 650; }
-.fig-mark { fill: rgb(236 236 230 / 66%); font-size: 9px; text-anchor: middle; }
+.fig-mark { fill: rgb(236 236 230 / 68%); font-size: 9.6px; text-anchor: middle; }
 .fig-label-good { fill: var(--infra); font-size: 8.6px; font-weight: 700; letter-spacing: .6px; text-anchor: middle; }
 .fig-bad { fill: none; stroke: rgb(236 236 230 / 34%); stroke-width: .9; stroke-dasharray: 2.4 2; }
 .fig-good { fill: none; stroke: var(--infra); stroke-width: 1.4; }
