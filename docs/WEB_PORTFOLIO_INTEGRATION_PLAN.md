@@ -2,6 +2,31 @@
 
 마지막 업데이트: 2026-09-25
 
+## 0. 준비 진행 상태
+
+2026-09-25 기준으로 다음 로컬 준비를 완료했다.
+
+- 통합 작업 브랜치 `codex/portfolio-web-redesign` 생성
+- 기존 GitHub Pages 저장소를 `pages` remote로 연결
+- `pages/master`, `pages/gh-pages` fetch
+- 기존 소스 tip을 `legacy-site-before-portfolio-redesign-2026-09-25` tag로 보존
+- 기존 배포 tip을 `legacy-pages-deploy-before-redesign-2026-09-25` tag로 보존
+- `ours` merge로 현재 Vite 파일을 유지하면서 기존 `master` history 연결
+- merge commit에서 현재 PDF history와 기존 Pages history가 두 parent로 존재하는 것 확인
+- `npm ci` 완료
+- 현재 PDF/Vite 앱의 `npm run build` 통과
+- `git diff --check` 통과
+
+아직 수행하지 않은 외부 변경:
+
+- 작업 브랜치 push
+- legacy tag push
+- 원격 `main` 생성
+- GitHub default branch 변경
+- GitHub Pages 설정 변경
+- GitHub Actions 배포
+- production 사이트 교체
+
 ## 1. 목표
 
 현재 제작 중인 SK hynix AI Hackathon 2026 지원용 PDF 포트폴리오와 공개 웹 포트폴리오를 하나의 Git 저장소에서 관리한다.
@@ -124,10 +149,24 @@ tag는 로컬 검증 후 원격에 push한다. 원격 변경이므로 실행 시
 ```bash
 git remote add portfolio-source /Users/bhbh1226/coding/portfolio
 git fetch portfolio-source main
-git merge portfolio-source/main --allow-unrelated-histories --no-commit
+git merge portfolio-source/main --allow-unrelated-histories -s ours
 ```
 
-이 merge는 `package.json`, `package-lock.json`, `src/`, `README.md` 등에서 충돌할 가능성이 높다. 자동 해결을 신뢰하지 않고 아래 기준으로 수동 정리한다.
+실제 작업에서는 현재 PDF 저장소에서 통합 브랜치를 만들고 GitHub Pages 저장소를 `pages` remote로 연결했으므로 merge 방향이 반대였다.
+
+```bash
+git merge pages/master --allow-unrelated-histories -s ours \
+  -m "chore: preserve legacy GitHub Pages history"
+```
+
+`ours` strategy를 사용한 이유는 다음과 같다.
+
+- 현재 Vite/PDF working tree를 새 application의 기준으로 확정했다.
+- 기존 CRA 파일은 production tree에 섞지 않는다.
+- 기존 commit history는 merge parent와 legacy tag로 모두 조회할 수 있다.
+- `package.json`, `src/`, `README.md`의 무의미한 unrelated-history 충돌을 만들지 않는다.
+
+최종 파일 정리 기준은 다음과 같다.
 
 - 현재 Vite 포트폴리오를 새 application 기반으로 선택한다.
 - 기존 CRA application은 production 코드에서 제거한다.
@@ -532,7 +571,7 @@ PDF build와 웹 배포는 분리한다.
 3. 기존 저장소의 전체 clone을 integration 디렉터리에 생성
 4. legacy tag와 `codex/portfolio-web-redesign` branch 준비
 5. 현재 PDF 저장소를 local remote로 연결
-6. `--allow-unrelated-histories --no-commit` merge
+6. `--allow-unrelated-histories -s ours` merge
 7. 예상 충돌 목록을 사용자에게 보고
 8. Vite 기반 workspace 구조로 충돌 해결
 9. PDF build와 visual regression 확인
