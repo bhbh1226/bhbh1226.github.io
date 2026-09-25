@@ -1,4 +1,4 @@
-import brainVisual from '../../../assets/images/synthetic-cerebrovascular-brain-v1-print.png'
+import brainVisual from '../../../assets/images/synthetic-cerebrovascular-lateral-v1-print.png'
 import cowVisual from '../../../assets/images/synthetic-circle-of-willis-v1.png'
 import styles from './AneurysmPage.module.css'
 
