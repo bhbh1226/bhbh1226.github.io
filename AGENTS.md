@@ -263,7 +263,7 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 ## Terminology
 
 - 가운뎃점: 한 구 안의 짝은 붙여 쓰고(`학습·평가`, `스마트폰·웨어러블`), 목록 구분은 띄어 쓴다(`FastAPI · Docker Compose · nginx`).
-- 한국어 문장 안에서는 `파이프라인` · `질의응답`으로 쓴다(`pipeline` · `Q&A` 쓰지 않음). `feature` · `seed` · `fold` · `cohort`는 영문 그대로 쓴다.
+- 한국어 문장 안에서는 `파이프라인` · `질의응답`으로 쓴다(`pipeline` 쓰지 않음. 좁은 수치 라벨인 Page 07 `Teacher Q&A 성능 유지`만 공간 때문에 `Q&A` 허용). `feature` · `seed` · `fold` · `cohort`는 영문 그대로 쓴다.
 
 ## Typography
 

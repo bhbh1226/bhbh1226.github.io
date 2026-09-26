@@ -1,4 +1,4 @@
-.rec-case { --service: var(--c-service); display: grid; grid-template-rows: 17mm 20mm 92mm 1fr; height: 100%; color: var(--text); }
+.rec-case { --service: var(--c-service); display: grid; grid-template-rows: 17mm 19mm 91mm 1fr; height: 100%; color: var(--text); }
 .rec-case :global(.case-header) { grid-row: 1; }
 .rec-case :global(.case-category--corner)::before, .rec-case :global(.case-category--corner)::after { background: var(--service); }
 .rec-brief > span, .rec-foot > div > span { color: var(--service); font-size: var(--fs-2xs); font-weight: 750; letter-spacing: .1em; }
@@ -80,14 +80,14 @@
 .rec-lines time, .rec-lines b { color: rgb(var(--text-rgb) / 48%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; }
 .rec-lines b { color: #8fb2d5; }
 
-.rec-foot { position: relative; display: grid; grid-template-columns: 82mm 1fr 89mm; min-height: 0; padding: 3.5mm 0; }
-.rec-foot::before, .rec-foot::after { position: absolute; top: 3.5mm; bottom: -4mm; width: 1px; background: rgb(var(--text-rgb) / 14%); content: ""; pointer-events: none; }
+.rec-foot { position: relative; display: grid; grid-template-columns: 82mm 1fr 89mm; min-height: 0; padding: 3mm 0 0; }
+.rec-foot::before, .rec-foot::after { position: absolute; top: 3mm; bottom: -4mm; width: 1px; background: rgb(var(--text-rgb) / 14%); content: ""; pointer-events: none; }
 .rec-foot::before { left: 82mm; }
 .rec-foot::after { right: 89mm; }
 .rec-foot > div { display: flex; flex-direction: column; min-width: 0; padding: 0 7mm; }
 .rec-foot > div:first-child { border-left: 0; padding-left: 0; }
 .rec-foot > div:last-child { padding-right: 0; }
-.rec-foot > div > span { margin-bottom: 2.8mm; }
+.rec-foot > div > span { margin-bottom: 2.2mm; }
 .rec-result > div { display: grid; grid-template-columns: repeat(3, 1fr); }
 .rec-result > div p { display: grid; gap: .8mm; margin: 0; }
 .rec-result > div strong { font-size: 18pt; font-weight: 620; line-height: 1; letter-spacing: -.04em; }
@@ -96,7 +96,7 @@
 .rec-result > p b { color: var(--text); font-weight: 620; }
 .rec-role > strong { margin-bottom: 1.1mm; font-size: 12.5pt; font-weight: 640; line-height: 1; }
 .rec-role__focus { margin: 0 0 2.2mm; color: rgb(var(--text-rgb) / 76%); font-size: var(--fs-sm); font-weight: 580; }
-.rec-role__scope { display: grid; gap: .5mm; }
+.rec-role__scope { display: grid; gap: .3mm; }
 .rec-role__scope p { display: grid; grid-template-columns: 11mm 1fr; align-items: baseline; gap: 1.5mm; margin: 0; color: rgb(var(--text-rgb) / 76%); font-size: var(--fs-xs); line-height: 1.35; }
 .rec-role__scope b { color: var(--service); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; letter-spacing: .08em; }
 /* 팀원 담당은 본인 작업과 구분되도록 흐리게 */

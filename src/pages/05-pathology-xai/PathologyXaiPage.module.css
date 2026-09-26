@@ -1,6 +1,6 @@
 .xai-case {
   display: grid;
-  grid-template-rows: 17mm 19mm 70mm 17mm 1fr;
+  grid-template-rows: 17mm 15.5mm 67mm 19mm 1fr;
   height: 100%;
   color: var(--text);
 }
@@ -19,7 +19,7 @@
 /* Brief */
 .xai-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
 .xai-brief strong { font-size: var(--fs-xl); line-height: 1.45; }
-.xai-brief p { margin: 0; color: rgb(var(--text-rgb) / 58%); font-size: var(--fs-sm); line-height: 1.55; }
+.xai-brief p { margin: 0; color: rgb(var(--text-rgb) / 58%); font-size: var(--fs-sm); line-height: 1.45; }
 .xai-brief p b { display: inline-block; width: 8mm; color: rgb(var(--text-rgb) / 88%); font-weight: 620; }
 
 /* Main stage: MaxViT → web assessment UI (Original | Grad-CAM | MAGAR) */
@@ -106,11 +106,11 @@
 .xai-method li small { color: rgb(var(--text-rgb) / 58%); font-size: var(--fs-2xs); line-height: 1.35; }
 
 /* Foot */
-.xai-foot { display: grid; grid-template-columns: 72mm 1fr 92mm; min-height: 0; padding-top: 3.2mm; }
+.xai-foot { display: grid; grid-template-columns: 72mm 1fr 92mm; min-height: 0; padding-top: 2.2mm; }
 .xai-foot > div { display: flex; flex-direction: column; min-width: 0; padding: 0 7mm; border-left: 1px solid rgb(var(--text-rgb) / 14%); }
 .xai-foot > div:first-child { padding-left: 0; border-left: 0; }
 .xai-foot > div:last-child { padding-right: 0; }
-.xai-foot > div > span { margin-bottom: 2.6mm; }
+.xai-foot > div > span { margin-bottom: 2mm; }
 
 .xai-result__metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 3mm; }
 .xai-result__metrics p { display: grid; gap: .8mm; margin: 0; }
@@ -151,7 +151,7 @@
 .xai-eval__note { margin: auto 0 0; border-top: 1px solid rgb(var(--text-rgb) / 14%); padding-top: 1.8mm; color: rgb(var(--text-rgb) / 64%); font-size: var(--fs-xs); line-height: 1.45; }
 .xai-eval__note b { color: var(--text); font-weight: 620; }
 
-.xai-scope > div { display: grid; grid-template-columns: 13mm 1fr; border-top: 1px solid rgb(var(--text-rgb) / 14%); padding: 2mm 0; }
+.xai-scope > div { display: grid; grid-template-columns: 13mm 1fr; border-top: 1px solid rgb(var(--text-rgb) / 14%); padding: 1.6mm 0; }
 .xai-scope > div + div { margin-top: .6mm; }
 .xai-scope > div b { color: var(--c-research); font: var(--fs-xl) "SFMono-Regular", Menlo, monospace; font-weight: 600; line-height: 1.1; letter-spacing: -.04em; }
 .xai-scope > div p { margin: 0; color: rgb(var(--text-rgb) / 66%); font-size: var(--fs-sm); line-height: 1.55; }

@@ -89,7 +89,7 @@ export default function RecappersPage() {
       <section className={cx('rec-foot')}>
         <div className={cx('rec-result')}>
           <span>RESEARCH RESULT</span>
-          <div><p><strong>87%</strong><small>Teacher 질의응답 성능 유지</small></p><p><strong>0.91</strong><small>질문 변형 응답 일관성</small></p><p><strong>≈40</strong><small>ROUGE-L</small></p></div>
+          <div><p><strong>87%</strong><small>Teacher Q&amp;A 성능 유지</small></p><p><strong>0.91</strong><small>질문 변형 응답 일관성</small></p><p><strong>≈40</strong><small>ROUGE-L</small></p></div>
           <p>12개 강의 데이터셋 · untuned baseline 대비 주요 지표 <b>22–28% 향상</b></p>
         </div>
 
