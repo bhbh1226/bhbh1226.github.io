@@ -259,7 +259,7 @@ export default function PathologyXaiPage() {
           <span>MY SCOPE</span>
           <div>
             <b>2024</b>
-            <p><strong>공과대학 학술제 · 3인 팀</strong>MaxViT 분류 모델 개발 · MAGAR 제안·구현<br /><em>제33회 순천향대학교 공과대학 학술제 은상</em></p>
+            <p><strong>공과대학 학술제 · 3인 팀</strong>MaxViT 분류 모델 개발 · MAGAR 제안·구현</p>
           </div>
           <div>
             <b>2026</b>

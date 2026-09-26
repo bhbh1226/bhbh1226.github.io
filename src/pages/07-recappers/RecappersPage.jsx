@@ -109,7 +109,7 @@ export default function RecappersPage() {
         <div className={cx('rec-paper')}>
           <span>PUBLICATION</span>
           <p><small><b>Park, P.</b>, Kim, B., Lee, S., Hong, Y., &amp; Cho, Y.</small><cite>Lecture-Tailored Learning Assistance via Multi-Modal LLM Distillation from Lecture Materials.</cite></p>
-          <strong>제1저자 · KICSP 2025 추계학술대회<br /><b>우수발표논문상</b></strong>
+          <strong>제1저자 · KICSP 2025 추계학술대회</strong>
         </div>
       </section>
     </div>

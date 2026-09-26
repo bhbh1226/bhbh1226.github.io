@@ -12,7 +12,7 @@ const gpuNodes = [
 
 const foundations = [
   { label: 'NETWORK', title: 'Local + Tailscale', detail: '원격 노드 연결' },
-  { label: 'BACKUP', title: 'Borg 일일 백업', detail: '암호화 · dedup · 복원 검증' },
+  { label: 'BACKUP', title: 'Borg 홈 일일 백업', detail: '암호화 · dedup · 복원 검증' },
   { label: 'DOCS', title: 'Git 런북', detail: 'CHANGELOG로 변경 이력 관리' },
 ]
 
