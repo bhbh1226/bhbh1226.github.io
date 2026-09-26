@@ -236,7 +236,7 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 
 - 수상하거나 논문으로 게재된 프로젝트는 페이지 제목 오른쪽에 배지를 단다(`src/components/AwardBadge.jsx`, 스타일은 `global.css`의 `.award-badge`).
 - 종류: `award`(메달 아이콘, 수상) · `paper`(문서 아이콘, 논문 게재). 아이콘만 해당 페이지의 category color, 테두리와 글자는 중립색.
-- 현재: 04 MICCAI 2026 게재(SASHIMI Workshop · 제2저자) / 05 제33회 공과대학 학술제 은상 / 07 KICSP 우수발표논문상 · 제19회 Capstone Design 경진대회 동상 / 09 초기 프로젝트 상 줄에 메달 아이콘.
+- 현재: 04 MICCAI 2026 게재(SASHIMI Workshop · 제2저자) / 05 제33회 공과대학 학술제 은상 / 07 KICSP 우수발표논문상 · 제19회 Capstone Design 경진대회 동상(제목이 길어 `<AwardBadges row>`로 가로 배치 · 상 이름과 설명 두 줄) / 09 초기 프로젝트 상 줄에 메달 아이콘.
 
 ## Layout
 
@@ -454,7 +454,7 @@ PAGE 7 — RECAPPERS
 
 ## Project
 
-Multi-Modal LLM 기반 강의 학습 플랫폼
+Multi-Modal LLM 기반 강의 학습 플랫폼. 페이지 제목은 `강의 특화 Multi-Modal sLLM, Recappers`(강의별 경량 모델이 핵심이라 sLLM으로 표기)
 
 ## Problem
 
@@ -1020,6 +1020,12 @@ Screenshot 사용 시:
 - 작은 글씨가 너무 많은 화면은 crop
 - 핵심 UI 부분 확대
 
+## Print to PDF 호환
+
+- 이미지에 CSS `filter`를 걸거나, 이미지 위에 반투명 gradient · SVG mask · `mix-blend-mode`를 겹치지 않는다. 브라우저 인쇄에서 어긋나거나 깨진다.
+- 밝기 · 대비 · 채도 · 가장자리 번짐은 이미지 파일에 미리 적용한다. 복잡한 overlay(예: Page 05 히트맵)는 화면 렌더를 고해상도로 캡처한 이미지로 쓴다.
+- 이미지 위 글자 띠는 단색 반투명 배경을 쓴다.
+
 ## Architecture Diagram
 
 가능하면 React 컴포넌트 안의 HTML/CSS 또는 inline SVG로 직접 제작한다.
@@ -1258,7 +1264,7 @@ Page 1 작성.
 
 서울대학교병원 ICA Morphology & Aneurysm Feasibility 작성.
 
-합성 3D 뇌혈관 오브제, 직접 제작한 Circle of Willis diagram, landmark 기반 ICA 추출과 좌우 feature 설계를 중심으로 구성한다. 실제 의료영상처럼 오인되지 않도록 synthetic visualization임을 명시한다.
+옆에서 본 합성 뇌혈관 이미지(ICA만 적갈), 아래에서 본 합성 Circle of Willis 이미지와 HTML 라벨, landmark 기반 ICA 추출과 좌우 feature 설계를 중심으로 구성한다. 실제 의료영상처럼 오인되지 않도록 synthetic visualization임을 명시한다.
 
 ## STEP 4
 

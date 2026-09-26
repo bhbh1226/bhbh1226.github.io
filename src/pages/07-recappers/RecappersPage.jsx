@@ -51,8 +51,8 @@ export default function RecappersPage() {
     <div className={cx('rec-case')}>
       <header className="case-header">
         <div className="case-title">
-          <h2>강의 특화 Multi-Modal LLM, Recappers</h2>
-          <AwardBadges>
+          <h2>강의 특화 Multi-Modal sLLM, Recappers</h2>
+          <AwardBadges row>
             <AwardBadge award="우수발표논문상" detail="KICSP 2025 추계학술대회" accent="#5b87b5" />
             <AwardBadge award="동상" detail="제19회 Capstone Design 경진대회" accent="#5b87b5" />
           </AwardBadges>

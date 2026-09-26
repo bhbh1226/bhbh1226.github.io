@@ -34,6 +34,7 @@ export default function AwardBadge({ award, detail, accent = '#ecece6', kind = '
   )
 }
 
-export function AwardBadges({ children }) {
-  return <span className="award-badges">{children}</span>
+// row: 제목이 길어 세로로 쌓으면 넘칠 때 배지를 가로로 두고 상 이름과 설명을 두 줄로 나눈다
+export function AwardBadges({ children, row = false }) {
+  return <span className={row ? 'award-badges award-badges--row' : 'award-badges'}>{children}</span>
 }
