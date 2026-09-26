@@ -46,9 +46,9 @@
 .xai-model__layer--attn::before { border-color: var(--c-research); }
 .xai-model__layer b { font-size: var(--fs-lg); font-weight: 600; }
 .xai-model__layer small { color: rgb(var(--text-rgb) / 56%); font-size: var(--fs-2xs); }
-.xai-model__foot { display: flex; align-items: center; border-bottom: 1px solid rgb(var(--text-rgb) / 18%); color: rgb(var(--text-rgb) / 48%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; letter-spacing: .08em; }
+.xai-model__foot { display: flex; align-items: center; color: rgb(var(--text-rgb) / 48%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; letter-spacing: .08em; }
 
-.xai-app { display: grid; grid-template-rows: 6.5mm 1fr; height: 66mm; overflow: hidden; border: 1px solid rgb(var(--text-rgb) / 18%); border-radius: 1.2mm; background: #0e0f0e; }
+.xai-app { display: grid; grid-template-rows: 6.5mm 1fr; height: 62mm; overflow: hidden; border: 1px solid rgb(var(--text-rgb) / 18%); border-radius: 1.2mm; background: #0e0f0e; }
 .xai-app__bar { display: grid; grid-template-columns: 12mm auto 1fr; align-items: center; gap: 3mm; padding: 0 3mm; border-bottom: 1px solid rgb(var(--text-rgb) / 12%); }
 .xai-app__bar span { display: flex; gap: 1.1mm; }
 .xai-app__bar span i { width: 1.6mm; height: 1.6mm; border-radius: 50%; background: rgb(var(--text-rgb) / 16%); }
@@ -82,10 +82,10 @@
 .xai-app__visual-head span { display: flex; border: 1px solid rgb(var(--text-rgb) / 14%); border-radius: .8mm; }
 .xai-app__visual-head em { padding: .8mm 2.2mm; color: rgb(var(--text-rgb) / 40%); font-size: var(--fs-2xs); font-style: normal; }
 .xai-app__visual-head em.is-active { background: rgb(var(--text-rgb) / 10%); color: var(--text); }
-.xai-app__images { display: grid; grid-template-columns: repeat(3, 42mm); justify-content: space-between; }
+.xai-app__images { display: grid; grid-template-columns: repeat(3, 39mm); justify-content: space-between; }
 
 .xai-frame { margin: 0; }
-.xai-frame__image { position: relative; width: 42mm; height: 42mm; overflow: hidden; background: #050605; }
+.xai-frame__image { position: relative; width: 39mm; height: 39mm; overflow: hidden; background: #050605; }
 .xai-frame__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .xai-frame__image svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .xai-frame__image .xai-overlay--magar { mix-blend-mode: hard-light; }
