@@ -67,7 +67,7 @@ export default function ProfilePage() {
 
       <section className={cx('pf-brief')}>
         <span>PROFILE</span>
-        <strong>박평진<small>Park PyeongJin</small></strong>
+        <strong>박평진<small>Pyeongjin Park</small></strong>
         <p><b>학력</b>순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업</p>
       </section>
 

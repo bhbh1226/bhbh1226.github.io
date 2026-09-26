@@ -361,7 +361,7 @@ PAGE 1 — PROFILE / INTRO
 ## Basic Information
 
 - 이름: 박평진
-- 영문 이름: Park PyeongJin
+- 영문 이름: Pyeongjin Park
 - 순천향대학교 컴퓨터공학과 졸업
 - 학위: 공학사
 - 졸업일: 2026년 8월 20일
@@ -945,7 +945,7 @@ PAGE 9 — PROFILE · AWARDS · EARLY WORK
 
 ## Profile (요약 줄)
 
-- 박평진 / Park PyeongJin
+- 박평진 / Pyeongjin Park
 - 순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업
 - 학력 줄: 순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업
 - 공과대학 수석졸업(졸업 성적우수상, 2026.08)은 요약 줄이 아니라 수상 목록 첫 줄에 둔다(졸업 정보 중복 방지)
@@ -1220,7 +1220,7 @@ Codex는 **처음부터 9페이지 전체를 한 번에 완성하지 않는다.*
 
 ### 표지 확정 정보
 
-- 영문 이름: Park PyeongJin
+- 영문 이름: Pyeongjin Park
 - GitHub: https://github.com/bhbh1226/
 - LinkedIn: https://www.linkedin.com/in/bhbh1226/
 - Email: bhbh1226@gmail.com

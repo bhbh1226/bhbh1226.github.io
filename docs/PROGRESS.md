@@ -50,8 +50,8 @@ Page 01 – 08은 구현과 사용자 검토를 마쳤고, Page 09는 재구성�
 
 ### Confirmed
 
-- 이름 `Park PyeongJin`을 주요 시각 요소로 사용한다.
-- 이름의 대소문자는 논문 표기와 동일하게 유지한다.
+- 이름 `Pyeongjin Park`을 주요 시각 요소로 사용한다.
+- 영문 이름은 평소 쓰는 표기 `Pyeongjin Park`(이름 · 성 순서, j 소문자)으로 통일한다(2026-09-26 변경, 이전 `Park PyeongJin`).
 - 분야는 Medical AI, Software, Infrastructure의 관계가 드러나도록 구성한다.
 - GitHub, LinkedIn, Email은 표지에 유지한다.
 - 학교 소속처럼 오해될 수 있는 현재 소속 표기는 넣지 않는다.
@@ -439,7 +439,7 @@ PECT는 공개 승인을 받지 않은 미공개 연구이므로 현재 포트�
 ### Implemented Visual Structure (커밋 전)
 
 - 제목 `프로필 · 프로젝트 · 수상`, 머리말 `Profile · Projects · Awards`
-- 요약 줄: PROFILE | 박평진 Park PyeongJin | 학력(순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업)
+- 요약 줄: PROFILE | 박평진 Pyeongjin Park | 학력(순천향대학교 컴퓨터공학과 · 공학사 · 2026.08 졸업)
 - EARLY PROJECTS 3칸(전체 폭, 이미지 60mm): 이미지 위 라벨(보라 = 본인 제작) → 제목(만든 것) → 보라 점 + 날짜 · 상
   - 시각장애인용 물건 위치 · 위험 알림 — 라벨 "위치 · 위험 감지 모듈", **"실시간 관리 웹"** — STAC 2018 우수상
   - 영화 · 문화 정보 음성 검색 — 라벨 "음성 질문", **"Capsule · 영화 데이터 API"** — Bixby Hackathon 우수상

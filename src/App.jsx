@@ -11,7 +11,7 @@ import ProfilePage from './pages/09-profile/ProfilePage.jsx'
 
 export default function App() {
   return (
-    <main className="portfolio" aria-label="Park PyeongJin AI Portfolio">
+    <main className="portfolio" aria-label="Pyeongjin Park AI Portfolio">
       <PageShell pageNumber={1} section="Profile">
         <CoverPage />
       </PageShell>

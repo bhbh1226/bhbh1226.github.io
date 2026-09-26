@@ -17,7 +17,7 @@ export default function CoverPage() {
       />
 
       <div className={cx('hero-cover__name')}>
-        <p>Park PyeongJin</p>
+        <p>Pyeongjin Park</p>
         <h1>박평진</h1>
       </div>
 
