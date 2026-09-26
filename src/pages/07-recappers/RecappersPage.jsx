@@ -53,8 +53,8 @@ export default function RecappersPage() {
         <div className="case-title">
           <h2>강의 특화 Multi-Modal sLLM, Recappers</h2>
           <AwardBadges row>
-            <AwardBadge award="우수발표논문상" detail="KICSP 2025 추계학술대회" accent="#5b87b5" />
-            <AwardBadge award="동상" detail="제19회 Capstone Design 경진대회" accent="#5b87b5" />
+            <AwardBadge award="우수발표논문상" detail="KICSP 2025 추계학술대회" accent="var(--c-service)" />
+            <AwardBadge award="동상" detail="제19회 Capstone Design 경진대회" accent="var(--c-service)" />
           </AwardBadges>
         </div>
         <span className="case-category case-category--corner">AI SERVICE</span>
@@ -89,7 +89,7 @@ export default function RecappersPage() {
       <section className={cx('rec-foot')}>
         <div className={cx('rec-result')}>
           <span>RESEARCH RESULT</span>
-          <div><p><strong>87%</strong><small>Teacher Q&amp;A 성능 유지</small></p><p><strong>0.91</strong><small>질문 변형 응답 일관성</small></p><p><strong>≈40</strong><small>ROUGE-L</small></p></div>
+          <div><p><strong>87%</strong><small>Teacher 질의응답 성능 유지</small></p><p><strong>0.91</strong><small>질문 변형 응답 일관성</small></p><p><strong>≈40</strong><small>ROUGE-L</small></p></div>
           <p>12개 강의 데이터셋 · untuned baseline 대비 주요 지표 <b>22–28% 향상</b></p>
         </div>
 

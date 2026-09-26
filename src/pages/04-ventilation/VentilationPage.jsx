@@ -47,7 +47,7 @@ export default function VentilationPage() {
       <header className="case-header">
         <div className="case-title">
           <h2>흡기·호기 CT 기반 폐 환기지도 합성</h2>
-          <AwardBadges><AwardBadge kind="paper" award="MICCAI 2026 게재" detail="SASHIMI Workshop · 제2저자" accent="#a63b2d" /></AwardBadges>
+          <AwardBadges><AwardBadge kind="paper" award="MICCAI 2026 게재" detail="SASHIMI Workshop · 제2저자" accent="var(--c-research)" /></AwardBadges>
         </div>
         <span className="case-category case-category--corner">AI RESEARCH</span>
       </header>

@@ -8,31 +8,34 @@
 }
 
 .aneurysm-case :global(.case-header) { display:flex; align-items:end; justify-content:space-between; }
-.case-question { grid-column: 1 / -1; display: grid; grid-template-columns: 40mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
-.case-question span, .case-features > span, .case-audit > span, .case-status span { color: #a63b2d; font-size: 6.8pt; font-weight: 750; letter-spacing: .1em; }
-.case-question strong { font-size: 10.5pt; line-height: 1.45; }
-.case-question p { margin: 0; color: rgb(236 236 230 / 62%); font-size: 7.5pt; line-height: 1.45; }
+.case-question { grid-column: 1 / -1; display: grid; grid-template-columns: 40mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
+.case-question span, .case-features > span, .case-audit > span, .case-status span { color: var(--c-research); font-size: var(--fs-xs); font-weight: 750; letter-spacing: .1em; }
+.case-question strong { font-size: var(--fs-2xl); line-height: 1.45; }
+.case-question p { margin: 0; color: rgb(var(--text-rgb) / 62%); font-size: var(--fs-md); line-height: 1.45; }
 
-.case-brain { position: relative; grid-column: 1 / 3; grid-row: 3; min-height: 0; overflow: hidden; margin: 0; border-right: 1px solid rgb(236 236 230 / 18%); }
+.case-brain { position: relative; grid-column: 1 / 3; grid-row: 3; min-height: 0; overflow: hidden; margin: 0; border-right: 1px solid rgb(var(--text-rgb) / 18%); }
 .case-brain img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.case-brain figcaption { position: absolute; z-index: 2; bottom: 3mm; left: 3mm; color: rgb(236 236 230 / 42%); font-size: 6pt; letter-spacing: .09em; }
-.case-method { position: absolute; z-index: 5; left: 116mm; bottom: 36mm; display: grid; grid-template-columns: repeat(2,1fr); width: 76mm; border-top: 1px solid rgb(236 236 230 / 38%); background: rgb(9 10 9 / 86%); }
-.case-method > div { min-height: 24mm; border-bottom: 1px solid rgb(236 236 230 / 18%); border-right: 1px solid rgb(236 236 230 / 18%); padding: 3mm; }
+.case-brain figcaption { position: absolute; z-index: 2; bottom: 3mm; left: 3mm; color: rgb(var(--text-rgb) / 42%); font-size: var(--fs-2xs); letter-spacing: .09em; }
+.case-method { position: absolute; z-index: 5; left: 116mm; bottom: 36mm; display: grid; grid-template-columns: repeat(2,1fr); width: 76mm; border-top: 1px solid rgb(var(--text-rgb) / 38%); background: rgb(9 10 9 / 86%); }
+.case-method > div { min-height: 24mm; border-bottom: 1px solid rgb(var(--text-rgb) / 18%); border-right: 1px solid rgb(var(--text-rgb) / 18%); padding: 3mm; }
 .case-method > div:nth-child(2n) { border-right: 0; }
-.case-method b { color: #a63b2d; font-size: 6.6pt; }.case-method span { display:block; margin:2mm 0; font-size:7.8pt; font-weight:700; }.case-method p { margin:0; color:rgb(236 236 230 / 68%); font-size:7.3pt; line-height:1.42; }
+.case-method b { color: var(--c-research); font-size: var(--fs-2xs); }.case-method span { display:block; margin:2mm 0; font-size:var(--fs-md); font-weight:700; }.case-method p { margin:0; color:rgb(var(--text-rgb) / 68%); font-size:var(--fs-sm); line-height:1.45; }
 
 .case-anatomy { grid-column: 3; grid-row: 3; min-height: 0; overflow: hidden; padding: 3mm 0 0 3mm; }
 .case-cow { position: relative; width: 57mm; margin: 9mm auto 9mm; }
 .case-cow img { display: block; width: 100%; }
-.case-cow span { position: absolute; transform: translate(-50%, -50%); color: rgb(236 236 230 / 62%); font-size: 6.6pt; letter-spacing: .08em; white-space: nowrap; }
-.case-cow span.is-ica { color: #c4533f; font-weight: 700; }
-.case-anatomy > p { margin:-2mm 0 0; color:rgb(236 236 230 / 68%); font-size:7.3pt; line-height:1.45; }
-.case-anatomy > p span { display:block; margin-bottom:1.5mm; color:#a63b2d; font-size:6.4pt; font-weight:750; letter-spacing:.08em; }
+.case-cow span { position: absolute; transform: translate(-50%, -50%); color: rgb(var(--text-rgb) / 62%); font-size: var(--fs-2xs); letter-spacing: .08em; white-space: nowrap; }
+.case-cow span.is-ica { color: var(--c-research-bright); font-weight: 700; }
+.case-anatomy > p { margin:-2mm 0 0; color:rgb(var(--text-rgb) / 68%); font-size:var(--fs-sm); line-height:1.45; }
+.case-anatomy > p span { display:block; margin-bottom:1.5mm; color:var(--c-research); font-size:var(--fs-2xs); font-weight:750; letter-spacing:.08em; }
 
-.case-features, .case-audit, .case-status { grid-row: 4; border-top: 1px solid rgb(236 236 230 / 22%); padding-top: 2.5mm; padding-bottom: 3mm; }
+.case-features, .case-audit, .case-status { grid-row: 4; border-top: 1px solid rgb(var(--text-rgb) / 22%); padding-top: 2.5mm; padding-bottom: 3mm; }
 .case-features { grid-column:1; }.case-audit { grid-column:2; }.case-status { grid-column:3; }
-.case-features > strong, .case-audit > strong { display:block; margin:1.5mm 0 2mm; font-size:8pt; }
+.case-features > strong, .case-audit > strong { display:block; margin:1.5mm 0 2mm; font-size:var(--fs-base); }
 .feature-equations { display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
-.feature-equations p { display:flex; align-items:baseline; justify-content:space-between; margin:0; border-top:1px solid rgb(236 236 230 / 14%); padding-top:1.5mm; }
-.feature-equations code { color:#eeeae2; font-size:8.1pt; }.feature-equations small { color:rgb(236 236 230 / 58%); font-size:6.7pt; }
-.case-features p, .case-audit p, .case-status p { margin:1.5mm 0 0; color:rgb(236 236 230 / 68%); font-size:7.3pt; line-height:1.42; }
+.feature-equations p { display:flex; align-items:baseline; justify-content:space-between; margin:0; border-top:1px solid rgb(var(--text-rgb) / 14%); padding-top:1.5mm; }
+.feature-equations code { color:var(--text); font-size:var(--fs-base); }.feature-equations small { color:rgb(var(--text-rgb) / 58%); font-size:var(--fs-xs); }
+.case-features p, .case-audit p, .case-status p { margin:1.5mm 0 0; color:rgb(var(--text-rgb) / 68%); font-size:var(--fs-sm); line-height:1.45; }
+
+/* 섹션 라벨: 전 페이지 공통 크기(global.css --fs-label) */
+.case-question span, .case-features > span, .case-audit > span, .case-status span, .case-anatomy > p span { font-size: var(--fs-label); }

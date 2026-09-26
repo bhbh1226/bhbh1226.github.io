@@ -87,7 +87,7 @@ export default function ProfilePage() {
                 </span>
               </div>
               <strong>{item.title}</strong>
-              <small className={cx('pf-award')}><MedalIcon accent="#8e78b8" />{item.award}{item.topics && <em>{item.topics}</em>}</small>
+              <small className={cx('pf-award')}><MedalIcon accent="var(--c-profile)" />{item.award}{item.topics && <em>{item.topics}</em>}</small>
             </article>
           ))}
         </div>

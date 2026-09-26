@@ -1,9 +1,9 @@
 .infra-case {
-  --infra: #3f8f66;
+  --infra: var(--c-infra);
   display: grid;
   grid-template-rows: 17mm 20mm 88mm 1fr;
   height: 100%;
-  color: #ecece6;
+  color: var(--text);
 }
 
 .infra-case :global(.case-header) { grid-row: 1; }
@@ -14,96 +14,99 @@
 .infra-step > span,
 .infra-foot > div > span {
   color: var(--infra);
-  font-size: 6.4pt;
+  font-size: var(--fs-2xs);
   font-weight: 750;
   letter-spacing: .1em;
 }
 
 /* Brief */
-.infra-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
-.infra-brief strong { font-size: 10.3pt; line-height: 1.4; }
-.infra-brief p { margin: 0; color: rgb(236 236 230 / 72%); font-size: 8pt; line-height: 1.5; }
-.infra-brief p b { display: inline-block; width: 8mm; color: rgb(236 236 230 / 88%); font-weight: 620; }
+.infra-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
+.infra-brief strong { font-size: var(--fs-2xl); line-height: 1.45; }
+.infra-brief p { margin: 0; color: rgb(var(--text-rgb) / 72%); font-size: var(--fs-base); line-height: 1.55; }
+.infra-brief p b { display: inline-block; width: 8mm; color: rgb(var(--text-rgb) / 88%); font-weight: 620; }
 .infra-brief p em { color: var(--infra); font-style: normal; font-weight: 700; }
 
 /* Hero: access flow → cluster visual */
-.infra-hero { display: grid; grid-template-columns: 76mm 12mm 1fr; min-height: 0; border-bottom: 1px solid rgb(236 236 230 / 16%); }
+.infra-hero { display: grid; grid-template-columns: 76mm 12mm 1fr; min-height: 0; border-bottom: 1px solid rgb(var(--text-rgb) / 16%); }
 
 /* 기여 목록: 네 구성 요소마다 통합 전(흐린 한 줄) → 통합 후(굵게). 묶음 아래 경계선이 초록 버스로 이어져 클러스터에 연결된다. */
 .infra-access { display: flex; flex-direction: column; justify-content: flex-start; gap: 1.6mm; padding: 3.8mm 0 0; }
 .infra-step { display: grid; gap: .7mm; padding-bottom: 2.2mm; }
-.infra-step > span { color: var(--infra); font: 6.6pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
-.infra-before { display: flex; align-items: baseline; gap: 1.6mm; margin: 0; color: rgb(236 236 230 / 56%); font-size: 7.4pt; }
-.infra-before b { border: 1px solid rgb(236 236 230 / 28%); border-radius: .6mm; padding: 0 .9mm; color: rgb(236 236 230 / 64%); font-size: 6.5pt; font-weight: 500; }
-.infra-step strong { justify-self: start; font-size: 11pt; font-weight: 660; letter-spacing: -.01em; }
-.infra-step small { color: rgb(236 236 230 / 72%); font-size: 7.4pt; line-height: 1.35; }
+.infra-step > span { color: var(--infra); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
+.infra-before { display: flex; align-items: baseline; gap: 1.6mm; margin: 0; color: rgb(var(--text-rgb) / 56%); font-size: var(--fs-sm); }
+.infra-before b { border: 1px solid rgb(var(--text-rgb) / 28%); border-radius: .6mm; padding: 0 .9mm; color: rgb(var(--text-rgb) / 64%); font-size: var(--fs-2xs); font-weight: 500; }
+.infra-step strong { justify-self: start; font-size: var(--fs-2xl); font-weight: 660; letter-spacing: -.01em; }
+.infra-step small { color: rgb(var(--text-rgb) / 72%); font-size: var(--fs-sm); line-height: 1.35; }
 
 .infra-hero { position: relative; }
 .infra-dispatch { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .infra-dispatch path { fill: none; stroke: var(--infra); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .infra-dispatch circle { fill: var(--infra); }
-.infra-dispatch .infra-tap { stroke: rgb(63 143 102 / 55%); }
+.infra-dispatch .infra-tap { stroke: rgb(var(--c-infra-rgb) / 55%); }
 
 .infra-visual { position: relative; z-index: 0; min-width: 0; min-height: 0; overflow: hidden; margin: 0; }
 .infra-visual img { z-index: -1; }
 /* 이미지 위쪽 빈 공간을 잘라 라벨 자리만 남기고, 라벨 + 서버 묶음이 영역 세로 가운데에 오게 둔다. */
 .infra-visual img { position: absolute; top: -9.5mm; left: 0; display: block; width: 100%; height: auto; filter: brightness(.9) contrast(1.05); }
-.infra-visual::after { position: absolute; inset: 0; background: linear-gradient(90deg, #090a09 0%, transparent 6%, transparent 94%, #090a09 100%); pointer-events: none; content: ""; }
+.infra-visual::after { position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 6%, transparent 94%, var(--bg) 100%); pointer-events: none; content: ""; }
 
 .infra-group { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px solid var(--infra); }
-.infra-bridge { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px dashed rgb(63 143 102 / 70%); }
-.infra-group span { position: absolute; top: -1.2mm; left: 0; padding-right: 2mm; background: #090a09; color: rgb(236 236 230 / 62%); font: 6.2pt "SFMono-Regular", Menlo, monospace; letter-spacing: .1em; line-height: 1; }
+.infra-bridge { position: absolute; top: 2.5mm; z-index: 1; border-top: 1px dashed rgb(var(--c-infra-rgb) / 70%); }
+.infra-group span { position: absolute; top: -1.2mm; left: 0; padding-right: 2mm; background: var(--bg); color: rgb(var(--text-rgb) / 62%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; letter-spacing: .1em; line-height: 1; }
 .infra-group--remote span { color: var(--infra); }
 
 .infra-label { position: absolute; top: 8.5mm; z-index: 1; display: grid; gap: 1.2mm; transform: translateX(-50%); text-align: center; }
-.infra-label strong { font-size: 10.5pt; font-weight: 660; white-space: nowrap; }
+.infra-label strong { font-size: var(--fs-2xl); font-weight: 660; white-space: nowrap; }
 .infra-label p { display: flex; align-items: center; justify-content: center; gap: 2mm; margin: 0; }
-.infra-label p b { color: rgb(236 236 230 / 64%); font: 7pt "SFMono-Regular", Menlo, monospace; font-weight: 500; }
+.infra-label p b { color: rgb(var(--text-rgb) / 64%); font: var(--fs-xs) "SFMono-Regular", Menlo, monospace; font-weight: 500; }
 .infra-chips { display: flex; gap: .9mm; }
-.infra-chips i { width: 4.6mm; height: 2.4mm; border: 1px solid rgb(236 236 230 / 20%); }
+.infra-chips i { width: 4.6mm; height: 2.4mm; border: 1px solid rgb(var(--text-rgb) / 20%); }
 .infra-chips i.is-on { border-color: var(--infra); background: var(--infra); }
 
-.infra-link { position: absolute; top: calc(36% + 4.5mm); left: 63%; z-index: 1; transform: translateX(-50%); color: var(--infra); font: 6.2pt "SFMono-Regular", Menlo, monospace; font-weight:600; letter-spacing: .12em; }
-.infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(236 236 230 / 46%); font-size: 5.9pt; letter-spacing: .07em; }
+.infra-link { position: absolute; top: calc(36% + 4.5mm); left: 63%; z-index: 1; transform: translateX(-50%); color: var(--infra); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; font-weight:600; letter-spacing: .12em; }
+.infra-visual figcaption { position: absolute; right: 2mm; bottom: 2mm; z-index: 1; color: rgb(var(--text-rgb) / 46%); font-size: var(--fs-2xs); letter-spacing: .07em; }
 
 /* Foundation strip */
 /* 나머지 기반 3개: 오른쪽 아래 칸에 라벨 · 구성 · 한 일을 한 줄씩 */
 .infra-base { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-.infra-base li { display: grid; grid-template-columns: 15mm 1fr; align-items: baseline; border-top: 1px solid rgb(236 236 230 / 14%); padding: 1.9mm 0; }
+.infra-base li { display: grid; grid-template-columns: 15mm 1fr; align-items: baseline; border-top: 1px solid rgb(var(--text-rgb) / 14%); padding: 1.9mm 0; }
 .infra-base li:first-child { border-top-color: var(--infra); }
-.infra-base span { color: var(--infra); font: 6.7pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
+.infra-base span { color: var(--infra); font: var(--fs-xs) "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .1em; }
 .infra-base p { display: flex; align-items: baseline; gap: 2.4mm; margin: 0; }
-.infra-base strong { font-size: 9.5pt; font-weight: 650; white-space: nowrap; }
-.infra-base small { color: rgb(236 236 230 / 72%); font-size: 7.4pt; white-space: nowrap; }
+.infra-base strong { font-size: var(--fs-xl); font-weight: 650; white-space: nowrap; }
+.infra-base small { color: rgb(var(--text-rgb) / 72%); font-size: var(--fs-sm); white-space: nowrap; }
 
 /* Foot */
 .infra-foot { display: grid; grid-template-columns: 1fr 78mm; min-height: 0; padding-top: 2.4mm; }
 .infra-foot > div { display: flex; flex-direction: column; min-width: 0; }
-.infra-foot > div > span { margin-bottom: 1.6mm; font-size:6.8pt; }
+.infra-foot > div > span { margin-bottom: 1.6mm; font-size:var(--fs-xs); }
 
 .infra-incidents { padding-right: 7mm; }
 .infra-incidents ol { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
-.infra-incidents li { display: grid; grid-template-columns: 7mm 1fr; align-content: start; row-gap: 1.1mm; border-top: 1px solid rgb(236 236 230 / 14%); padding: 2mm 5mm 0 0; }
-.infra-incidents li + li { border-left: 1px solid rgb(236 236 230 / 10%); padding-left: 4mm; }
-.infra-incidents li b { grid-row: span 3; color: var(--infra); font: 8pt "SFMono-Regular", Menlo, monospace; font-weight: 600; }
-.infra-incidents li strong { font-size: 9.6pt; font-weight: 640; }
-.infra-incidents li p { margin: 0; color: rgb(236 236 230 / 66%); font-size: 7.6pt; line-height: 1.5; }
+.infra-incidents li { display: grid; grid-template-columns: 7mm 1fr; align-content: start; row-gap: 1.1mm; border-top: 1px solid rgb(var(--text-rgb) / 14%); padding: 2mm 5mm 0 0; }
+.infra-incidents li + li { border-left: 1px solid rgb(var(--text-rgb) / 10%); padding-left: 4mm; }
+.infra-incidents li b { grid-row: span 3; color: var(--infra); font: var(--fs-base) "SFMono-Regular", Menlo, monospace; font-weight: 600; }
+.infra-incidents li strong { font-size: var(--fs-xl); font-weight: 640; }
+.infra-incidents li p { margin: 0; color: rgb(var(--text-rgb) / 66%); font-size: var(--fs-md); line-height: 1.55; }
 .infra-incidents li em { color: var(--infra); font-style: normal; }
 .infra-incidents li svg { display: block; width: 100%; max-width: 52mm; height: 12.4mm; margin: .6mm 0 .4mm; overflow: visible; }
 
 /* Troubleshooting micro-diagrams */
-.fig-box rect { fill: none; stroke: rgb(236 236 230 / 32%); stroke-width: .8; }
-.fig-text { fill: rgb(236 236 230 / 88%); font-size: 11px; text-anchor: middle; }
-.fig-text--good { fill: #ecece6; font-weight: 650; }
-.fig-note { fill: rgb(236 236 230 / 74%); font-size: 11px; }
+.fig-box rect { fill: none; stroke: rgb(var(--text-rgb) / 32%); stroke-width: .8; }
+.fig-text { fill: rgb(var(--text-rgb) / 88%); font-size: 11px; text-anchor: middle; }
+.fig-text--good { fill: var(--text); font-weight: 650; }
+.fig-note { fill: rgb(var(--text-rgb) / 74%); font-size: 11px; }
 .fig-note--good { fill: var(--infra); font-weight: 650; }
-.fig-mark { fill: rgb(236 236 230 / 76%); font-size: 10.4px; text-anchor: middle; }
+.fig-mark { fill: rgb(var(--text-rgb) / 76%); font-size: 10.4px; text-anchor: middle; }
 .fig-label-good { fill: var(--infra); font-size: 9.4px; font-weight: 700; letter-spacing: .5px; text-anchor: middle; }
-.fig-bad { fill: none; stroke: rgb(236 236 230 / 34%); stroke-width: .9; stroke-dasharray: 2.4 2; }
+.fig-bad { fill: none; stroke: rgb(var(--text-rgb) / 34%); stroke-width: .9; stroke-dasharray: 2.4 2; }
 .fig-good { fill: none; stroke: var(--infra); stroke-width: 1.4; }
-.fig-pill-bad { fill: none; stroke: rgb(236 236 230 / 40%); stroke-width: .9; stroke-dasharray: 2.4 2; }
-.fig-pill-good { fill: rgb(63 143 102 / 22%); stroke: var(--infra); stroke-width: 1; }
-.fig-bar-bad { fill: rgb(236 236 230 / 16%); stroke: rgb(236 236 230 / 36%); stroke-width: .6; }
+.fig-pill-bad { fill: none; stroke: rgb(var(--text-rgb) / 40%); stroke-width: .9; stroke-dasharray: 2.4 2; }
+.fig-pill-good { fill: rgb(var(--c-infra-rgb) / 22%); stroke: var(--infra); stroke-width: 1; }
+.fig-bar-bad { fill: rgb(var(--text-rgb) / 16%); stroke: rgb(var(--text-rgb) / 36%); stroke-width: .6; }
 .fig-bar-good { fill: var(--infra); }
 
-.infra-scope { padding-left: 5mm; border-left: 1px solid rgb(236 236 230 / 14%); }
+.infra-scope { padding-left: 5mm; border-left: 1px solid rgb(var(--text-rgb) / 14%); }
+
+/* 섹션 라벨: 전 페이지 공통 크기(global.css --fs-label) */
+.infra-brief > span, .infra-foot > div > span, .infra-incidents > span, .infra-scope > span { font-size: var(--fs-label); }

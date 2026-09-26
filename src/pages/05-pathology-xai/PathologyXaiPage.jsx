@@ -173,7 +173,7 @@ export default function PathologyXaiPage() {
       <header className="case-header">
         <div className="case-title">
           <h2>MaxViT 기반 CLE 종양 분류와 MAGAR XAI</h2>
-          <AwardBadges><AwardBadge award="은상" detail="제33회 공과대학 학술제 · 2024" accent="#a63b2d" /></AwardBadges>
+          <AwardBadges><AwardBadge award="은상" detail="제33회 공과대학 학술제 · 2024" accent="var(--c-research)" /></AwardBadges>
         </div>
         <span className="case-category case-category--corner">AI RESEARCH</span>
       </header>

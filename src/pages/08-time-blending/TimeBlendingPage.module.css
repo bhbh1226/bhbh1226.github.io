@@ -1,9 +1,9 @@
 .tb-case {
-  --service: #5b87b5;
+  --service: var(--c-service);
   display: grid;
   grid-template-rows: 17mm 19mm 72mm 23.8mm 1fr;
   height: 100%;
-  color: #ecece6;
+  color: var(--text);
 }
 
 .tb-case :global(.case-header) { grid-row: 1; }
@@ -17,94 +17,97 @@
 .tb-pipeline > span,
 .tb-foot > div > span {
   color: var(--service);
-  font-size: 6.4pt;
+  font-size: var(--fs-2xs);
   font-weight: 750;
   letter-spacing: .1em;
 }
 
 /* Brief */
-.tb-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(236 236 230 / 22%); }
-.tb-brief strong { font-size: 10pt; line-height: 1.4; }
-.tb-brief p { margin: 0; color: rgb(236 236 230 / 58%); font-size: 7.4pt; line-height: 1.5; }
-.tb-brief p b { display: inline-block; width: 8mm; color: rgb(236 236 230 / 88%); font-weight: 620; }
+.tb-brief { display: grid; grid-template-columns: 38mm 1.15fr .85fr; align-items: center; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
+.tb-brief strong { font-size: var(--fs-xl); line-height: 1.45; }
+.tb-brief p { margin: 0; color: rgb(var(--text-rgb) / 58%); font-size: var(--fs-sm); line-height: 1.55; }
+.tb-brief p b { display: inline-block; width: 8mm; color: rgb(var(--text-rgb) / 88%); font-weight: 620; }
 
 /* Stage: input photos → Gemini prompt → Kling frames */
-.tb-stage { display: grid; grid-template-columns: 1fr 10mm 66mm 10mm 100.2mm; min-height: 0; border-bottom: 1px solid rgb(236 236 230 / 22%); }
+.tb-stage { display: grid; grid-template-columns: 1fr 10mm 66mm 10mm 100.2mm; min-height: 0; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
 .tb-input, .tb-prompt, .tb-output { display: flex; flex-direction: column; min-width: 0; padding: 3.2mm 0 2mm; }
 .tb-stage p { display: flex; justify-content: space-between; margin: 0 0 2.2mm; }
 /* 실제 출력 / 재현 프레임 구분은 근거 표시라 본문 수준으로 읽혀야 한다. */
-.tb-stage p small { color: rgb(236 236 230 / 68%); font-size: 6.4pt; font-weight: 500; letter-spacing: 0; }
+.tb-stage p small { color: rgb(var(--text-rgb) / 68%); font-size: var(--fs-2xs); font-weight: 500; letter-spacing: 0; }
 
 .tb-slot { position: relative; margin: 0; overflow: hidden; background: #0d0e0d; }
 .tb-slot--photo { aspect-ratio: 22 / 23; }
 .tb-slot--wide { aspect-ratio: 16 / 9; }
 .tb-slot img { display: block; width: 100%; height: 100%; object-fit: cover; } /* 채도·밝기는 인쇄 호환을 위해 이미지에 미리 적용 */
-.tb-slot figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 4mm 1.8mm 1.4mm; background: rgb(9 10 9 / 72%); color: rgb(236 236 230 / 86%); font-size: 6.2pt; }
+.tb-slot figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 4mm 1.8mm 1.4mm; background: rgb(9 10 9 / 72%); color: rgb(var(--text-rgb) / 86%); font-size: var(--fs-2xs); }
 .tb-slot__pending {
   display: grid;
   place-content: center;
   gap: .8mm;
   height: 100%;
-  border: 1px dashed rgb(236 236 230 / 22%);
-  background: repeating-linear-gradient(45deg, rgb(236 236 230 / 4%) 0 1px, transparent 1px 3mm);
+  border: 1px dashed rgb(var(--text-rgb) / 22%);
+  background: repeating-linear-gradient(45deg, rgb(var(--text-rgb) / 4%) 0 1px, transparent 1px 3mm);
   text-align: center;
 }
-.tb-slot__pending span { color: rgb(236 236 230 / 58%); font-size: 7pt; font-weight: 600; }
-.tb-slot__pending small { color: rgb(236 236 230 / 34%); font-size: 5.6pt; }
+.tb-slot__pending span { color: rgb(var(--text-rgb) / 58%); font-size: var(--fs-xs); font-weight: 600; }
+.tb-slot__pending small { color: rgb(var(--text-rgb) / 34%); font-size: var(--fs-2xs); }
 
 .tb-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
-.tb-theme { display: grid; gap: .8mm; margin-top: 3mm; border-top: 1px solid rgb(236 236 230 / 16%); padding-top: 1.8mm; }
-.tb-theme small { color: rgb(236 236 230 / 44%); font-size: 6pt; }
-.tb-theme strong { color: rgb(236 236 230 / 86%); font-size: 7.4pt; font-weight: 560; line-height: 1.45; letter-spacing: -.012em; white-space: nowrap; }
+.tb-theme { display: grid; gap: .8mm; margin-top: 3mm; border-top: 1px solid rgb(var(--text-rgb) / 16%); padding-top: 1.8mm; }
+.tb-theme small { color: rgb(var(--text-rgb) / 44%); font-size: var(--fs-2xs); }
+.tb-theme strong { color: rgb(var(--text-rgb) / 86%); font-size: var(--fs-sm); font-weight: 560; line-height: 1.45; letter-spacing: -.012em; white-space: nowrap; }
 
 .tb-arrow { display: grid; align-items: center; padding: 0 2mm; }
-.tb-arrow i { position: relative; width: 100%; border-top: 1px solid rgb(236 236 230 / 34%); }
-.tb-arrow i::after { position: absolute; top: -1.25mm; right: 0; width: 1.8mm; height: 1.8mm; border-top: 1px solid rgb(236 236 230 / 52%); border-right: 1px solid rgb(236 236 230 / 52%); transform: rotate(45deg); content: ""; }
+.tb-arrow i { position: relative; width: 100%; border-top: 1px solid rgb(var(--text-rgb) / 34%); }
+.tb-arrow i::after { position: absolute; top: -1.25mm; right: 0; width: 1.8mm; height: 1.8mm; border-top: 1px solid rgb(var(--text-rgb) / 52%); border-right: 1px solid rgb(var(--text-rgb) / 52%); transform: rotate(45deg); content: ""; }
 
 .tb-prompt { justify-content: flex-start; }
-.tb-prompt > strong { border-top: 1px solid var(--service); padding-top: 2mm; font-size: 11pt; font-weight: 660; }
+.tb-prompt > strong { border-top: 1px solid var(--service); padding-top: 2mm; font-size: var(--fs-2xl); font-weight: 660; }
 .tb-script { display: grid; margin: 2.2mm 0 0; padding: 0; list-style: none; }
-.tb-script li { display: grid; grid-template-columns: 10.5mm 1fr; align-items: baseline; border-top: 1px solid rgb(236 236 230 / 10%); padding: 1.2mm 0; }
-.tb-script b { color: var(--service); font: 6pt "SFMono-Regular", Menlo, monospace; font-weight: 600; }
-.tb-script span { color: rgb(236 236 230 / 78%); font-size: 6.8pt; line-height: 1.35; }
-.tb-stage p.tb-script__keep { display: block; margin: 1.8mm 0 0; border-left: 2px solid var(--service); padding-left: 2mm; color: #ecece6; font-size: 6.8pt; font-style: italic; font-weight: 500; letter-spacing: 0; line-height: 1.4; }
-.tb-script__note { margin-top: 1mm; padding-left: 2.6mm; color: rgb(236 236 230 / 50%); font-size: 6pt; }
+.tb-script li { display: grid; grid-template-columns: 10.5mm 1fr; align-items: baseline; border-top: 1px solid rgb(var(--text-rgb) / 10%); padding: 1.2mm 0; }
+.tb-script b { color: var(--service); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; font-weight: 600; }
+.tb-script span { color: rgb(var(--text-rgb) / 78%); font-size: var(--fs-xs); line-height: 1.35; }
+.tb-stage p.tb-script__keep { display: block; margin: 1.8mm 0 0; border-left: 2px solid var(--service); padding-left: 2mm; color: var(--text); font-size: var(--fs-xs); font-style: italic; font-weight: 500; letter-spacing: 0; line-height: 1.45; }
+.tb-script__note { margin-top: 1mm; padding-left: 2.6mm; color: rgb(var(--text-rgb) / 50%); font-size: var(--fs-2xs); }
 
 .tb-frames { display: grid; grid-template-columns: repeat(2, 48.6mm); justify-content: start; gap: 2mm 3mm; }
 .tb-frame { position: relative; display: grid; }
-.tb-frame > small { position: absolute; bottom: 1.2mm; left: 1.2mm; padding: .3mm 1mm; background: rgb(9 10 9 / 72%); color: rgb(236 236 230 / 86%); font: 5.8pt "SFMono-Regular", Menlo, monospace; }
+.tb-frame > small { position: absolute; bottom: 1.2mm; left: 1.2mm; padding: .3mm 1mm; background: rgb(9 10 9 / 72%); color: rgb(var(--text-rgb) / 86%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; }
 .tb-timeline { display: none; }
 
 /* Pipeline: 한 줄로 이어진 처리 경로. 선 위는 처리 주체, 선 아래는 단계. */
-.tb-pipeline { display: grid; grid-template-columns: 26mm 1fr; align-items: center; padding: 3.3mm 0 5.4mm; border-bottom: 1px solid rgb(236 236 230 / 22%); }
+.tb-pipeline { display: grid; grid-template-columns: 26mm 1fr; align-items: center; padding: 3.3mm 0 5.4mm; border-bottom: 1px solid rgb(var(--text-rgb) / 22%); }
 .tb-pipeline ol { display: grid; grid-template-columns: repeat(6, 1fr); margin: 0; padding: 0; list-style: none; }
 .tb-pipeline li { position: relative; display: grid; grid-template-rows: 3.4mm 3.2mm auto auto; min-width: 0; padding-right: 3mm; }
-.tb-pipeline li em { align-self: end; color: rgb(236 236 230 / 46%); font: 5.6pt "SFMono-Regular", Menlo, monospace; font-style: normal; letter-spacing: .06em; white-space: nowrap; }
+.tb-pipeline li em { align-self: end; color: rgb(var(--text-rgb) / 46%); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; font-style: normal; letter-spacing: .06em; white-space: nowrap; }
 .tb-pipeline li.is-ai em { color: var(--service); font-weight: 650; }
 /* 선은 다음 단계의 점 2mm 앞에서 화살표로 끝나, 단계 사이에 틈을 둔다. */
-.tb-pipeline li i { position: relative; align-self: center; height: 1px; margin-right: -1mm; background: linear-gradient(90deg, transparent 2.6mm, rgb(236 236 230 / 30%) 2.6mm); }
-.tb-pipeline li i::before { position: absolute; top: -1mm; left: 0; width: 2mm; height: 2mm; border: 1px solid rgb(236 236 230 / 60%); border-radius: 50%; background: #090a09; content: ""; }
+.tb-pipeline li i { position: relative; align-self: center; height: 1px; margin-right: -1mm; background: linear-gradient(90deg, transparent 2.6mm, rgb(var(--text-rgb) / 30%) 2.6mm); }
+.tb-pipeline li i::before { position: absolute; top: -1mm; left: 0; width: 2mm; height: 2mm; border: 1px solid rgb(var(--text-rgb) / 60%); border-radius: 50%; background: var(--bg); content: ""; }
 .tb-pipeline li.is-ai i::before { border-color: var(--service); background: var(--service); }
-.tb-pipeline li:not(:last-child) i::after { position: absolute; top: -.75mm; right: .1mm; width: 1.5mm; height: 1.5mm; border-top: 1px solid rgb(236 236 230 / 50%); border-right: 1px solid rgb(236 236 230 / 50%); transform: rotate(45deg); content: ""; }
-.tb-pipeline li:last-child i { margin-right: 0; background: linear-gradient(90deg, transparent 2.6mm, rgb(236 236 230 / 30%) 2.6mm, transparent); }
-.tb-pipeline li strong { display: flex; align-items: baseline; gap: 1.4mm; margin-top: 1mm; font-size: 8.6pt; font-weight: 640; white-space: nowrap; }
-.tb-pipeline li strong b { color: var(--service); font: 6.2pt "SFMono-Regular", Menlo, monospace; font-weight: 600; }
-.tb-pipeline li small { margin-top: .5mm; color: rgb(236 236 230 / 62%); font-size: 7pt; line-height: 1.35; }
+.tb-pipeline li:not(:last-child) i::after { position: absolute; top: -.75mm; right: .1mm; width: 1.5mm; height: 1.5mm; border-top: 1px solid rgb(var(--text-rgb) / 50%); border-right: 1px solid rgb(var(--text-rgb) / 50%); transform: rotate(45deg); content: ""; }
+.tb-pipeline li:last-child i { margin-right: 0; background: linear-gradient(90deg, transparent 2.6mm, rgb(var(--text-rgb) / 30%) 2.6mm, transparent); }
+.tb-pipeline li strong { display: flex; align-items: baseline; gap: 1.4mm; margin-top: 1mm; font-size: var(--fs-lg); font-weight: 640; white-space: nowrap; }
+.tb-pipeline li strong b { color: var(--service); font: var(--fs-2xs) "SFMono-Regular", Menlo, monospace; font-weight: 600; }
+.tb-pipeline li small { margin-top: .5mm; color: rgb(var(--text-rgb) / 62%); font-size: var(--fs-xs); line-height: 1.35; }
 
 /* Foot: 역할을 파이프라인과 같은 층(Frontend · Server · AI 연동)으로 나눠 기술과 함께 보여준다. */
 /* 세로선은 영역 끝까지 내리고, 위아래 여백을 같게 둔다. */
 .tb-foot { display: grid; grid-template-columns: 40mm repeat(3, 1fr); min-height: 0; padding: 2.6mm 0; }
 .tb-role__head { display: flex; flex-direction: column; gap: 1.2mm; }
-.tb-role__head span { color: var(--service); font-size: 6.4pt; font-weight: 750; letter-spacing: .1em; }
-.tb-role__head strong { font-size: 10pt; font-weight: 680; line-height: 1.35; }
-.tb-layer { min-width: 0; padding: 0 4.2mm; border-left: 1px solid rgb(236 236 230 / 14%); }
+.tb-role__head span { color: var(--service); font-size: var(--fs-2xs); font-weight: 750; letter-spacing: .1em; }
+.tb-role__head strong { font-size: var(--fs-xl); font-weight: 680; line-height: 1.35; }
+.tb-layer { min-width: 0; padding: 0 4.2mm; border-left: 1px solid rgb(var(--text-rgb) / 14%); }
 .tb-layer:last-child { padding-right: 0; }
-.tb-layer p { display: grid; gap: .8mm; margin: 0 0 1.6mm; border-top: 1px solid rgb(236 236 230 / 22%); padding-top: 2mm; }
+.tb-layer p { display: grid; gap: .8mm; margin: 0 0 1.6mm; border-top: 1px solid rgb(var(--text-rgb) / 22%); padding-top: 2mm; }
 .tb-layer.is-ai p { border-top-color: var(--service); }
-.tb-layer p b { color: rgb(236 236 230 / 90%); font: 7.4pt "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .06em; }
+.tb-layer p b { color: rgb(var(--text-rgb) / 90%); font: var(--fs-sm) "SFMono-Regular", Menlo, monospace; font-weight: 650; letter-spacing: .06em; }
 .tb-layer.is-ai p b { color: var(--service); }
-.tb-layer p small { color: rgb(236 236 230 / 60%); font-size: 7pt; }
+.tb-layer p small { color: rgb(var(--text-rgb) / 60%); font-size: var(--fs-xs); }
 .tb-layer ul { display: grid; gap: 1mm; margin: 0; padding: 0; list-style: none; }
-.tb-layer li { position: relative; padding-left: 3mm; color: rgb(236 236 230 / 76%); font-size: 7.2pt; line-height: 1.35; }
-.tb-layer li::before { position: absolute; top: .6em; left: 0; width: 1.4mm; border-top: 1px solid rgb(236 236 230 / 40%); content: ""; }
+.tb-layer li { position: relative; padding-left: 3mm; color: rgb(var(--text-rgb) / 76%); font-size: var(--fs-sm); line-height: 1.35; }
+.tb-layer li::before { position: absolute; top: .6em; left: 0; width: 1.4mm; border-top: 1px solid rgb(var(--text-rgb) / 40%); content: ""; }
 .tb-layer.is-ai li::before { border-color: var(--service); }
+
+/* 섹션 라벨: 전 페이지 공통 크기(global.css --fs-label) */
+.tb-brief > span, .tb-input > p, .tb-prompt > p, .tb-output > p, .tb-pipeline > span, .tb-foot > div > span, .tb-role__head span { font-size: var(--fs-label); }

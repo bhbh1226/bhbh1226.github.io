@@ -230,7 +230,7 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 - 초록색과 파란색은 적갈색과 같은 채도·명도 수준으로 맞춰, 검은 배경에서 한 색만 튀지 않게 한다.
 - 한 페이지에는 해당 분야의 색 하나만 사용한다. 다른 분야 색을 섞지 않는다.
 - category color는 category mark, 번호, 강조선, 핵심 도식의 강조 요소에만 사용하고 넓은 면적을 칠하지 않는다.
-- 새 색은 CSS 변수로 추가한다. 현재 Page 02~04와 `global.css`에는 `#a63b2d`가 직접 쓰여 있으므로, 통합 단계에서 category 변수로 정리한다.
+- 색은 `global.css`의 CSS 변수로만 쓴다(아래 Design Tokens). 새 색도 변수로 추가한다.
 
 ## Award · Publication Badge
 
@@ -251,6 +251,19 @@ PDF 출력 시 다음 문제를 반드시 확인한다.
 5. 기술 스택
 
 텍스트만 가득한 페이지를 만들지 않는다.
+
+## Design Tokens (global.css `:root`)
+
+- 색: `--c-research` · `--c-infra` · `--c-service` · `--c-profile`(+ `-rgb`는 투명도 조합용, `--c-research-bright` · `--c-service-bright`는 어두운 배경 위 작은 글자용), `--bg` · `--text` · `--text-rgb` · `--text-soft`. 페이지 CSS와 JSX에 색 hex를 직접 쓰지 않는다.
+- 글자 크기 9단계: `--fs-2xs` 6.4 · `--fs-xs` 6.8 · `--fs-sm` 7.2 · `--fs-md` 7.6 · `--fs-base` 8 · `--fs-lg` 9 · `--fs-xl` 10 · `--fs-2xl` 11 · `--fs-3xl` 12pt. 6.4pt 미만은 쓰지 않는다. 제목 · 큰 수치 등 12.5pt 이상은 페이지별 값을 쓴다.
+- 섹션 라벨(STUDY · MY ROLE · PUBLICATION 등)은 모든 페이지에서 `--fs-label`(6.8pt)을 쓴다.
+- 줄 간격은 1 · 1.1 · 1.25 · 1.35 · 1.45 · 1.55 중에서 고른다.
+- 2026-09-26 통일 때 흩어진 값은 가장 가까운 단계로 맞췄고, 0.2pt보다 크게 줄어드는 경우는 한 단계 위로 올렸다(작은 글자를 키우는 방향).
+
+## Terminology
+
+- 가운뎃점: 한 구 안의 짝은 붙여 쓰고(`학습·평가`, `스마트폰·웨어러블`), 목록 구분은 띄어 쓴다(`FastAPI · Docker Compose · nginx`).
+- 한국어 문장 안에서는 `파이프라인` · `질의응답`으로 쓴다(`pipeline` · `Q&A` 쓰지 않음). `feature` · `seed` · `fold` · `cohort`는 영문 그대로 쓴다.
 
 ## Typography
 

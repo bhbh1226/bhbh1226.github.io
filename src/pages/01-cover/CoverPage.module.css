@@ -2,7 +2,7 @@
   position: relative;
   height: 100%;
   overflow: hidden;
-  color: #f0f0eb;
+  color: var(--text);
   background:
     linear-gradient(90deg, #080908 0%, #080908 35%, transparent 62%),
     #080908;
@@ -18,7 +18,7 @@
   left: 14mm;
   display: flex;
   justify-content: flex-end;
-  font-size: 7.5pt;
+  font-size: var(--fs-md);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -44,14 +44,14 @@
 
 .hero-cover__name p {
   margin: 0 0 2mm;
-  color: rgb(240 240 235 / 58%);
-  font-size: 9pt;
+  color: rgb(var(--text-rgb) / 58%);
+  font-size: var(--fs-lg);
   letter-spacing: 0.08em;
 }
 
 .hero-cover__name h1 {
   margin: 0;
-  color: #f0f0eb;
+  color: var(--text);
   font-size: 88pt;
   font-weight: 720;
   letter-spacing: -0.075em;
@@ -67,8 +67,8 @@
 
 .hero-cover__description p {
   margin: 0;
-  color: rgb(240 240 235 / 72%);
-  font-size: 10.5pt;
+  color: rgb(var(--text-rgb) / 72%);
+  font-size: var(--fs-2xl);
   letter-spacing: 0.025em;
   line-height: 1.55;
 }
@@ -77,10 +77,10 @@
   display: flex;
   gap: 5mm;
   margin-top: 2.55mm;
-  border-top: 1px solid rgb(240 240 235 / 18%);
+  border-top: 1px solid rgb(var(--text-rgb) / 18%);
   padding-top: 3mm;
-  color: rgb(240 240 235 / 78%);
-  font-size: 8.2pt;
+  color: rgb(var(--text-rgb) / 78%);
+  font-size: var(--fs-base);
   letter-spacing: 0.015em;
 }
 
