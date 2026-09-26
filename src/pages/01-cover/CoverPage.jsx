@@ -1,4 +1,4 @@
-import coverBg from '../../../assets/images/cover-wafer-bg-v1.png'
+import bioComputeCore from '../../../assets/images/bio-compute-core-v1.png'
 import styles from './CoverPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
@@ -6,10 +6,15 @@ const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(
 export default function CoverPage() {
   return (
     <div className={cx('hero-cover')}>
-      <img className={cx('hero-cover__bg')} src={coverBg} alt="" aria-hidden="true" />
       <div className={cx('hero-cover__meta')}>
         <span>Portfolio · 2026</span>
       </div>
+
+      <img
+        className={cx('hero-cover__object')}
+        src={bioComputeCore}
+        alt="의료영상, 그래프 구조, GPU 시스템을 결합한 Bio-Compute Core"
+      />
 
       <div className={cx('hero-cover__name')}>
         <p>Park PyeongJin</p>
@@ -24,7 +29,6 @@ export default function CoverPage() {
           <a href="mailto:bhbh1226@gmail.com">bhbh1226@gmail.com</a>
         </div>
       </div>
-
     </div>
   )
 }

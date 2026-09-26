@@ -4,7 +4,8 @@
   overflow: hidden;
   color: #f0f0eb;
   background:
-#080908;
+    linear-gradient(90deg, #080908 0%, #080908 35%, transparent 62%),
+    #080908;
 }
 
 
@@ -22,11 +23,22 @@
   text-transform: uppercase;
 }
 
+.hero-cover__object {
+  position: absolute;
+  z-index: 1;
+  top: 4mm;
+  right: -20mm;
+  width: 74%;
+  height: 96%;
+  object-fit: cover;
+  object-position: right center;
+  filter: saturate(0.82) contrast(1.08);
+}
 
 .hero-cover__name {
   position: absolute;
   z-index: 4;
-  top: 56mm;
+  top: 83mm;
   left: 18mm;
 }
 
@@ -72,15 +84,3 @@
   letter-spacing: 0.015em;
 }
 
-
-
-/* AI 생성 추상 배경. 왼쪽은 원래 어두워 글자 자리로 쓴다 */
-.hero-cover__bg {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center;
-}
