@@ -17,7 +17,6 @@ export default function App() {
       <section className="cover" aria-labelledby="cover-title">
         <header className="cover__header">
           <span>Portfolio · 2026</span>
-          <a href="#portfolio-pages">Selected Projects</a>
         </header>
 
         <img className="cover__object" src={bioComputeCore} alt="의료영상, 그래프 구조, GPU 시스템을 결합한 Bio-Compute Core" />
@@ -36,7 +35,6 @@ export default function App() {
           </div>
         </div>
 
-        <a className="cover__scroll" href="#portfolio-pages"><span>프로젝트</span><i aria-hidden="true" /></a>
       </section>
 
       <section className="projects" id="projects" aria-labelledby="projects-title">

@@ -32,15 +32,11 @@ a { color: inherit; text-decoration: none; }
   right: clamp(24px, 4.8vw, 76px);
   left: clamp(24px, 4.8vw, 76px);
   display: flex;
-  justify-content: space-between;
   color: rgb(var(--text-rgb) / 58%);
   font-size: .76rem;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-
-.cover__header a { border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
-.cover__header a:hover, .cover__header a:focus-visible { color: var(--text); border-color: rgb(var(--text-rgb) / 42%); }
 
 .cover__object {
   position: absolute;
@@ -78,9 +74,6 @@ a { color: inherit; text-decoration: none; }
 .cover__contact { display: flex; gap: clamp(18px, 2.4vw, 38px); margin-top: 18px; border-top: 1px solid rgb(var(--text-rgb) / 18%); padding-top: 17px; color: rgb(var(--text-rgb) / 74%); font-size: clamp(.72rem, .82vw, .86rem); }
 .cover__contact a { transition: color 180ms ease; }
 .cover__contact a:hover, .cover__contact a:focus-visible { color: var(--text); }
-
-.cover__scroll { position: absolute; z-index: 5; right: clamp(24px, 4.8vw, 76px); bottom: clamp(44px, 8vh, 88px); display: flex; align-items: center; gap: 14px; color: rgb(var(--text-rgb) / 48%); font-size: .75rem; letter-spacing: .08em; }
-.cover__scroll i { display: block; width: 46px; height: 1px; background: linear-gradient(90deg, rgb(var(--text-rgb) / 18%), var(--research)); }
 
 .projects { display: none; min-height: 100vh; padding: clamp(72px, 9vw, 138px) clamp(24px, 6vw, 96px) 42px; background: var(--bg); }
 .projects__header { display: grid; grid-template-columns: 1.2fr .8fr; gap: 72px; align-items: end; border-bottom: 1px solid rgb(var(--text-rgb) / 20%); padding-bottom: clamp(32px, 4vw, 58px); }
@@ -156,13 +149,11 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 680px) {
   .cover { min-height: 720px; background: #080908; }
-  .cover__header a { display: none; }
   .cover__object { top: 7%; right: -44%; width: 138%; height: 72%; opacity: .62; object-position: center; }
   .cover__name { top: 36%; }
   .cover__name h1 { font-size: clamp(4.5rem, 23vw, 7rem); }
   .cover__description { right: 24px; bottom: 38px; }
   .cover__contact { flex-direction: column; gap: 9px; }
-  .cover__scroll { display: none; }
   .projects { padding-top: 76px; }
   .projects__header h2 { font-size: clamp(2.4rem, 12vw, 3.8rem); }
   .project-row { grid-template-columns: 34px 1fr; gap: 10px 16px; min-height: 0; padding: 28px 0; }
