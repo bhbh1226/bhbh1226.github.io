@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:web": "vite --config web/vite.config.js",
     "build": "vite build",
+    "build:web": "vite build --config web/vite.config.js",
     "preview": "vite preview"
   },
   "dependencies": {
