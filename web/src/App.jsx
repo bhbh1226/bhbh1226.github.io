@@ -1,4 +1,5 @@
 import bioComputeCore from '../../assets/images/bio-compute-core-v1.png'
+import PdfPortfolioStream from './PdfPortfolioStream.jsx'
 
 const projects = [
   ['02', 'AI RESEARCH', 'research', '좌우 ICA morphology와 뇌동맥류 발생 부위 관련성 분석', '서울대학교병원 Medical Vision Lab', 'Landmark 기반 ICA 추출 · geometry·radiomics · 좌우 비대칭 feature · 데이터 중복 감사'],
@@ -16,7 +17,7 @@ export default function App() {
       <section className="cover" aria-labelledby="cover-title">
         <header className="cover__header">
           <span>Portfolio · 2026</span>
-          <a href="#projects">Selected Projects</a>
+          <a href="#portfolio-pages">Selected Projects</a>
         </header>
 
         <img className="cover__object" src={bioComputeCore} alt="의료영상, 그래프 구조, GPU 시스템을 결합한 Bio-Compute Core" />
@@ -35,7 +36,7 @@ export default function App() {
           </div>
         </div>
 
-        <a className="cover__scroll" href="#projects"><span>프로젝트</span><i aria-hidden="true" /></a>
+        <a className="cover__scroll" href="#portfolio-pages"><span>프로젝트</span><i aria-hidden="true" /></a>
       </section>
 
       <section className="projects" id="projects" aria-labelledby="projects-title">
@@ -69,6 +70,8 @@ export default function App() {
           <span>AI Research · Software · Infrastructure</span>
         </footer>
       </section>
+
+      <PdfPortfolioStream />
     </main>
   )
 }
