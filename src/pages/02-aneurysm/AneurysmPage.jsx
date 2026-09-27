@@ -1,20 +1,28 @@
-import brainVisual from '../../../assets/images/synthetic-cerebrovascular-brain-v1.png'
+import brainVisual from '../../../assets/images/synthetic-cerebrovascular-lateral-v1-print.png'
+import cowVisual from '../../../assets/images/synthetic-circle-of-willis-v1.png'
 import styles from './AneurysmPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
 
+// 합성 CoW 이미지 위에 라벨을 HTML로 올린다. 위치는 이미지 기준 %.
+const COW_LABELS = [
+  { text: 'ACA', x: 50, y: -5 },
+  { text: 'ACoA', x: 50, y: 31 },
+  { text: 'MCA', x: 6, y: 24 },
+  { text: 'MCA', x: 94, y: 24 },
+  { text: 'LEFT ICA', x: 19, y: 104, ica: true },
+  { text: 'RIGHT ICA', x: 81, y: 104, ica: true },
+  { text: 'BA', x: 50, y: 104 },
+]
+
 function CowDiagram() {
   return (
-    <svg className={cx('case-cow')} viewBox="0 0 420 330" role="img" aria-label="Circle of Willis와 좌우 ICA 모식도">
-      <g className={cx('case-cow__vessel')}>
-        <path d="M210 315V248M210 248L163 207M210 248L257 207" /><path d="M163 207C133 197 110 176 100 150M257 207C287 197 310 176 320 150" />
-        <path d="M100 150C75 132 50 127 20 136M320 150C345 132 370 127 400 136" /><path d="M100 150C135 129 156 112 177 91M320 150C285 129 264 112 243 91" />
-        <path d="M177 91L198 79M243 91L222 79M198 79H222" /><path d="M198 79L183 21M222 79L237 21" />
-      </g>
-      <g className={cx('case-cow__ica')}><path d="M100 300C82 265 117 237 98 205C82 178 82 163 100 150" /><path d="M320 300C338 265 303 237 322 205C338 178 338 163 320 150" /></g>
-      <g className={cx('case-cow__points')}><circle cx="100" cy="300" r="6"/><circle cx="98" cy="205" r="6"/><circle cx="100" cy="150" r="6"/><circle cx="320" cy="300" r="6"/><circle cx="322" cy="205" r="6"/><circle cx="320" cy="150" r="6"/></g>
-      <g className={cx('case-cow__label')}><text x="63" y="322">LEFT ICA</text><text x="306" y="322">RIGHT ICA</text><text x="187" y="11">ACA</text><text x="225" y="11">ACA</text><text x="193" y="67">ACoA</text><text x="4" y="126">MCA</text><text x="377" y="126">MCA</text><text x="200" y="329">BA</text></g>
-    </svg>
+    <figure className={cx('case-cow')}>
+      <img src={cowVisual} alt="Circle of Willis와 좌우 ICA 합성 이미지" />
+      {COW_LABELS.map((label) => (
+        <span key={`${label.text}-${label.x}`} className={cx(label.ica && 'is-ica')} style={{ left: `${label.x}%`, top: `${label.y}%` }}>{label.text}</span>
+      ))}
+    </figure>
   )
 }
 

@@ -8,7 +8,37 @@
   --ink: #1d1d1b;
   --muted: #696862;
   --line: #cbc9c1;
-  --accent: #a63b2d;
+  --accent: var(--c-research);
+
+  /* 분야 색 (AGENTS.md Category Color). rgb 값은 투명도 조합용 */
+  --c-research: #a63b2d;
+  --c-research-rgb: 166 59 45;
+  --c-research-bright: #c4533f; /* 어두운 배경 위 작은 글자용 */
+  --c-infra: #3f8f66;
+  --c-infra-rgb: 63 143 102;
+  --c-service: #5b87b5;
+  --c-service-rgb: 91 135 181;
+  --c-service-bright: #a9c6e6;
+  --c-profile: #8e78b8;
+  --c-profile-rgb: 142 120 184;
+
+  /* 어두운 페이지 공통 */
+  --bg: #090a09;
+  --text: #ecece6;
+  --text-rgb: 236 236 230;
+  --text-soft: #d8d5cc;
+
+  /* 글자 크기 단계. 6.4pt 미만은 쓰지 않는다 */
+  --fs-2xs: 6.4pt;  /* 도식 속 라벨 · 캡션 */
+  --fs-xs: 6.8pt;   /* 섹션 라벨 · 보조 설명 */
+  --fs-sm: 7.2pt;   /* 작은 본문 */
+  --fs-md: 7.6pt;   /* 본문 */
+  --fs-base: 8pt;   /* 강조 본문 · 소제목 */
+  --fs-lg: 9pt;
+  --fs-xl: 10pt;    /* 요약 줄 */
+  --fs-2xl: 11pt;
+  --fs-3xl: 12pt;
+  --fs-label: var(--fs-xs); /* 섹션 라벨(STUDY · MY ROLE 등) */
   --page-x: 15mm;
   --page-y: 11mm;
 }
@@ -58,7 +88,7 @@ a {
   align-items: center;
   justify-content: space-between;
   color: var(--muted);
-  font-size: 7.5pt;
+  font-size: var(--fs-md);
   letter-spacing: 0.02em;
 }
 
@@ -105,24 +135,24 @@ a {
 .kicker {
   margin: 0 0 4mm;
   color: var(--accent);
-  font-size: 9pt;
+  font-size: var(--fs-lg);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .page--dark {
-  color: #ecece6;
-  background: #090a09;
+  color: var(--text);
+  background: var(--bg);
 }
 
 .page--dark .page__header,
 .page--dark .page__footer {
-  color: rgb(236 236 230 / 52%);
-  border-color: rgb(236 236 230 / 18%);
+  color: rgb(var(--text-rgb) / 52%);
+  border-color: rgb(var(--text-rgb) / 18%);
 }
 
-.page--dark .page__section { color: #ecece6; }
+.page--dark .page__section { color: var(--text); }
 
 /* Case-study pages: factual hierarchy, no promotional hero copy. */
 .case-header {
@@ -130,27 +160,27 @@ a {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(236 236 230 / 22%);
+  border-bottom: 1px solid rgb(var(--text-rgb) / 22%);
   padding-bottom: 3mm;
 }
 
 .case-header h2 { margin: 0; font-size: 23pt; font-weight: 680; letter-spacing: -.04em; }
-.case-header__meta { padding-bottom: 1mm; color: rgb(236 236 230 / 48%); font-size: 6.5pt; letter-spacing: .045em; }
+.case-header__meta { padding-bottom: 1mm; color: rgb(var(--text-rgb) / 48%); font-size: var(--fs-2xs); letter-spacing: .045em; }
 .case-category {
   display: inline-flex;
   align-items: center;
   gap: 2.5mm;
   padding-bottom: 1mm;
-  color: rgb(236 236 230 / 78%);
+  color: rgb(var(--text-rgb) / 78%);
   font-family: "SFMono-Regular", Menlo, Consolas, monospace;
-  font-size: 8.8pt;
+  font-size: var(--fs-lg);
   font-weight: 520;
   letter-spacing: .13em;
 }
 
 .case-category::before {
   width: 8mm;
-  border-top: 2px solid #a63b2d;
+  border-top: 2px solid var(--c-research);
   content: "";
 }
 
@@ -170,7 +200,7 @@ a {
   width: 3.5mm;
   height: 1px;
   border-top: 0;
-  background: #a63b2d;
+  background: var(--c-research);
   transform: translateY(-50%);
   content: "";
 }
@@ -180,10 +210,31 @@ a {
   right: 0;
   width: 1px;
   height: 3.5mm;
-  background: #a63b2d;
+  background: var(--c-research);
   transform: translateY(-50%);
   content: "";
 }
+
+/* 제목 + 수상 배지 묶음 */
+.case-title { display: flex; align-items: flex-end; gap: 5mm; min-width: 0; }
+.award-badges { display: flex; flex-direction: column; gap: 1.2mm; padding-bottom: .6mm; }
+.award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.8mm;
+  border: 1px solid rgb(var(--text-rgb) / 34%);
+  border-radius: 1mm;
+  padding: .9mm 2.4mm .9mm 1.8mm;
+  background: rgb(var(--text-rgb) / 4%);
+  white-space: nowrap;
+}
+.award-badge__icon { width: 3mm; height: 4mm; flex: none; }
+.award-badge__text { display: flex; align-items: baseline; gap: 1.8mm; }
+.award-badge__text b { color: var(--text); font-size: var(--fs-base); font-weight: 680; letter-spacing: -.01em; }
+.award-badge__text small { color: rgb(var(--text-rgb) / 62%); font-size: var(--fs-2xs); }
+.award-badges--row { flex-direction: row; gap: 2mm; }
+.award-badges--row .award-badge__text { flex-direction: column; align-items: flex-start; gap: .3mm; }
+.award-badges--row .award-badge__text small { white-space: nowrap; }
 
 @media screen and (max-width: 1100px) {
   .portfolio {

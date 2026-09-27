@@ -12,7 +12,7 @@ const gpuNodes = [
 
 const foundations = [
   { label: 'NETWORK', title: 'Local + Tailscale', detail: '원격 노드 연결' },
-  { label: 'BACKUP', title: 'Borg 일일 백업', detail: '암호화 · dedup · 복원 검증' },
+  { label: 'BACKUP', title: 'Borg 홈 일일 백업', detail: '암호화 · dedup · 복원 검증' },
   { label: 'DOCS', title: 'Git 런북', detail: 'CHANGELOG로 변경 이력 관리' },
 ]
 
@@ -24,19 +24,19 @@ const incidents = [
 
 // 문제 해결 micro-diagram: 위 줄은 문제 상태(흐린 점선), 아래 줄은 조치 후 상태(초록).
 // 좌표계는 200 × 52, 두 줄의 중심선은 y = 12 / 40. 상자는 높이 18에 글자 좌우 여백을 두고,
-// 선은 도형 앞뒤 4씩 띄워 도형과 선이 붙지 않게 한다.
+// 선은 도형 앞뒤 3~4씩 띄워 도형과 선이 붙지 않게 한다. 글자 11px 기준으로 상자 폭을 잡았다.
 function AddressFigure() {
   return (
     <svg viewBox="0 0 200 52" aria-label="다른 장비와 같은 주소를 쓰던 제어 노드를 새 주소로 옮김">
-      <g className={cx('fig-box')}><rect x="0.5" y="3" width="52" height="18" rx="1.5" /><rect x="147.5" y="3" width="52" height="18" rx="1.5" /><rect x="0.5" y="31" width="52" height="18" rx="1.5" /></g>
-      <text className={cx('fig-text')} x="26.5" y="15.5">제어 노드</text>
-      <text className={cx('fig-text')} x="173.5" y="15.5">다른 장비</text>
-      <text className={cx('fig-text')} x="26.5" y="43.5">제어 노드</text>
-      <path className={cx('fig-bad')} d="M57 12H71 M129 12H143" />
-      <rect className={cx('fig-pill-bad')} x="75" y="3" width="50" height="18" rx="9" /><text className={cx('fig-text')} x="100" y="15.5">같은 주소</text>
-      <path className={cx('fig-good')} d="M57 40H71" />
-      <rect className={cx('fig-pill-good')} x="75" y="31" width="50" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="100" y="43.5">새 주소</text>
-      <text className={cx('fig-note')} x="136" y="43.5">설정 정리</text>
+      <g className={cx('fig-box')}><rect x="0.5" y="3" width="54" height="18" rx="1.5" /><rect x="145.5" y="3" width="54" height="18" rx="1.5" /><rect x="0.5" y="31" width="54" height="18" rx="1.5" /></g>
+      <text className={cx('fig-text')} x="27.5" y="15.8">제어 노드</text>
+      <text className={cx('fig-text')} x="172.5" y="15.8">다른 장비</text>
+      <text className={cx('fig-text')} x="27.5" y="43.8">제어 노드</text>
+      <path className={cx('fig-bad')} d="M58 12H70 M130 12H142" />
+      <rect className={cx('fig-pill-bad')} x="73" y="3" width="54" height="18" rx="9" /><text className={cx('fig-text')} x="100" y="15.8">같은 주소</text>
+      <path className={cx('fig-good')} d="M58 40H70" />
+      <rect className={cx('fig-pill-good')} x="73" y="31" width="54" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="100" y="43.8">새 주소</text>
+      <text className={cx('fig-note')} x="136" y="43.8">설정 정리</text>
     </svg>
   )
 }
@@ -44,13 +44,13 @@ function AddressFigure() {
 function CdiFigure() {
   return (
     <svg viewBox="0 0 200 52" aria-label="reload 때 끊기던 컨테이너와 GPU 연결을 CDI로 고정">
-      <g className={cx('fig-box')}><rect x="0.5" y="3" width="52" height="18" rx="1.5" /><rect x="155.5" y="3" width="44" height="18" rx="1.5" /><rect x="0.5" y="31" width="52" height="18" rx="1.5" /><rect x="155.5" y="31" width="44" height="18" rx="1.5" /></g>
-      <text className={cx('fig-text')} x="26.5" y="15.5">컨테이너</text><text className={cx('fig-text')} x="177.5" y="15.5">GPU</text>
-      <text className={cx('fig-text')} x="26.5" y="43.5">컨테이너</text><text className={cx('fig-text')} x="177.5" y="43.5">GPU</text>
-      <path className={cx('fig-bad')} d="M57 12H76 M128 12H151" />
+      <g className={cx('fig-box')}><rect x="0.5" y="3" width="57" height="18" rx="1.5" /><rect x="153.5" y="3" width="46" height="18" rx="1.5" /><rect x="0.5" y="31" width="57" height="18" rx="1.5" /><rect x="153.5" y="31" width="46" height="18" rx="1.5" /></g>
+      <text className={cx('fig-text')} x="29" y="15.8">컨테이너</text><text className={cx('fig-text')} x="176.5" y="15.8">GPU</text>
+      <text className={cx('fig-text')} x="29" y="43.8">컨테이너</text><text className={cx('fig-text')} x="176.5" y="43.8">GPU</text>
+      <path className={cx('fig-bad')} d="M61 12H74 M130 12H149" />
       <text className={cx('fig-mark')} x="102" y="15.3">✕ reload</text>
-      <path className={cx('fig-good')} d="M57 40H80 M124 40H151" />
-      <rect className={cx('fig-pill-good')} x="84" y="31" width="36" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="102" y="43.5">CDI</text>
+      <path className={cx('fig-good')} d="M61 40H81 M123 40H149" />
+      <rect className={cx('fig-pill-good')} x="84" y="31" width="36" height="18" rx="9" /><text className={cx('fig-text', 'fig-text--good')} x="102" y="43.8">CDI</text>
     </svg>
   )
 }
@@ -59,13 +59,13 @@ function BackupFigure() {
   const runs = [0, 1, 2]
   return (
     <svg viewBox="0 0 200 52" aria-label="rsync는 실행마다 전체를 복사, Borg는 첫 실행 뒤 변경분만 전송">
-      <text className={cx('fig-note')} x="0" y="15.5">rsync</text>
+      <text className={cx('fig-note')} x="0" y="15.8">rsync</text>
       {runs.map((run) => <rect key={`r${run}`} className={cx('fig-bar-bad')} x={46 + run * 24} y="4" width="16" height="16" rx="1" />)}
-      <text className={cx('fig-note')} x="128" y="15.5">매번 전체</text>
-      <text className={cx('fig-note', 'fig-note--good')} x="0" y="43.5">Borg</text>
+      <text className={cx('fig-note')} x="128" y="15.8">매번 전체</text>
+      <text className={cx('fig-note', 'fig-note--good')} x="0" y="43.8">Borg</text>
       <rect className={cx('fig-bar-good')} x="46" y="32" width="16" height="16" rx="1" />
       {runs.slice(1).map((run) => <rect key={`b${run}`} className={cx('fig-bar-good')} x={46 + run * 24} y="44" width="16" height="4" rx="1" />)}
-      <text className={cx('fig-note')} x="128" y="43.5">변경분만</text>
+      <text className={cx('fig-note')} x="128" y="43.8">변경분만</text>
     </svg>
   )
 }
@@ -104,7 +104,7 @@ function AccessFlow() {
 // 네 묶음의 아래 경계선 → 초록 버스 → 서버 위 LOCAL 선. 좌표는 hero 영역(267 × 88mm) 기준 mm이며,
 // 각 묶음(.infra-step)의 아래 끝(y)을 측정해 넣었다. 묶음 내용이나 간격을 바꾸면 다시 측정한다.
 const BUS_X = 82
-const busTaps = [21.9, 41.5, 61.2, 80.9]
+const busTaps = [22.2, 42.2, 62.2, 82.2]
 
 function DispatchLine() {
   const bottom = busTaps[busTaps.length - 1]

@@ -207,7 +207,7 @@ function ValidationSummary() {
       <div className={cx('validation-summary__head')}><span>검증 결과</span><small>반복 실행 기록 기준</small></div>
       <div><span>REPRODUCTION</span><p>기존 보고 조건을 여러 seed에서 유사한 범위로 재현</p></div>
       <div><span>OBSERVATION</span><p>seed와 fold에 따른 성능 변동성을 반복 실험으로 확인</p></div>
-      <div className={cx('validation-summary__scope')}><span>MY SCOPE</span><p>코드 이관 · 데이터 규칙 교정<br />평가 pipeline 재구성 · 모델 반복 평가</p></div>
+      <div className={cx('validation-summary__scope')}><span>MY SCOPE</span><p>코드 이관 · 데이터 규칙 교정<br />평가 파이프라인 재구성 · 모델 반복 평가</p></div>
     </aside>
   )
 }

@@ -1,4 +1,8 @@
 import cleVisual from '../../../assets/images/synthetic-cle-colorectal-v1.png'
+import bakedOriginal from '../../../assets/images/xai-baked-original.png'
+import bakedGradcam from '../../../assets/images/xai-baked-gradcam.png'
+import bakedMagar from '../../../assets/images/xai-baked-magar.png'
+import AwardBadge, { AwardBadges } from '../../components/AwardBadge.jsx'
 import styles from './PathologyXaiPage.module.css'
 
 const cx = (...names) => names.filter(Boolean).map((name) => styles[name]).join(' ')
@@ -44,7 +48,10 @@ const metrics = [
   { name: 'Recall', value: '0.9727' },
 ]
 
-function GradCamOverlay() {
+const BAKED = { original: bakedOriginal, gradcam: bakedGradcam, magar: bakedMagar }
+
+// 구운 이미지의 원본 overlay. 수정하면 화면 렌더를 다시 캡처해 xai-baked-*.png를 갱신한다.
+export function GradCamOverlay() {
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <defs>
@@ -75,7 +82,7 @@ function GradCamOverlay() {
   )
 }
 
-function MagarOverlay() {
+export function MagarOverlay() {
   const spots = magarSpots.map((spot) => (
     <ellipse key={`${spot.x}-${spot.y}`} cx={spot.x} cy={spot.y} rx={spot.rx} ry={spot.ry} transform={`rotate(${spot.angle} ${spot.x} ${spot.y})`} fill="url(#magar-heat)" opacity={spot.o} />
   ))
@@ -103,9 +110,8 @@ function CleImage({ label, note, overlay }) {
   return (
     <figure className={cx('xai-frame')}>
       <div className={cx('xai-frame__image')}>
-        <img src={cleVisual} alt="합성 CLE 영상" />
-        {overlay === 'gradcam' && <GradCamOverlay />}
-        {overlay === 'magar' && <MagarOverlay />}
+        {/* PDF 인쇄에서 SVG mask · blend · 반투명 gradient가 깨져, overlay를 화면에서 렌더한 이미지로 구워 쓴다 */}
+        <img src={BAKED[overlay] ?? BAKED.original} alt="합성 CLE 영상" />
       </div>
       <figcaption><span>{label}</span><small>{note}</small></figcaption>
     </figure>
@@ -165,7 +171,10 @@ export default function PathologyXaiPage() {
   return (
     <div className={cx('xai-case')}>
       <header className="case-header">
-        <h2>MaxViT 기반 CLE 종양 분류와 MAGAR XAI</h2>
+        <div className="case-title">
+          <h2>MaxViT 기반 CLE 종양 분류와 MAGAR XAI</h2>
+          <AwardBadges><AwardBadge award="은상" detail="제33회 공과대학 학술제 · 2024" accent="var(--c-research)" /></AwardBadges>
+        </div>
         <span className="case-category case-category--corner">AI RESEARCH</span>
       </header>
 
@@ -250,7 +259,7 @@ export default function PathologyXaiPage() {
           <span>MY SCOPE</span>
           <div>
             <b>2024</b>
-            <p><strong>공과대학 학술제 · 3인 팀</strong>MaxViT 분류 모델 개발 · MAGAR 제안·구현<br /><em>제33회 순천향대학교 공과대학 학술제 은상</em></p>
+            <p><strong>공과대학 학술제 · 3인 팀</strong>MaxViT 분류 모델 개발 · MAGAR 제안·구현</p>
           </div>
           <div>
             <b>2026</b>

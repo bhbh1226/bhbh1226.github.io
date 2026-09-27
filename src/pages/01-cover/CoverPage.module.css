@@ -2,19 +2,13 @@
   position: relative;
   height: 100%;
   overflow: hidden;
-  color: #f0f0eb;
+  color: var(--text);
   background:
     linear-gradient(90deg, #080908 0%, #080908 35%, transparent 62%),
     #080908;
 }
 
-.hero-cover::after {
-  position: absolute;
-  inset: 9mm;
-  border: 1px solid rgb(240 240 235 / 14%);
-  pointer-events: none;
-  content: "";
-}
+
 
 .hero-cover__meta {
   position: absolute;
@@ -24,7 +18,7 @@
   left: 14mm;
   display: flex;
   justify-content: flex-end;
-  font-size: 7.5pt;
+  font-size: var(--fs-md);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -32,10 +26,10 @@
 .hero-cover__object {
   position: absolute;
   z-index: 1;
-  top: -9mm;
-  right: -42mm;
-  width: 88%;
-  height: 114%;
+  top: 4mm;
+  right: -20mm;
+  width: 74%;
+  height: 96%;
   object-fit: cover;
   object-position: right center;
   filter: saturate(0.82) contrast(1.08);
@@ -44,21 +38,21 @@
 .hero-cover__name {
   position: absolute;
   z-index: 4;
-  top: 78mm;
+  top: 83mm;
   left: 18mm;
 }
 
 .hero-cover__name p {
   margin: 0 0 2mm;
-  color: rgb(240 240 235 / 58%);
-  font-size: 9pt;
+  color: rgb(var(--text-rgb) / 58%);
+  font-size: var(--fs-lg);
   letter-spacing: 0.08em;
 }
 
 .hero-cover__name h1 {
   margin: 0;
-  color: #f0f0eb;
-  font-size: 100pt;
+  color: var(--text);
+  font-size: 88pt;
   font-weight: 720;
   letter-spacing: -0.075em;
   line-height: 1;
@@ -67,27 +61,26 @@
 .hero-cover__description {
   position: absolute;
   z-index: 3;
-  bottom: 19mm;
+  bottom: 18mm; /* 왼쪽 여백과 같게 */
   left: 18mm;
 }
 
 .hero-cover__description p {
   margin: 0;
-  color: rgb(240 240 235 / 72%);
-  font-size: 9.5pt;
+  color: rgb(var(--text-rgb) / 72%);
+  font-size: var(--fs-2xl);
   letter-spacing: 0.025em;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .hero-cover__contact {
-  position: absolute;
-  z-index: 4;
-  right: 17mm;
-  bottom: 19mm;
   display: flex;
   gap: 5mm;
-  color: rgb(240 240 235 / 82%);
-  text-shadow: 0 1px 5px rgb(0 0 0 / 80%);
-  font-size: 8.2pt;
+  margin-top: 2.55mm;
+  border-top: 1px solid rgb(var(--text-rgb) / 18%);
+  padding-top: 3mm;
+  color: rgb(var(--text-rgb) / 78%);
+  font-size: var(--fs-base);
   letter-spacing: 0.015em;
 }
+

@@ -11,7 +11,7 @@ export default function PageShell({ pageNumber, section, children, tone = '' }) 
       <div className="page__content">{children}</div>
 
       <footer className="page__footer">
-        <span>Park PyeongJin</span>
+        <span>Pyeongjin Park</span>
         <span>AI Research · Service · Infrastructure</span>
       </footer>
     </section>

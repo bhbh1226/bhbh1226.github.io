@@ -16,7 +16,7 @@ SK hynix AI Hackathon 2026 지원용 포트폴리오.
 - 06 — 순천향대학교 Efficient Computing Lab: 분산 GPU 서버를 공용 Slurm 클러스터로 통합
 - 07 — 순천향대학교 캡스톤디자인: 강의 특화 Multi-Modal LLM, Recappers
 - 08 — 순천향대학교 컨버전스디자인 전시 작품 〈잔향〉: 두 순간의 사진을 잇는 10초 AI 영상 서비스 (웹 · AI 파이프라인 개발)
-- 09 — Profile · Awards · Early Work: 경력 색인, 초기 작업 구조 도식, 대학 수상 참조, 연락처
+- 09 — Profile · Projects · Awards: 프로필, 초기 프로젝트, 수상, 연락처
 
 현재 04 — 서울아산병원 CT 기반 폐 환기지도 합성 연구의 상세 초안까지 구현했으며, 페이지 승인 전 최종 문구와 PDF 가독성을 검토하고 있습니다.
 
@@ -30,7 +30,7 @@ Page 06은 구축을 총괄한 GPU 클러스터를 반투명 서버 synthetic �
 
 Page 08은 직접 개발한 영상 생성 서비스를 실제 입력 사진, 실제 Gemini 출력, 재현 프레임으로 보여주고, 재현 프레임임을 페이지에 표시합니다.
 
-Page 09는 이력서를 옮기지 않고, 앞 페이지의 작업을 어디서 했는지 잇는 경력 색인과 초기 작업의 구조 도식으로 포트폴리오를 닫습니다.
+Page 09는 이력서를 옮기지 않고, 앞 페이지에서 다루지 않은 초기 프로젝트와 수상을 모은 뒤 연락처로 포트폴리오를 닫습니다. 경력과 자격증은 함께 제출하는 이력서에 둡니다.
 
 상세 진행 상황, 확정된 디자인 결정과 다음 작업은 [`docs/PROGRESS.md`](docs/PROGRESS.md)를 참고합니다.
 
@@ -48,7 +48,7 @@ Page 09는 이력서를 옮기지 않고, 앞 페이지의 작업을 어디서 �
 
 페이지 순서:
 
-`Profile → ICA Morphology → Pediatric Digital Phenotyping → Asan Medical Center → Pathology AI + XAI → AI Infrastructure → Recappers → Generative AI Video → Profile & Other Work`
+`Profile → ICA Morphology → Pediatric Digital Phenotyping → Asan Medical Center → Pathology AI + XAI → AI Infrastructure → Recappers → Generative AI Video → Profile, Projects & Awards`
 
 ## Run
 
