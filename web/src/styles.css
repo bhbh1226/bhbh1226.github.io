@@ -120,6 +120,17 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   margin: 0;
   overflow: hidden;
+  opacity: .12;
+  transform: translate3d(0, 34px, 0);
+  transition:
+    opacity 680ms cubic-bezier(.2, .65, .2, 1),
+    transform 760ms cubic-bezier(.2, .65, .2, 1);
+  will-change: opacity, transform;
+}
+
+.pdf-frame.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .pdf-frame::after {
@@ -132,6 +143,13 @@ a { color: inherit; text-decoration: none; }
   background: rgb(var(--text-rgb) / 24%);
   content: "";
   pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms 180ms cubic-bezier(.2, .65, .2, 1);
+}
+
+.pdf-frame.is-visible::after {
+  transform: scaleX(1);
 }
 
 .pdf-frame__page {
@@ -177,4 +195,6 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .pdf-frame { opacity: 1; transform: none; }
+  .pdf-frame::after { transform: scaleX(1); }
 }

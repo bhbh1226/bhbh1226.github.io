@@ -27,6 +27,7 @@ const pages = [
 export default function PdfPortfolioStream() {
   const containerRef = useRef(null)
   const [scale, setScale] = useState(1)
+  const [visiblePages, setVisiblePages] = useState(() => new Set())
 
   useEffect(() => {
     const container = containerRef.current
@@ -40,11 +41,49 @@ export default function PdfPortfolioStream() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return undefined
+
+    const frames = Array.from(container.querySelectorAll('.pdf-frame'))
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      setVisiblePages(new Set(pages.map(([pageNumber]) => pageNumber)))
+      return undefined
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const enteredPages = entries
+        .filter((entry) => entry.isIntersecting)
+        .map((entry) => Number(entry.target.dataset.page))
+
+      if (enteredPages.length === 0) return
+
+      setVisiblePages((current) => {
+        const next = new Set(current)
+        enteredPages.forEach((pageNumber) => next.add(pageNumber))
+        return next
+      })
+
+      entries
+        .filter((entry) => entry.isIntersecting)
+        .forEach((entry) => observer.unobserve(entry.target))
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px',
+    })
+
+    frames.forEach((frame) => observer.observe(frame))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className="pdf-stream" id="portfolio-pages" ref={containerRef} aria-label="프로젝트 포트폴리오">
       {pages.map(([pageNumber, section, PageComponent]) => (
         <div
-          className="pdf-frame"
+          className={`pdf-frame${visiblePages.has(pageNumber) ? ' is-visible' : ''}`}
+          data-page={pageNumber}
           key={pageNumber}
           style={{ height: `${PAGE_HEIGHT * scale}px` }}
         >

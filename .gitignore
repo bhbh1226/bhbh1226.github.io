@@ -1,6 +1,7 @@
 node_modules/
 dist/
 web/dist/
+tmp/
 
 .DS_Store
 *.swp
