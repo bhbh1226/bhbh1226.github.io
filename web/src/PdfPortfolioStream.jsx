@@ -32,7 +32,7 @@ export default function PdfPortfolioStream() {
     const container = containerRef.current
     if (!container) return undefined
 
-    const updateScale = () => setScale(Math.min(1, container.clientWidth / PAGE_WIDTH))
+    const updateScale = () => setScale(container.clientWidth / PAGE_WIDTH)
     updateScale()
 
     const observer = new ResizeObserver(updateScale)

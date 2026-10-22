@@ -110,19 +110,29 @@ a { color: inherit; text-decoration: none; }
 
 .pdf-stream {
   width: 100%;
-  padding: clamp(18px, 3vw, 46px);
+  padding: 0;
+  border-top: 1px solid rgb(var(--text-rgb) / 24%);
   background: #090a09;
 }
 
 .pdf-frame {
   position: relative;
   width: 100%;
-  max-width: 1122.52px;
-  margin: 0 auto clamp(18px, 3vw, 46px);
+  margin: 0;
   overflow: hidden;
 }
 
-.pdf-frame:last-child { margin-bottom: 0; }
+.pdf-frame::after {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: rgb(var(--text-rgb) / 24%);
+  content: "";
+  pointer-events: none;
+}
 
 .pdf-frame__page {
   position: absolute;
@@ -162,8 +172,6 @@ a { color: inherit; text-decoration: none; }
   .project-row__category, .project-row__main, .project-row__detail { grid-column: 2; }
   .project-row__main h3 { font-size: 1.2rem; }
   .projects__footer { flex-direction: column; gap: 8px; }
-  .pdf-stream { padding: 10px; }
-  .pdf-frame { margin-bottom: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
