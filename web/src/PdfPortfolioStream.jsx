@@ -8,10 +8,28 @@ import GpuInfraPage from '../../src/pages/06-gpu-infra/GpuInfraPage.jsx'
 import RecappersPage from '../../src/pages/07-recappers/RecappersPage.jsx'
 import TimeBlendingPage from '../../src/pages/08-time-blending/TimeBlendingPage.jsx'
 import ProfilePage from '../../src/pages/09-profile/ProfilePage.jsx'
+import LiveTournamentPageView from '../../src/pages/10-live-tournament/LiveTournamentPageView.jsx'
+import demoIntroImage from './assets/live-tournament-demo/01-intro.jpg'
+import demoRoundImage from './assets/live-tournament-demo/02-round-8.jpg'
+import demoMatchImage from './assets/live-tournament-demo/03-match.jpg'
+import demoSelectionImage from './assets/live-tournament-demo/04-selection-focus.jpg'
+import demoWinnerImage from './assets/live-tournament-demo/05-winner.jpg'
 import '../../styles/global.css'
 
 const PAGE_WIDTH = 1122.52
 const PAGE_HEIGHT = 793.7
+
+const liveTournamentDemoMedia = {
+  intro: demoIntroImage,
+  round: demoRoundImage,
+  match: demoMatchImage,
+  selection: demoSelectionImage,
+  winner: demoWinnerImage,
+}
+
+function LiveTournamentWebPage() {
+  return <LiveTournamentPageView media={liveTournamentDemoMedia} mode="demo" />
+}
 
 const pages = [
   [2, 'Seoul National University Hospital · Medical Vision Lab', AneurysmPage],
@@ -21,7 +39,8 @@ const pages = [
   [6, 'Soonchunhyang University · Efficient Computing Lab · Undergraduate Research', GpuInfraPage],
   [7, 'Soonchunhyang University · Computer Engineering · Capstone Design', RecappersPage],
   [8, 'Soonchunhyang University · Convergence Design Exhibition · Web & AI Development', TimeBlendingPage],
-  [9, 'Profile · Projects · Awards', ProfilePage],
+  [9, 'Client Delivery · Interactive Media · Frontend Development', LiveTournamentWebPage],
+  [10, 'Profile · Projects · Awards', ProfilePage],
 ]
 
 export default function PdfPortfolioStream() {
@@ -84,6 +103,7 @@ export default function PdfPortfolioStream() {
         <div
           className={`pdf-frame${visiblePages.has(pageNumber) ? ' is-visible' : ''}`}
           data-page={pageNumber}
+          id={`portfolio-page-${pageNumber}`}
           key={pageNumber}
           style={{ height: `${PAGE_HEIGHT * scale}px` }}
         >

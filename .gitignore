@@ -3,6 +3,10 @@ dist/
 web/dist/
 tmp/
 
+# Private portfolio source assets must never enter the public Pages repository.
+assets/images/live-tournament/
+output/pdf/*-draft.pdf
+
 .DS_Store
 *.swp
 *.swo
