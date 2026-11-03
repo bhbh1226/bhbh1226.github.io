@@ -86,7 +86,7 @@ export default function LiveTournamentPageView({ media, mode = 'delivery' }) {
             <strong>넷플릭스 짤드컵</strong>
             <p>넷플잔치 생중계 다시 보기 | 넷플릭스 코리아 10주년</p>
           </div>
-          <a href="https://youtu.be/IXLsHpzjLLs" target="_blank" rel="noreferrer">https://youtu.be/IXLsHpzjLLs <b>↗</b></a>
+          <a href="https://youtu.be/IXLsHpzjLLs?t=12724" target="_blank" rel="noreferrer">https://youtu.be/IXLsHpzjLLs?t=12724 <b>↗</b></a>
         </div>
       </section>
     </div>
