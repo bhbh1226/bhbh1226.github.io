@@ -69,11 +69,9 @@
 .tournament-foot > div > span { display: block; margin: 0 0 2.25mm; font-size: var(--fs-label); line-height: 1; }
 .tournament-role > strong { display: block; margin: 0 0 1mm; font-size: var(--fs-xl); }
 .tournament-role p, .tournament-demo p { margin: 0; color: rgb(var(--text-rgb) / 62%); font-size: var(--fs-md); line-height: 1.4; }
-.tournament-delivery { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto; gap: 0 2mm; align-content: start; }
-.tournament-delivery > span { grid-column: 1 / -1; }
-.tournament-delivery p { margin: 0; }
-.tournament-delivery strong { display: block; color: rgb(var(--text-rgb) / 88%); font: 650 var(--fs-sm) "SFMono-Regular", Menlo, monospace; }
-.tournament-delivery small { display: block; margin-top: .9mm; color: rgb(var(--text-rgb) / 52%); font-size: var(--fs-xs); line-height: 1.35; }
+.tournament-live > strong { display: block; margin-bottom: 1mm; color: rgb(var(--text-rgb) / 90%); font-size: var(--fs-lg); }
+.tournament-live a { display: inline-flex; gap: 1.5mm; align-items: center; border-bottom: 1px solid rgb(var(--c-service-rgb) / 48%); padding-bottom: .4mm; color: rgb(var(--text-rgb) / 82%); font: var(--fs-xs) "SFMono-Regular", Menlo, monospace; white-space: nowrap; }
+.tournament-live a b { color: var(--service); font-weight: 600; }
 .tournament-demo__title { display: flex; gap: 2.2mm; align-items: baseline; min-width: 0; white-space: nowrap; }
 .tournament-demo__title > strong { flex: none; color: rgb(var(--text-rgb) / 90%); font-size: var(--fs-lg); }
 .tournament-demo__title p { color: rgb(var(--text-rgb) / 68%); white-space: nowrap; }

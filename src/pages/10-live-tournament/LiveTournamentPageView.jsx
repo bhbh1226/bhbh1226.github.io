@@ -75,10 +75,10 @@ export default function LiveTournamentPageView({ media, mode = 'delivery' }) {
           <strong>프런트엔드 개발 전반</strong>
           <p>UI · 대진 로직 · 미디어 · 상태 복구 · 빌드</p>
         </div>
-        <div className={cx('tournament-delivery')}>
-          <span>DELIVERY</span>
-          <p><strong>1 CODEBASE</strong><small>웹 서버 · 행사장 오프라인 패키지</small></p>
-          <p><strong>RECOVERY</strong><small>동일 대진 · 경기 위치 복원</small></p>
+        <div className={cx('tournament-live')}>
+          <span>ONLINE VERSION</span>
+          <strong>짤드컵 온라인 버전</strong>
+          <a href="https://netflixkr10memequiz.com/" target="_blank" rel="noreferrer">netflixkr10memequiz.com <b>↗</b></a>
         </div>
         <div className={cx('tournament-demo')}>
           <span>EVENT RECORD</span>
